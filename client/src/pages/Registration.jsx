@@ -39,6 +39,13 @@ const Registration = () => {
           <div className={styles.text}></div>
         </form>
       </section>
+      <div className={styles.smtext}>
+        By continuing, you agree to accept our Privacy Policy and Terms of
+        service.
+      </div>
+      <div className={styles.mdtext}>
+        Already have an account? <span>Login</span>
+      </div>
     </main>
   );
 };
