@@ -1,10 +1,15 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import App from './App';
+import MainContainerPage from './pages/MainContainerPage';
+import './index.css';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-)
+ReactDOM.render(
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<MainContainerPage />} />
+    </Routes>
+  </BrowserRouter>,
+  document.getElementById('root')
+);
