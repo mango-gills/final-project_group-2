@@ -1,11 +1,16 @@
-import "./App.css";
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
-function App() {
+import RoutesComponent from './routes/RoutesComponent.jsx';
+
+const App = () => {
   return (
-    <div className="App">
-      <h1>Hello Group 2!</h1>
-    </div>
+    <main className="App">
+      <BrowserRouter>
+        <RoutesComponent />
+      </BrowserRouter>
+    </main>
   );
-}
+};
 
 export default App;
