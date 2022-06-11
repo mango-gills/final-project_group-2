@@ -2,6 +2,7 @@ import React from 'react';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { IoMdVideocam } from 'react-icons/io';
 import { MdPresentToAll } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 import styles from '../styles/Landing.module.css';
 
@@ -16,7 +17,9 @@ const Landing = () => {
         <IoMdVideocam className={styles.mdicon} />
         <MdPresentToAll className={styles.mdicon} />
       </section>
-      <section className={styles.cta}>Login | Signup</section>
+      <section className={styles.cta}>
+        <Link to="/login">Login</Link> | <Link to="/registration">Signup</Link>
+      </section>
     </main>
   );
 };
