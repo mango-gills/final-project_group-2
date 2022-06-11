@@ -1,51 +1,50 @@
 import React from 'react';
-import { MdPresentToAll } from 'react-icons/md';
 
 import styles from '../styles/Registration.module.css';
 
 const Registration = () => {
   return (
-    <main className={styles.maincontainer}>
-      <div className={styles.title}>Create an account</div>
-      <section>
-        <form className={styles.registration}>
-          {/* <MdPresentToAll className={styles.icon} /> */}
+    <main className={styles.main__container}>
+      <section className={styles.main__section}>
+        <div className={styles.heading__container}>
+          <div className={styles.heading}>Create an account</div>
+        </div>
+        <form className={styles.form__registration}>
           <input
-            className={`${styles.username} ${styles.icon}`}
+            className={`${styles.form__input} ${styles.username}`}
             id="username"
             placeholder="username"
             type="text"
           ></input>
           <input
-            className={styles.email}
+            className={`${styles.form__input} ${styles.email}`}
             id="email"
-            placeholder="email"
+            placeholder="email address"
             type="text"
           ></input>
           <input
-            className={styles.password}
+            className={`${styles.form__input} ${styles.password}`}
             id="password"
             placeholder="password"
             type="password"
           ></input>
           <input
-            className={styles.password}
+            className={`${styles.form__input} ${styles.password}`}
             id="confirm password"
             placeholder="confirm password"
             type="password"
           ></input>
-          <button className={styles.submit}>SIGNUP</button>
-          <div className={styles.text}></div>
-          <div className={styles.text}></div>
+          <button className={styles.form__button}>SIGNUP</button>
         </form>
+        <div className={styles.terms__text}>
+          By continuing, you agree to accept our Privacy Policy and Terms of
+          service.
+        </div>
+        <div className={styles.login__text}>
+          Already have an account?
+          <span className={styles.backlink}> Login</span>
+        </div>
       </section>
-      <div className={styles.smtext}>
-        By continuing, you agree to accept our Privacy Policy and Terms of
-        service.
-      </div>
-      <div className={styles.mdtext}>
-        Already have an account? <span>Login</span>
-      </div>
     </main>
   );
 };
