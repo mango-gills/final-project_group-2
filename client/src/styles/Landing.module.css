@@ -16,7 +16,7 @@
   --goldenorange: #e8aa15;
 }
 
-.maincontainer {
+.main__container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,12 +24,12 @@
   height: 100vh;
 }
 
-.welcometext {
+.text__welcome {
   color: var(--gray);
   font-size: 1.2rem;
 }
 
-.logotext {
+.text__logo {
   color: var(--purple);
   font-size: 3rem;
   font-weight: 1000;
@@ -41,7 +41,11 @@
   margin: 20px;
 }
 
-.mdicon {
+.icons__section {
+  display: flex;
+}
+
+.icon {
   font-size: 2rem;
   color: var(--gray);
   margin: 20px;
@@ -50,4 +54,5 @@
 .cta {
   margin-top: 20px;
   color: var(--purple);
+  font-size: 2rem;
 }
