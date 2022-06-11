@@ -4,8 +4,9 @@ import MobileContainer from '../components/MobileContainer';
 
 const MainContainerPage = () => {
   const [width, setWidth] = useState(window.innerWidth);
+  const [isDarkMode, toggleDarkMode] = useState(false);
+  const [isMobile, setIsMobile] = useState(width <= 768);
 
-  //https://stackoverflow.com/questions/39435395/reactjs-how-to-determine-if-the-application-is-being-viewed-on-mobile-or-deskto
   const handleWindowSizeChange = () => {
     setWidth(window.innerWidth);
   };
@@ -17,10 +18,27 @@ const MainContainerPage = () => {
     };
   }, []);
 
-  const isMobile = width <= 768;
-  //   const isMobile = width <= 600;
+  useEffect(() => {
+    setIsMobile(width <= 768);
+  }, [width]);
 
-  return <div>{isMobile ? <MobileContainer /> : <DesktopContainer />}</div>;
+  return (
+    <div>
+      {isMobile ? (
+        <MobileContainer
+          isMobile={isMobile}
+          isDarkMode={isDarkMode}
+          toggleDarkMode={toggleDarkMode}
+        />
+      ) : (
+        <DesktopContainer
+          isMobile={isMobile}
+          isDarkMode={isDarkMode}
+          toggleDarkMode={toggleDarkMode}
+        />
+      )}
+    </div>
+  );
 };
 
 export default MainContainerPage;

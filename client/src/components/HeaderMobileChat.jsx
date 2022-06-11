@@ -6,11 +6,19 @@ import MenuIcon from '../assets/icons/menu_black_24dp.svg';
 import InfoIcon from '../assets/icons/info_black_24dp.svg';
 import SearchIcon from '../assets/icons/search_black_24dp.svg';
 
-export default HeaderMobileChat = () => {
+const HeaderMobileChat = ({
+  showChatFeed,
+  toggleChatFeedVisibility,
+  showChat,
+  toggleChatVisibility,
+}) => {
   return (
     <div>
       <div>
-        <button>
+        <button onClick={()=>{
+          toggleChatVisibility(false);
+          toggleChatFeedVisibility(true);
+        }}>
           <img src={GoBackIcon} />
         </button>
       </div>
@@ -34,3 +42,5 @@ export default HeaderMobileChat = () => {
     </div>
   );
 };
+
+export default HeaderMobileChat;

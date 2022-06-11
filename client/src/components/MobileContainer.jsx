@@ -4,19 +4,61 @@ import ChatFeed from './ChatFeed';
 import HeaderMobileChat from './HeaderMobileChat';
 import Chat from './Chat';
 import Settings from './Settings';
+import { useState } from 'react';
+import styles from '../styles/MobileContainer.module.css';
 
-export default MobileContainer = () => {
+
+const MobileContainer = ({ isMobile }) => {
+  const [showChatFeed, toggleChatFeedVisibility] = useState(true);
+  const [showChat, toggleChatVisibility] = useState(false);
+  const [showSettings, toggleSettingsVisibility] = useState(false);
   return (
     <div>
-      <div>
-        <HeaderMobileChatFeed />
-        <ChatFeed />
-      </div>
-      <div>
-      <HeaderMobileChat />
-      <Chat />
-      </div>
-      <Settings />
+      {showChatFeed ? (
+        <div>
+          <HeaderMobileChatFeed
+            showSettings={showSettings}
+            toggleSettingsVisibility={toggleSettingsVisibility}
+            showChatFeed={showChatFeed}
+            toggleChatFeedVisibility={toggleChatFeedVisibility}
+          />
+          <ChatFeed
+            isMobile={isMobile}
+            showChat={showChat}
+            toggleChatVisibility={toggleChatVisibility}
+            showChatFeed={showChatFeed}
+            toggleChatFeedVisibility={toggleChatFeedVisibility}
+          />
+        </div>
+      ) : (
+        ''
+      )}
+      {showChat ? (
+        <div>
+          <HeaderMobileChat
+            showChatFeed={showChatFeed}
+            toggleChatFeedVisibility={toggleChatFeedVisibility}
+            showChat={showChat}
+            toggleChatVisibility={toggleChatVisibility}
+          />
+          <Chat isMobile={isMobile} />
+        </div>
+      ) : (
+        ''
+      )}
+      {showSettings ? (
+        <Settings
+          isMobile={isMobile}
+          showSettings={showSettings}
+          toggleSettingsVisibility={toggleSettingsVisibility}
+          showChatFeed={showChatFeed}
+          toggleChatFeedVisibility={toggleChatFeedVisibility}
+        />
+      ) : (
+        ''
+      )}
     </div>
   );
 };
+
+export default MobileContainer;

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from './App';
+import { SharedProvider } from './contexts/SharedContext';
 import MainContainerPage from './pages/MainContainerPage';
 import './index.css';
 
