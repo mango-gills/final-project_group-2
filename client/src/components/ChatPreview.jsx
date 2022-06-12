@@ -43,28 +43,27 @@ const ChatPreview = ({
 
   return (
     <div
-      className={styles.chatcard__wrapper}
+      className={styles.wrapper__chatpreview}
       onClick={() => {
-        toggleChatVisibility(true);
-        toggleChatFeedVisibility(false);
+        // code to show message in Chat.jsx component
       }}
     >
-      <div className={styles.chatcard__avatar_wrapper_desktop}>
+      <div className={styles.chatpreview__wrapper_avatar}>
         <img
-          className={styles.chatcard__avatar_image}
+          className={styles.avatar__image}
           src={messageObject.senderAvatar}
         />
       </div>
-      <div className={styles.chatcard__text_wrapper}>
-        <p className={styles.chatcard__text_sender}>
+      <div className={styles.chatpreview__wrapper_text}>
+        <p className={styles.text__friendname}>
           {messageObject.senderName}
         </p>
-        <p className={styles.chatcard__text_messages}>
+        <p className={styles.text__message}>
           {messageObject.message}
           {/*{`${messageObject.message} ${moment(messageObject.timestamp).fromNow()}`} */}
         </p>
       </div>
-      <div className={styles.chatcard__timestamp}>
+      <div className={styles.timestamp}>
         {moment(messageObject.timestamp).fromNow()}
       </div>
     </div>

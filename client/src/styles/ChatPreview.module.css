@@ -31,6 +31,8 @@ body {
 
 /* PAGE STYLES */
 
+/* MOBILE STYLES */
+
 .chatcard__wrapper {
   width: 100%;
   /* border: 2px solid blue; */
@@ -90,4 +92,54 @@ body {
   color: var(--color-button-logout);
   /* display: flex; */
   /* align-items: center; */
+}
+
+/* DESKTOP STYLES */
+
+.wrapper__chatpreview {
+  border-top: 1px solid rgba(112, 112, 112, .3);
+  width: 100%;
+  display: flex;
+  font-size: 1.2rem;
+  padding: 1rem 0;
+  cursor: pointer;
+  backdrop-filter: blur(.5rem);
+}
+
+.chatpreview__wrapper_avatar {
+  /* border: 1px solid red; */
+  width: 4.5rem;
+  flex-shrink: 0;
+}
+
+.avatar__image {
+  width: 100%;
+  border-radius: 50%;;
+}
+
+.chatpreview__wrapper_text {
+  flex-grow: 1;
+  overflow: hidden;
+  padding-left: 1rem;
+}
+
+.text__friendname {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 0;
+
+}
+
+.text__message {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+.timestamp {
+  /* border: 1px solid red; */
+  width: 5rem;
+  flex-shrink: 0;
+  font-size: .9rem;
 }

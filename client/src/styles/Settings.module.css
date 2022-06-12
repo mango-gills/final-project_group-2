@@ -9,6 +9,8 @@
   --color-button-attach-file: #a307d5;
   --color-button-send: #efac54;
   --color-button-logout: #707070;
+  --color-background-settings: #f6f6f6;
+  --color-online-status-indicator: #00ff00;
 }
 
 * {
@@ -30,3 +32,118 @@ body {
 }
 
 /* PAGE STYLES */
+
+.container_settings {
+  /* border: 2px solid blue; */
+  background-color: var(--color-background-settings);
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.wrapper_profile {
+  padding-top: 1rem;
+  /* border: 2px solid orange; */
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+
+}
+
+.wrapper__image {
+  /* border: 2px solid cyan; */
+  width: 25%;
+  margin: 0 auto;
+}
+
+.profile__image {
+  border-radius: 50%;
+  width: 100%;
+}
+
+.profile__name, .profile__status {
+}
+
+.profile__name {
+  margin: .5rem 0 0 0 ;
+  /* border: 2px solid violet; */
+  font-size: 2rem;
+}
+
+.profile__status {
+  /* border: 2px solid khaki; */
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+.profile__status_indicator_online {
+  margin: 0;
+  display: inline-block;
+  width: .7rem;
+  height: .7rem;
+  border-radius: 50%;
+  background-color: rgb(0, 255, 0);
+}
+
+.profile__status_indicator_offline {
+  margin: 0;
+  display: inline-block;
+  width: .7rem;
+  height: .7rem;
+  border-radius: 50%;
+  background-color: #707070;
+}
+
+.wrapper__settings {
+  /* border: 2px solid khaki; */
+  margin-top: 3rem;
+  padding-right: 2rem;
+  flex-grow: 1;
+
+}
+
+.settings_header {
+  border-bottom: 1px solid rgba(112, 112, 112, .3);
+  padding: 1rem 2rem ;
+  margin: 0;
+}
+
+.settings_option {
+  padding: 1rem 2rem ;
+  border-bottom: 1px solid rgba(112, 112, 112, .3);
+  cursor: pointer;
+}
+
+.wrapper__darkmode{
+width:25rem;
+ font-size: 1.3rem;
+ text-transform: uppercase;
+ color: rgba(112, 112, 112, .7);
+ color: #442e4b;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin: 1rem auto;
+}
+
+.darkmode_label {
+
+}
+
+.settings__button_logout {
+  width: 25rem;
+  border: none;
+  border-radius: 3rem;
+  background-color: #a307d5;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-family: inherit;
+  font-size: 2rem;
+  padding: 1rem 0;
+  align-self: center;
+  margin-bottom: 5rem;
+  cursor: pointer;
+}

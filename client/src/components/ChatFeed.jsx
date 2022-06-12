@@ -2,6 +2,7 @@ import React from 'react';
 import ChatPreview from './ChatPreview';
 import styles from '../styles/ChatFeed.module.css';
 import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
+import addPersonIcon from '../assets/icons/person_add_black_24dp.svg';
 
 /*
 
@@ -136,6 +137,7 @@ const ChatFeed = ({
   showChatFeed,
   toggleChatFeedVisibility,
 }) => {
+  // MOBILE VERSION
   if (isMobile) {
     return (
       <div className={styles.chatfeed__wrapper}>
@@ -156,9 +158,17 @@ const ChatFeed = ({
     );
   }
 
+  // DESKTOP VERSION
   return (
     <div className={styles.chatfeed__wrapper_desktop}>
-      <h2>Messages</h2>
+      <div className={styles.chatfeed__header_wrapper_desktop}>
+        <h2 className={styles.chatfeed__header_text_desktop}>Messages</h2>
+        <button className={styles.chatfeed__header_button_desktop} onClick={()=>{
+          // code for pop up component for adding friend
+        }}>
+          <img src={addPersonIcon} />
+        </button>
+      </div>
       <div>
         {sampleData2.map((messageObject) => (
           <ChatPreview messageObject={messageObject} />

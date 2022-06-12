@@ -12,6 +12,12 @@ const Settings = ({
   showChatFeed,
   toggleChatFeedVisibility,
 }) => {
+    const sampleLoggedInUser = {
+        name: 'Ruth Rodriguez',
+        online: true 
+    }
+
+
   //Mobile Version
   if (isMobile) {
     return (
@@ -31,21 +37,30 @@ const Settings = ({
 
   // Desktop Style
   return (
-    <div>
-      <div>
-        <img src={defaultProfilePic} alt="" />
-        <h2>User Name</h2>
-        <span>User Status</span>
+    <div className={styles.container_settings}>
+      <div className={styles.wrapper_profile}>
+        <div className={styles.wrapper__image}>
+          <img
+            className={styles.profile__image}
+            src={defaultProfilePic}
+            alt=""
+          />
+        </div>
+        <h2 className={styles.profile__name}>{sampleLoggedInUser.name}</h2>
+        <span className={styles.profile__status}>
+          <span className={sampleLoggedInUser.online? styles.profile__status_indicator_online : styles.profile__status_indicator_offline}></span> {sampleLoggedInUser.online? 'online' : 'offline'}
+        </span>
       </div>
-      <div>
-        <h3>Settings</h3>
-        <div>Upload profile picture</div>
-        <div>Update password</div>
+      <div className={styles.wrapper__settings}>
+        <h3 className={styles.settings_header}>Settings</h3>
+        <div className={styles.settings_option}>Upload profile picture</div>
+        <div className={styles.settings_option}>Update password</div>
       </div>
-
+<div className={styles.wrapper__darkmode} >
+    <span className={styles.darkmode_label}>Dark Mode</span>
       <DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-
-      <button>Logout</button>
+</div>
+      <button className={styles.settings__button_logout}>Logout</button>
     </div>
   );
 };
