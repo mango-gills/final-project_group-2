@@ -1,8 +1,9 @@
-import React from 'react';
-import menuIcon from '../assets/icons/menu_black_24dp.svg';
-import addFriendIcon from '../assets/icons/person_add_black_24dp.svg';
-import searchIcon from '../assets/icons/search_black_24dp.svg';
-import styles from '../styles/HeaderMobileChatFeed.module.css';
+import React from "react";
+import menuIcon from "../assets/icons/menu_black_24dp.svg";
+import addFriendIcon from "../assets/icons/person_add_black_24dp.svg";
+import searchIcon from "../assets/icons/search_black_24dp.svg";
+import styles from "../styles/HeaderMobileChatFeed.module.css";
+import AddEmailToast from "../Modals/AddEmailToast";
 
 const HeaderMobileChatFeed = ({
   showSettings,
@@ -30,9 +31,7 @@ const HeaderMobileChatFeed = ({
         <button className={styles.header__button}>
           <img className={styles.header__button_icon} src={searchIcon} />
         </button>
-        <button className={styles.header__button}>
-          <img className={styles.header__button_icon} src={addFriendIcon} />
-        </button>
+        <AddEmailToast />
       </div>
     </div>
   );

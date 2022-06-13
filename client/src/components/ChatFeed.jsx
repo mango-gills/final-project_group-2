@@ -4,8 +4,7 @@ import styles from "../styles/ChatFeed.module.css";
 import defaultProfilePic from "../assets/images-avatars/placeholder_avatar.png";
 import addPersonIcon from "../assets/icons/person_add_black_24dp.svg";
 import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import AddEmailToast from "../Modals/AddEmailToast";
 /*
 
 6AYHXtSfMR
@@ -139,36 +138,6 @@ const ChatFeed = ({
   showChatFeed,
   toggleChatFeedVisibility,
 }) => {
-  const [chatEmail, setChatEmail] = useState("");
-
-  const successAddEmail = () =>
-    toast.success("Email Added!", {
-      autoClose: 2000,
-      pauseOnHover: false,
-      closeOnClick: true,
-    });
-
-  const errorAddEmail = () =>
-    toast.warn("Invalid email address!", {
-      autoClose: 2000,
-      pauseOnHover: false,
-      closeOnClick: true,
-    });
-
-  const addFriend = () => {
-    const input = prompt("Chat a friend.");
-    const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (input.match(mailformat)) {
-      successAddEmail();
-      setChatEmail(input.trim());
-    } else {
-      errorAddEmail();
-      setChatEmail("");
-    }
-  };
-
-  console.log(chatEmail);
-
   // MOBILE VERSION
   if (isMobile) {
     return (
@@ -195,21 +164,13 @@ const ChatFeed = ({
     <div className={styles.chatfeed__wrapper_desktop}>
       <div className={styles.chatfeed__header_wrapper_desktop}>
         <h2 className={styles.chatfeed__header_text_desktop}>Messages</h2>
-        <button
-          className={styles.chatfeed__header_button_desktop}
-          onClick={() => {
-            // code for pop up component for adding friend
-          }}
-        >
-          <img src={addPersonIcon} onClick={addFriend} />
-        </button>
+        <AddEmailToast />
       </div>
       <div>
         {sampleData2.map((messageObject) => (
           <ChatPreview messageObject={messageObject} />
         ))}
       </div>
-      <ToastContainer />
     </div>
   );
 };
