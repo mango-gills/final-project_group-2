@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
 import styles from '../styles/Chat.module.css';
 import addPhotoIcon from '../assets/icons/add_photo_white.svg';
@@ -50,6 +50,25 @@ const Chat = ({ isMobile, isDarkMode, toggleDarkMode }) => {
     online: true,
     avatar: defaultProfilePic,
   };
+
+  // trying to implement an indicator for attached photos
+
+  const [photoButtonClicked, togglePhotoButtonClicked] = useState(false);
+  const [showPhotoAddedIndicator, toggleShowPhotoAddedIndicator] =
+    useState(false);
+  
+    useEffect(() => {
+    const imageInput = document.querySelector('#image_input');
+
+    if (imageInput[0]?.files.length > 0) {
+      console.log('files attached', imageInput.files.length);
+      toggleShowPhotoAddedIndicator(true);
+      return;
+    }
+
+    toggleShowPhotoAddedIndicator(false);
+    console.log('files attached', imageInput.files.length);
+  }, [photoButtonClicked]);
 
   // Mobile Version
   if (isMobile) {
@@ -111,16 +130,28 @@ const Chat = ({ isMobile, isDarkMode, toggleDarkMode }) => {
       <div className={styles.wrapper__messages}>
         {sampleChatData.map((message) =>
           message.senderId === loggedInUserId ? (
-            <div className={`${styles.wrapper__message} ${styles.wrapper__message_user}`}>
+            <div
+              className={`${styles.wrapper__message} ${styles.wrapper__message_user}`}
+            >
               <div className={styles.message_user}>{message.message}</div>
               <div className={styles.message__avatar_wrapper}>
-                <img className={styles.message__avatar_image} src={defaultProfilePic} alt="" />
+                <img
+                  className={styles.message__avatar_image}
+                  src={defaultProfilePic}
+                  alt=""
+                />
               </div>
             </div>
           ) : (
-            <div className={`${styles.wrapper__message} ${styles.wrapper__message_friend}`}>
+            <div
+              className={`${styles.wrapper__message} ${styles.wrapper__message_friend}`}
+            >
               <div className={styles.message__avatar_wrapper}>
-                <img className={styles.message__avatar_image} src={defaultProfilePic} alt="" />
+                <img
+                  className={styles.message__avatar_image}
+                  src={defaultProfilePic}
+                  alt=""
+                />
               </div>
               <div className={styles.message_friend}>{message.message}</div>
             </div>
@@ -128,21 +159,38 @@ const Chat = ({ isMobile, isDarkMode, toggleDarkMode }) => {
         )}
       </div>
 
-        <form className={styles.wrapper__form}>
-          <textarea className={styles.form__textarea} placeholder="Start writing your message...."></textarea>
-          <div className={styles.wrapper_form_buttons}>
-            {/*<button className={styles.form__button_addphoto} type="button">
+      <form className={styles.wrapper__form}>
+        <textarea
+          className={styles.form__textarea}
+          placeholder="Start writing your message...."
+        ></textarea>
+        <div className={styles.wrapper_form_buttons}>
+          {/*<button className={styles.form__button_addphoto} type="button">
               <img className={styles.button_addphoto_image} src={addPhotoIcon} />
           </button>*/}
-          <label className={styles.form__button_addphoto}>
-          <input type="file" accept="image/*" className={styles.button_addphoto_input} />  
+          <label
+            className={styles.form__button_addphoto}
+          >
+            {showPhotoAddedIndicator ? (
+              <span className={styles.form__photoadded_indicator}></span>
+            ) : (
+              ''
+            )}
+            <input
+              id="image_input"
+              type="file"
+              accept="image/*"
+              className={styles.button_addphoto_input}
+              onChange={() => {
+                togglePhotoButtonClicked(!photoButtonClicked);
+              }}
+            />
           </label>
           <button className={styles.form__button_send} type="submit">
-              Send
-            </button>
-          </div>
-        </form>
-
+            Send
+          </button>
+        </div>
+      </form>
     </div>
   );
 };
