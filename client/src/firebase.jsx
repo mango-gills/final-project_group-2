@@ -4,14 +4,13 @@ import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCBNLIr9DGXYNEuTsKQIvTrgGyd5IvvJow',
-  databaseURL: 'https://remcel-trial.firebaseio.com ',
-  authDomain: 'remcel-trial.firebaseapp.com',
-  projectId: 'remcel-trial',
-  storageBucket: 'remcel-trial.appspot.com',
-  messagingSenderId: '471917754304',
-  appId: '1:471917754304:web:9cd48e29400762b9fd3a25',
-  measurementId: 'G-V9VS01E45S',
+  apiKey: 'AIzaSyCL_YZK7Tap-kz9MvlJuoAsEC6VpqNl7U0',
+  authDomain: 'chat-app-official-9f0ee.firebaseapp.com',
+  projectId: 'chat-app-official-9f0ee',
+  storageBucket: 'chat-app-official-9f0ee.appspot.com',
+  messagingSenderId: '234039602872',
+  appId: '1:234039602872:web:bc3374219f6b08c1de8e4d',
+  measurementId: 'G-QDG1CZ0LNM',
 };
 
 const app = initializeApp(firebaseConfig);

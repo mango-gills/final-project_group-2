@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { MdPresentToAll } from 'react-icons/md';
 import styles from '../styles/Registration.module.css';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth';
 import { auth, db } from '../firebase';
 import { setDoc, doc, Timestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
@@ -54,6 +58,38 @@ const Registration = () => {
       setData({ ...data, error: err.message, loading: false });
     }
   };
+
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const { displayName, email } = result.user;
+      await setDoc(doc(db, 'users', result.user.uid), {
+        uid: result.user.uid,
+        name: displayName,
+        email,
+        createdAt: Timestamp.fromDate(new Date()),
+        isOnline: true,
+      });
+      setData({
+        name: '',
+        email: '',
+        password: '',
+        error: null,
+        loading: false,
+      });
+      history('/');
+    } catch (err) {
+      setData({ ...data, error: err.message, loading: false });
+    }
+
+    // .then((re) => {
+    //   const name = re.user.displayName;
+    //   const email = re.user.email;
+    //   console.log(re.user.photoURL);
+    // })
+  };
+
   return (
     <main className={styles.maincontainer}>
       <div className={styles.title}>Create an account</div>
@@ -94,10 +130,14 @@ const Registration = () => {
           ></input>
 
           <button className={styles.submit}>SIGNUP</button>
+
           {error ? <p className="error">{error}</p> : null}
           <div className={styles.text}></div>
           <div className={styles.text}></div>
         </form>
+        <button className={styles.text} onClick={handleGoogleSignIn}>
+          GOOGLE SIGNIN
+        </button>
       </section>
       <div className={styles.smtext}>
         By continuing, you agree to accept our Privacy Policy and Terms of
