@@ -1,0 +1,73 @@
+/* GLOBAL STYLES */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+:root {
+  --color-chat-feed: #f9effc;
+  --color-message-theirs: #f6e5fb;
+  --color-message-yours: #c158e3;
+  --color-button-attach-file: #a307d5;
+  --color-button-send: #efac54;
+  --color-button-logout: #707070;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  font-size: 1.5rem;
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* PAGE STYLES */
+
+.chatfeed__wrapper {
+  padding-top: 8rem;
+}
+
+/* DESKTOP STYLES */
+
+.chatfeed__wrapper_desktop {
+  background-color: #f9effc;
+  padding: 1.5rem 0 1.5rem 1.5rem;
+  width: 30rem;
+  height: 100vh;
+  /* overflow-y: scroll;
+  scrollbar-width: thin; */
+  flex-shrink: 0;
+}
+
+.chatfeed__header_wrapper_desktop {
+  padding-right: 1.5rem;
+  border-bottom: 1px solid rgba(112, 112, 112, .3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatfeed__header_text_desktop {
+}
+
+.chatfeed__header_button_desktop {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+
+}
+
+.chatfeed__previews__wrapper_desktop {
+  height: calc(100vh - 8.3rem);
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  padding-bottom: .5rem;
+}
