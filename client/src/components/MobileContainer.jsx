@@ -7,8 +7,11 @@ import Settings from './Settings';
 import { useState } from 'react';
 import styles from '../styles/MobileContainer.module.css';
 
-
-const MobileContainer = ({ isMobile }) => {
+const MobileContainer = ({
+  isMobile,
+  showAddFriendComponent,
+  toggleAddFriendVisibility
+}) => {
   const [showChatFeed, toggleChatFeedVisibility] = useState(true);
   const [showChat, toggleChatVisibility] = useState(false);
   const [showSettings, toggleSettingsVisibility] = useState(false);
@@ -21,6 +24,8 @@ const MobileContainer = ({ isMobile }) => {
             toggleSettingsVisibility={toggleSettingsVisibility}
             showChatFeed={showChatFeed}
             toggleChatFeedVisibility={toggleChatFeedVisibility}
+            showAddFriendComponent={showAddFriendComponent}
+            toggleAddFriendVisibility={toggleAddFriendVisibility}
           />
           <ChatFeed
             isMobile={isMobile}

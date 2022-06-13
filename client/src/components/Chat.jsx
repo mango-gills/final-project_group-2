@@ -131,10 +131,13 @@ const Chat = ({ isMobile, isDarkMode, toggleDarkMode }) => {
         <form className={styles.wrapper__form}>
           <textarea className={styles.form__textarea} placeholder="Start writing your message...."></textarea>
           <div className={styles.wrapper_form_buttons}>
-            <button className={styles.form__button_addphoto} type="button">
+            {/*<button className={styles.form__button_addphoto} type="button">
               <img className={styles.button_addphoto_image} src={addPhotoIcon} />
-            </button>
-            <button className={styles.form__button_send} type="submit">
+          </button>*/}
+          <label className={styles.form__button_addphoto}>
+          <input type="file" accept="image/*" className={styles.button_addphoto_input} />  
+          </label>
+          <button className={styles.form__button_send} type="submit">
               Send
             </button>
           </div>

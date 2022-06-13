@@ -97,7 +97,7 @@ body {
 /* DESKTOP STYLES */
 
 .wrapper__chatpreview {
-  border-top: 1px solid rgba(112, 112, 112, .3);
+  border-bottom: 1px solid rgba(112, 112, 112, .3);
   width: 100%;
   display: flex;
   font-size: 1.2rem;
@@ -134,7 +134,7 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
+  color: #707070;
 }
 
 .timestamp {

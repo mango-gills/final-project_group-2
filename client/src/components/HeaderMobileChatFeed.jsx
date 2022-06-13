@@ -9,6 +9,8 @@ const HeaderMobileChatFeed = ({
   toggleSettingsVisibility,
   showChatFeed,
   toggleChatFeedVisibility,
+  showAddFriendComponent,
+  toggleAddFriendVisibility,
 }) => {
   return (
     <div className={styles.header__wrapper}>
@@ -30,7 +32,12 @@ const HeaderMobileChatFeed = ({
         <button className={styles.header__button}>
           <img className={styles.header__button_icon} src={searchIcon} />
         </button>
-        <button className={styles.header__button}>
+        <button
+          className={styles.header__button}
+          onClick={() => {
+            toggleAddFriendVisibility(!showAddFriendComponent);
+          }}
+        >
           <img className={styles.header__button_icon} src={addFriendIcon} />
         </button>
       </div>

@@ -197,19 +197,29 @@ cursor: pointer;
 
 .form__button_addphoto {
   border-radius: 50%;
-  padding: .4rem .9rem;
+  background: url('../assets/icons/add_photo_white.svg');
   background-color: var(--color-button-attach-file);
-
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 2rem;
+  cursor: pointer;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-left: 1.5rem;
 }
 
-.button_addphoto_image {
+/* .button_addphoto_image {
   width: 1.7rem;
   aspect-ratio: 1;
+} */
+
+.button_addphoto_input {
+  visibility: hidden;
 }
 
 .form__button_send {
 border-radius: 1rem;
-padding: .8rem 2rem;
+padding: .8rem 3rem;
 font-size: 1.7rem;
 text-transform: uppercase;
 background-color: var(--color-button-send);

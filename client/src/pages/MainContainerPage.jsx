@@ -6,6 +6,11 @@ const MainContainerPage = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const [isDarkMode, toggleDarkMode] = useState(false);
   const [isMobile, setIsMobile] = useState(width <= 768);
+  const [showAddFriendComponent, toggleAddFriendVisibility] = useState(false);
+  const [showUploadAvatarComponent, toggleUploadAvatarVisibility] =
+    useState(false);
+  const [showChangePasswordComponent, toggleChangePasswordVisibility] =
+    useState(false);
 
   const handleWindowSizeChange = () => {
     setWidth(window.innerWidth);
@@ -29,12 +34,24 @@ const MainContainerPage = () => {
           isMobile={isMobile}
           isDarkMode={isDarkMode}
           toggleDarkMode={toggleDarkMode}
+          showAddFriendComponent={showAddFriendComponent}
+          toggleAddFriendVisibility={toggleAddFriendVisibility}
+          showUploadAvatarComponent={showUploadAvatarComponent}
+          toggleUploadAvatarVisibility={toggleUploadAvatarVisibility}
+          showChangePasswordComponent={showChangePasswordComponent}
+          toggleChangePasswordVisibility={toggleChangePasswordVisibility}
         />
       ) : (
         <DesktopContainer
           isMobile={isMobile}
           isDarkMode={isDarkMode}
           toggleDarkMode={toggleDarkMode}
+          showAddFriendComponent={showAddFriendComponent}
+          toggleAddFriendVisibility={toggleAddFriendVisibility}
+          showUploadAvatarComponent={showUploadAvatarComponent}
+          toggleUploadAvatarVisibility={toggleUploadAvatarVisibility}
+          showChangePasswordComponent={showChangePasswordComponent}
+          toggleChangePasswordVisibility={toggleChangePasswordVisibility}
         />
       )}
     </div>

@@ -42,13 +42,14 @@ body {
   padding: 1.5rem 0 1.5rem 1.5rem;
   width: 30rem;
   height: 100vh;
-  overflow-y: scroll;
-  scrollbar-width: thin;
+  /* overflow-y: scroll;
+  scrollbar-width: thin; */
   flex-shrink: 0;
 }
 
 .chatfeed__header_wrapper_desktop {
   padding-right: 1.5rem;
+  border-bottom: 1px solid rgba(112, 112, 112, .3);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -62,4 +63,11 @@ body {
   border: none;
   cursor: pointer;
 
+}
+
+.chatfeed__previews__wrapper_desktop {
+  height: calc(100vh - 8.3rem);
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  padding-bottom: .5rem;
 }

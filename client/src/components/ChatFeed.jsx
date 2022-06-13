@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ChatPreview from './ChatPreview';
 import styles from '../styles/ChatFeed.module.css';
 import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
@@ -136,7 +136,9 @@ const ChatFeed = ({
   toggleChatVisibility,
   showChatFeed,
   toggleChatFeedVisibility,
+  showAddFriendComponent, toggleAddFriendVisibility
 }) => {
+
   // MOBILE VERSION
   if (isMobile) {
     return (
@@ -164,12 +166,12 @@ const ChatFeed = ({
       <div className={styles.chatfeed__header_wrapper_desktop}>
         <h2 className={styles.chatfeed__header_text_desktop}>Messages</h2>
         <button className={styles.chatfeed__header_button_desktop} onClick={()=>{
-          // code for pop up component for adding friend
+          toggleAddFriendVisibility(!showAddFriendComponent);
         }}>
           <img src={addPersonIcon} />
         </button>
       </div>
-      <div>
+      <div className={styles.chatfeed__previews__wrapper_desktop}>
         {sampleData2.map((messageObject) => (
           <ChatPreview messageObject={messageObject} />
         ))}
