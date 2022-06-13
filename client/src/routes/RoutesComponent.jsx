@@ -9,6 +9,8 @@ import PasswordVerification from '../pages/PasswordVerification.jsx';
 import PasswordReset from '../pages/PasswordReset.jsx';
 import NotFound from '../pages/NotFound.jsx';
 
+import ConversationPage from '../pages/ConversationPage.jsx';
+
 const RoutesComponent = () => {
   return (
     <main>
@@ -16,6 +18,7 @@ const RoutesComponent = () => {
         <Route path="/" element={<Landing />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<LogIn />} />
+        <Route path="/conversations" element={<ConversationPage />} />
         <Route path="/password-recovery" element={<PasswordRecovery />} />
         <Route
           path="/password-verification"

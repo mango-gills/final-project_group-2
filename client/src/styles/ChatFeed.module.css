@@ -49,7 +49,10 @@ body {
 
 .chatfeed__header_wrapper_desktop {
   padding-right: 1.5rem;
+  /* padding-bottom: 2rem; */
   border-bottom: 1px solid rgba(112, 112, 112, .3);
+  padding-bottom: 1.5rem;
+  /* border: 1px solid red; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -66,7 +69,7 @@ body {
 }
 
 .chatfeed__previews__wrapper_desktop {
-  height: calc(100vh - 8.3rem);
+  height: calc(100vh - 6.16rem);
   overflow-y: scroll;
   scrollbar-width: thin;
   padding-bottom: .5rem;
