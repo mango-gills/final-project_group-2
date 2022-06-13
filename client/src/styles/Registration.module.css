@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --purple: #a307d5;
+  --darkpurple: #442e4b;
+  --gray: #707070;
+  --lightgray: rgba(112, 112, 112, 0.65);
+  --goldenorange: #e8aa15;
+}
+
+.main__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.main__section {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 10px;
+}
+
+.form__registration {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.form__input {
+  margin: 10px 0;
+  padding: 12px 40px;
+  border: none;
+  box-shadow: 1px 1px 1px 1px rgba(112, 112, 112, 0.1),
+    -1px 1px 1px 1px rgba(112, 112, 112, 0.1);
+  border-radius: 0.25rem;
+}
+
+.username {
+  background: url('../assets/user.svg') no-repeat;
+  background-position: 0.5rem;
+}
+
+.email {
+  background: url('../assets/email.svg') no-repeat;
+  background-position: 0.5rem;
+}
+
+.password {
+  background: url('../assets/key.svg') no-repeat;
+  background-position: 0.5rem;
+}
+
+.form__button {
+  width: 300px;
+  height: 50px;
+  margin: 10px 0;
+  background-color: var(--purple);
+  border: none;
+  border-radius: 5rem;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.7rem;
+}
+
+.terms__text {
+  width: 300px;
+  font-size: 1.2rem;
+  text-align: center;
+  color: var(--gray);
+}
+
+.login__text {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: var(--gray);
+}
+
+.backlink {
+  color: var(--purple);
+}

@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+:root {
+  --purple: #a307d5;
+  --darkpurple: #442e4b;
+  --gray: #707070;
+  --lightgray: rgba(112, 112, 112, 0.65);
+  --goldenorange: #e8aa15;
+}
+
+.main__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.text__welcome {
+  color: var(--gray);
+  font-size: 1.2rem;
+}
+
+.text__logo {
+  color: var(--purple);
+  font-size: 3rem;
+  font-weight: 1000;
+  /* font-family: 'Monoton', 'Open Sans', Arial; */
+}
+
+.image {
+  width: 12rem;
+  margin: 20px;
+}
+
+.icons__section {
+  display: flex;
+}
+
+.icon {
+  font-size: 2rem;
+  color: var(--gray);
+  margin: 20px;
+}
+
+.cta {
+  margin-top: 20px;
+  color: var(--purple);
+  font-size: 2rem;
+}
