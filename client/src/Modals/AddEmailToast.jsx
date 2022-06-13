@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import addPersonIcon from "../assets/icons/person_add_black_24dp.svg";
+import styles from "../styles/AddEmailToast.module.css";
 
 const AddEmailToast = () => {
   const [chatEmail, setChatEmail] = useState("");
@@ -42,7 +43,11 @@ const AddEmailToast = () => {
   console.log(chatEmail);
   return (
     <div>
-      <img src={addPersonIcon} onClick={() => addFriend()} />
+      <img
+        src={addPersonIcon}
+        onClick={() => addFriend()}
+        className={styles.add_email_toast}
+      />
       <ToastContainer />
     </div>
   );
