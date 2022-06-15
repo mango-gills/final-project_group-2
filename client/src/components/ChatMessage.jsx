@@ -13,12 +13,12 @@ const ChatMessage = ({ msg, user1, chat, user }) => {
     <div ref={scrollRef}>
       {msg.from === user1 ? (
         <div
-          className={`${styles.wrapper__message} ${styles.wrapper__message_user}`}
+          className={`${styles.desktop_wrapper__message} ${styles.desktop_wrapper__message_user}`}
         >
-          <div className={styles.message_user}>{msg.text}</div>
-          <div className={styles.message__avatar_wrapper}>
+          <div className={styles.desktop_message_user}>{msg.text}</div>
+          <div className={styles.desktop_message__avatar_wrapper}>
             <img
-              className={styles.message__avatar_image}
+              className={styles.desktop_message__avatar_image}
               src={user.avatar || defaultProfilePic}
               alt=""
             />
@@ -26,16 +26,16 @@ const ChatMessage = ({ msg, user1, chat, user }) => {
         </div>
       ) : (
         <div
-          className={`${styles.wrapper__message} ${styles.wrapper__message_friend}`}
+          className={`${styles.desktop_wrapper__message} ${styles.desktop_wrapper__message_friend}`}
         >
-          <div className={styles.message__avatar_wrapper}>
+          <div className={styles.desktop_message__avatar_wrapper}>
             <img
-              className={styles.message__avatar_image}
+              className={styles.desktop_message__avatar_image}
               src={chat.avatar || defaultProfilePic}
               alt=""
             />
           </div>
-          <div className={styles.message_friend}>{msg.text}</div>
+          <div className={styles.desktop_message_friend}>{msg.text}</div>
         </div>
       )}
     </div>

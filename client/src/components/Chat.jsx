@@ -72,47 +72,85 @@ const Chat = ({
   useEffect(() => {
     const imageInput = document.querySelector('#image_input');
 
+    if (imageInput === null) {
+      return;
+    }
+
     if (imageInput[0]?.files.length > 0) {
-      console.log('files attached', imageInput.files.length);
+      console.log('files attached', imageInput?.files.length);
       toggleShowPhotoAddedIndicator(true);
       return;
     }
 
     toggleShowPhotoAddedIndicator(false);
-    console.log('files attached', imageInput.files.length);
+    console.log('files attached', imageInput?.files.length);
   }, [photoButtonClicked]);
 
   // Mobile Version
   if (isMobile) {
     return (
-      <div className="container__chats__mobile">
-        {sampleChatData.map((message) =>
-          message.senderId === loggedInUserId ? (
-            <div
-              style={{
-                display: 'flex',
-                width: '100%',
-                justifyContent: 'flex-end',
-              }}
-            >
-              <div style={{ width: 'fit-content', backgroundColor: 'green' }}>
-                {message.message}
+      <div className={styles.mobile_container__chat}>
+        <div className={styles.mobile_wrapper__messages}>
+          {sampleChatData.map((message) =>
+            message.senderId === loggedInUserId ? (
+              <div
+                className={`${styles.mobile_wrapper__message} ${styles.mobile_wrapper__message_user}`}
+              >
+                <div className={styles.mobile_message_user}>
+                  {message.message}
+                </div>
+                <div className={styles.mobile_message__avatar_wrapper}>
+                  <img
+                    className={styles.mobile_message__avatar_image}
+                    src={defaultProfilePic}
+                    alt=""
+                  />
+                </div>
               </div>
-            </div>
-          ) : (
-            <div
-              style={{
-                display: 'flex',
-                width: '100%',
-                justifyContent: 'flex-start',
-              }}
-            >
-              <div style={{ width: 'fit-content', backgroundColor: 'blue' }}>
-                {message.message}
+            ) : (
+              <div
+                className={`${styles.mobile_wrapper__message} ${styles.mobile_wrapper__message_friend}`}
+              >
+                <div className={styles.mobile_message__avatar_wrapper}>
+                  <img
+                    className={styles.mobile_message__avatar_image}
+                    src={defaultProfilePic}
+                    alt=""
+                  />
+                </div>
+                <div className={styles.mobile_message_friend}>
+                  {message.message}
+                </div>
               </div>
-            </div>
-          )
-        )}
+            )
+          )}
+        </div>
+        <form
+          className={styles.mobile_wrapper__form}
+          onKeyUp={(e) => {
+            if (e.key === 'Enter') {
+              // insert code for accepting message data
+            }
+          }}
+        >
+          <label className={styles.mobile_form__button_addphoto}>
+            <input
+              id="image_input"
+              type="file"
+              accept="image/*"
+              className={styles.mobile_button_addphoto_input}
+              onChange={() => {
+                togglePhotoButtonClicked(!photoButtonClicked);
+              }}
+            />
+          </label>
+          <textarea
+            className={styles.mobile_form__textarea}
+            placeholder="Start writing your message...."
+          ></textarea>
+          {/*<button className={styles.mobile_form__button_send} type="submit">
+            </button>*/}
+        </form>
       </div>
     );
   }
@@ -120,60 +158,64 @@ const Chat = ({
   // Desktop Version
 
   return (
-    <div className={styles.container__chat_desktop}>
+    <div className={styles.desktop_container__chat}>
       {chat ? (
         <>
-          <div className={styles.wrapper__header}>
-            <div className={styles.wrapper__friendavatar}>
+          <div className={styles.desktop_wrapper__header}>
+            <div className={styles.desktop_wrapper__friendavatar}>
               <img
-                className={styles.friendavatar_image}
+                className={styles.desktop_friendavatar_image}
                 src={chat.avatar || defaultProfilePic}
                 alt=""
               />
             </div>
-            <div className={styles.wrapper__friendinfo}>
-              <h2 className={styles.friendInfo_name}>{chat.name}</h2>
-              <div className={styles.wrapper__friendinfo_status}>
-                <span className={styles.friendinfo__status_indicator}></span>
-                <span className={styles.friendinfo__status}>
-                  {chat.isOnline ? 'online' : 'offline'}
+            <div className={styles.desktop_wrapper__friendinfo}>
+              <h2 className={styles.desktop_friendInfo_name}>{chat.name}</h2>
+              <div className={styles.desktop_wrapper__friendinfo_status}>
+                <span
+                  className={styles.desktop_friendinfo__status_indicator}
+                ></span>
+                <span className={styles.desktop_friendinfo__status}>
+                  {friendInfo.online ? 'online' : 'offline'}
                 </span>
               </div>
             </div>
-          </div>
-          <div className={styles.wrapper__messages}>
-            {msgs.length
-              ? msgs.map((msg, i) => (
-                  <ChatMessage
-                    key={i}
-                    msg={msg}
-                    user1={user1}
-                    chat={chat}
-                    user={user}
-                  />
-                ))
-              : null}
+            <div className={styles.wrapper__messages}>
+              {msgs.length
+                ? msgs.map((msg, i) => (
+                    <ChatMessage
+                      key={i}
+                      msg={msg}
+                      user1={user1}
+                      chat={chat}
+                      user={user}
+                    />
+                  ))
+                : null}
+            </div>
           </div>
         </>
       ) : (
         <h3>Select a User to Start a Conversation</h3>
       )}
 
-      <form className={styles.wrapper__form} onSubmit={handleSubmit}>
+      <form className={styles.desktop_wrapper__form} onSubmit={handleSubmit}>
         <textarea
-          className={styles.form__textarea}
+          className={styles.desktop_form__textarea}
           type="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Start writing your message...."
         ></textarea>
-        <div className={styles.wrapper_form_buttons}>
-          {/*<button className={styles.form__button_addphoto} type="button">
-              <img className={styles.button_addphoto_image} src={addPhotoIcon} />
+        <div className={styles.desktop_wrapper_form_buttons}>
+          {/*<button className={styles.desktop_form__button_addphoto} type="button">
+              <img className={styles.desktop_button_addphoto_image} src={addPhotoIcon} />
           </button>*/}
-          <label className={styles.form__button_addphoto}>
+          <label className={styles.desktop_form__button_addphoto}>
             {showPhotoAddedIndicator ? (
-              <span className={styles.form__photoadded_indicator}></span>
+              <span
+                className={styles.desktop_form__photoadded_indicator}
+              ></span>
             ) : (
               ''
             )}
@@ -181,13 +223,13 @@ const Chat = ({
               id="image_input"
               type="file"
               accept="image/*"
-              className={styles.button_addphoto_input}
+              className={styles.desktop_button_addphoto_input}
               onChange={() => {
                 togglePhotoButtonClicked(!photoButtonClicked);
               }}
             />
           </label>
-          <button className={styles.form__button_send} type="submit">
+          <button className={styles.desktop_form__button_send} type="submit">
             Send
           </button>
         </div>

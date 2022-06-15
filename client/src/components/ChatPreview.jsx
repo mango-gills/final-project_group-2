@@ -15,26 +15,28 @@ const ChatPreview = ({
   if (isMobile) {
     return (
       <div
-        className={styles.chatcard__wrapper}
+        className={styles.mobile_chatcard__wrapper}
         onClick={() => {
           toggleChatVisibility(true);
           toggleChatFeedVisibility(false);
         }}
       >
-        <div className={styles.chatcard__avatar_wrapper}>
+        <div className={styles.mobile_chatcard__avatar_wrapper}>
           <img
-            className={styles.chatcard__avatar_image}
+            className={styles.mobile_chatcard__avatar_image}
             src={currUser.avatar}
           />
         </div>
-        <div className={styles.chatcard__text_wrapper}>
-          <p className={styles.chatcard__text_sender}>{currUser.name}</p>
-          <p className={styles.chatcard__text_messages}>
+        <div className={styles.mobile_chatcard__text_wrapper}>
+          <p className={styles.mobile_chatcard__text_sender}>
+            {currUser.name}
+          </p>
+          <p className={styles.mobile_chatcard__text_messages}>
             {/* {messageObject.message} */}
             {/*{`${messageObject.message} ${moment(messageObject.timestamp).fromNow()}`} */}
           </p>
         </div>
-        <div className={styles.chatcard__timestamp}>
+        <div className={styles.mobile_chatcard__timestamp}>
           {moment(messageObject.timestamp).fromNow()}
         </div>
       </div>
@@ -43,21 +45,23 @@ const ChatPreview = ({
 
   return (
     <div
-      className={styles.wrapper__chatpreview}
+      className={styles.desktop_wrapper__chatpreview}
       onClick={() => {
         selectUser(currUser);
         // code to show message in Chat.jsx component
       }}
     >
-      <div className={styles.chatpreview__wrapper_avatar}>
+      <div className={styles.desktop_chatpreview__wrapper_avatar}>
         <img
-          className={styles.avatar__image}
+          className={styles.desktop_avatar__image}
           src={currUser.avatar || defaultProfilePic}
         />
       </div>
-      <div className={styles.chatpreview__wrapper_text}>
-        <p className={styles.text__friendname}>{currUser.name}</p>
-        <p className={styles.text__message}>
+      <div className={styles.desktop_chatpreview__wrapper_text}>
+        <p className={styles.desktop_text__friendname}>
+        {currUser.name}
+        </p>
+        <p className={styles.desktop_text__message}>
           {/* {messageObject.message} */}
           {/*{`${messageObject.message} ${moment(messageObject.timestamp).fromNow()}`} */}
         </p>
@@ -65,8 +69,8 @@ const ChatPreview = ({
           className={`user_status ${currUser.isOnline ? 'online' : 'offline'}`}
         ></div>
       </div>
-      <div className={styles.timestamp}>
-        {/* {moment(messageObject.timestamp).fromNow()} */}
+      <div className={styles.desktop_timestamp}>
+        {/*moment(messageObject.timestamp).fromNow()*/}
       </div>
     </div>
   );

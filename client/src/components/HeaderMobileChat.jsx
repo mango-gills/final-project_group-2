@@ -5,6 +5,8 @@ import VideoCallIcon from '../assets/icons/video_call_black_24dp.svg';
 import MenuIcon from '../assets/icons/menu_black_24dp.svg';
 import InfoIcon from '../assets/icons/info_black_24dp.svg';
 import SearchIcon from '../assets/icons/search_black_24dp.svg';
+import styles from '../styles/HeaderMobileChat.module.css';
+import GoBackIconTwo from '../assets/icons/west_black.svg';
 
 const HeaderMobileChat = ({
   showChatFeed,
@@ -12,31 +14,36 @@ const HeaderMobileChat = ({
   showChat,
   toggleChatVisibility,
 }) => {
+
+  const friendName = 'Ana de Armas';
   return (
-    <div>
-      <div>
-        <button onClick={()=>{
-          toggleChatVisibility(false);
-          toggleChatFeedVisibility(true);
-        }}>
-          <img src={GoBackIcon} />
+    <div className={styles.header__container}>
+      <div className={styles.wrapper_goback_button}>
+        <button
+          className={styles.goback_button}
+          onClick={() => {
+            toggleChatVisibility(false);
+            toggleChatFeedVisibility(true);
+          }}
+        >
+          <img className={styles.button__image} src={GoBackIconTwo} />
         </button>
       </div>
-      <div>
-        <p>friendName</p>
+      <div className={styles.wrapper_friendname}>
+        <p className={styles.friendname_text}>{friendName}</p>
       </div>
-      <div>
-        <button>
-          <img src={SearchIcon} />
+      <div className={styles.wrapper_addtl_buttons}>
+        <button className={styles.addtl_button}>
+          <img className={styles.button__image} src={SearchIcon} />
         </button>
-        <button>
-          <img src={PhoneCallIcon} />
+        <button className={styles.addtl_button}>
+          <img className={styles.button__image} src={PhoneCallIcon} />
         </button>
-        <button>
-          <img src={VideoCallIcon} />
+        <button className={styles.addtl_button}>
+          <img className={styles.button__image} src={VideoCallIcon} />
         </button>
-        <button>
-          <img src={InfoIcon} />
+        <button className={styles.addtl_button}>
+          <img className={styles.button__image} src={InfoIcon} />
         </button>
       </div>
     </div>

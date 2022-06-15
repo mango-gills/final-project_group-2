@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 
-const SharedContext = React.createContext();
+export const SharedContext = React.createContext();
 
 export const SharedProvider = ({ children }) => {
   const [width, setWidth] = useState(window.innerWidth);

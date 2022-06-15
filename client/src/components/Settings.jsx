@@ -2,6 +2,8 @@ import React from 'react';
 import styles from '../styles/Settings.module.css';
 import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
 import DarkModeToggle from './DarkModeToggle';
+import exitIcon from '../assets/icons/close.svg';
+import editIcon from '../assets/icons/edit_white.svg';
 import { auth, db } from '../firebase';
 import { signOut } from 'firebase/auth';
 import { updateDoc, doc } from 'firebase/firestore';
@@ -24,21 +26,101 @@ const Settings = ({
   const sampleLoggedInUser = {
     name: 'Ruth Rodriguez',
     online: true,
+    email: 'rrodriguez@gmail.com',
+    password: 'pw1234',
   };
 
   //Mobile Version
   if (isMobile) {
     return (
-      <div>
-        <p>Settings</p>
-        <button
-          onClick={() => {
-            toggleSettingsVisibility(false);
-            toggleChatFeedVisibility(true);
-          }}
-        >
-          Go back
-        </button>
+      <div className={styles.mobile_container_settings}>
+        <div className={styles.mobile_wrapper_exit_button}>
+          <button
+            className={styles.mobile_exit_button}
+            onClick={() => {
+              toggleSettingsVisibility(false);
+              toggleChatFeedVisibility(true);
+            }}
+          >
+            <img
+              className={styles.mobile_exit_button_image}
+              src={exitIcon}
+              alt=""
+            />
+          </button>
+        </div>
+        <div className={styles.mobile_wrapper_profile}>
+          <div className={styles.mobile_wrapper_avatar}>
+            <img
+              className={styles.mobile_avatar_image}
+              src={defaultProfilePic}
+              alt=""
+            />
+            <form className={styles.mobile_wrapper_change_avatar}>
+              <label className={styles.mobile_label_change_avatar}>
+                <input
+                  className={styles.mobile_input_change_avatar}
+                  id="image_input"
+                  type="file"
+                  accept="image/*"
+                  onChange={() => {
+                    togglePhotoButtonClicked(!photoButtonClicked);
+                  }}
+                />
+              </label>
+            </form>
+          </div>
+          <div className={styles.mobile_wrapper_user_info}>
+            <p className={styles.mobile_profile_userinfo_name}>
+              {sampleLoggedInUser.name}
+            </p>
+            <p className={styles.mobile_profile_userinfo_email}>
+              {sampleLoggedInUser.email}
+            </p>
+          </div>
+        </div>
+        <div className={styles.mobile_wrapper_form}>
+          <form className={styles.mobile_form}>
+            <label className={styles.mobile_label_change_name}>Name</label>
+            <input
+              className={styles.mobile_input_change_name}
+              value={sampleLoggedInUser.name}
+              type="text"
+              disabled={true}
+            />
+
+            <label className={styles.mobile_label_change_email}>Email</label>
+            <input
+              className={styles.mobile_input_change_email}
+              value={sampleLoggedInUser.email}
+              type="email"
+              disabled={true}
+            />
+
+            <label className={styles.mobile_label_change_password}>
+              Password
+            </label>
+            <input
+              className={styles.mobile_input_change_password}
+              value={sampleLoggedInUser.password}
+              type="password"
+              onChange={() => {
+                //insert code here to change state, and bind 2-way
+              }}
+            />
+
+            <button className={styles.mobile_submit_changes} type="submit">
+              Update
+            </button>
+          </form>
+        </div>
+        <div className={styles.mobile_wrapper_buttons}>
+          <div className={styles.mobile_wrapper_darkmode}>
+            <span className={styles.mobile_darkmode_text}>Dark Mode</span>
+            <DarkModeToggle />
+          </div>
+          <button className={styles.mobile_button_darkmode}>Signout</button>
+        </div>
       </div>
     );
   }
@@ -52,31 +134,31 @@ const Settings = ({
   };
   // Desktop Style
   return (
-    <div className={styles.container_settings}>
-      <div className={styles.wrapper_profile}>
-        <div className={styles.wrapper__image}>
+    <div className={styles.desktop_container_settings}>
+      <div className={styles.desktop_wrapper_profile}>
+        <div className={styles.desktop_wrapper__image}>
           <img
-            className={styles.profile__image}
+            className={styles.desktop_profile__image}
             src={user?.avatar || defaultProfilePic}
             alt=""
           />
         </div>
-        <h2 className={styles.profile__name}>{user?.name}</h2>
-        <span className={styles.profile__status}>
+        <h2 className={styles.desktop_profile__name}>{user?.name}</h2>
+        <span className={styles.desktop_profile__status}>
           <span
             className={
               sampleLoggedInUser.online
-                ? styles.profile__status_indicator_online
-                : styles.profile__status_indicator_offline
+                ? styles.desktop_profile__status_indicator_online
+                : styles.desktop_profile__status_indicator_offline
             }
           ></span>{' '}
           {sampleLoggedInUser.online ? 'online' : 'offline'}
         </span>
       </div>
-      <div className={styles.wrapper__settings}>
-        <h3 className={styles.settings_header}>Settings</h3>
+      <div className={styles.desktop_wrapper__settings}>
+        <h3 className={styles.desktop_settings_header}>Settings</h3>
         <div
-          className={styles.settings_option}
+          className={styles.desktop_settings_option}
           onClick={() => {
             toggleUploadAvatarVisibility(!showUploadAvatarComponent);
           }}
@@ -84,7 +166,7 @@ const Settings = ({
           Upload profile picture
         </div>
         <div
-          className={styles.settings_option}
+          className={styles.desktop_settings_option}
           onClick={() => {
             toggleChangePasswordVisibility(!showChangePasswordComponent);
           }}
@@ -92,15 +174,15 @@ const Settings = ({
           Update password
         </div>
       </div>
-      <div className={styles.wrapper__darkmode}>
-        <span className={styles.darkmode_label}>Dark Mode</span>
+      <div className={styles.desktop_wrapper__darkmode}>
+        <span className={styles.desktop_darkmode_label}>Dark Mode</span>
         <DarkModeToggle
           isDarkMode={isDarkMode}
           toggleDarkMode={toggleDarkMode}
         />
       </div>
       <button
-        className={styles.settings__button_logout}
+        className={styles.desktop_settings__button_logout}
         onClick={handleSignout}
       >
         Logout

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import DesktopContainer from '../components/DesktopContainer';
 import MobileContainer from '../components/MobileContainer';
 import { db, auth } from '../firebase';
@@ -16,6 +16,7 @@ import {
 } from 'firebase/firestore';
 
 const ConversationPage = () => {
+  // const {width, setWidth, isDarkMode, toggleDarkMode, isMobile, setIsMobile} = useContext(SharedContext);
   const [chat, setChat] = useState();
   const [text, setText] = useState();
   const [users, setUsers] = useState([]);
