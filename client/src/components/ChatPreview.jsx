@@ -1,10 +1,12 @@
 import React from 'react';
 import moment from 'moment';
 import styles from '../styles/ChatPreview.module.css';
+import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
 
 const ChatPreview = ({
+  selectUser,
   isMobile,
-  messageObject,
+  currUser,
   showChat,
   toggleChatVisibility,
   showChatFeed,
@@ -22,15 +24,13 @@ const ChatPreview = ({
         <div className={styles.chatcard__avatar_wrapper}>
           <img
             className={styles.chatcard__avatar_image}
-            src={messageObject.senderAvatar}
+            src={currUser.avatar}
           />
         </div>
         <div className={styles.chatcard__text_wrapper}>
-          <p className={styles.chatcard__text_sender}>
-            {messageObject.senderName}
-          </p>
+          <p className={styles.chatcard__text_sender}>{currUser.name}</p>
           <p className={styles.chatcard__text_messages}>
-            {messageObject.message}
+            {/* {messageObject.message} */}
             {/*{`${messageObject.message} ${moment(messageObject.timestamp).fromNow()}`} */}
           </p>
         </div>
@@ -45,26 +45,28 @@ const ChatPreview = ({
     <div
       className={styles.wrapper__chatpreview}
       onClick={() => {
+        selectUser(currUser);
         // code to show message in Chat.jsx component
       }}
     >
       <div className={styles.chatpreview__wrapper_avatar}>
         <img
           className={styles.avatar__image}
-          src={messageObject.senderAvatar}
+          src={currUser.avatar || defaultProfilePic}
         />
       </div>
       <div className={styles.chatpreview__wrapper_text}>
-        <p className={styles.text__friendname}>
-          {messageObject.senderName}
-        </p>
+        <p className={styles.text__friendname}>{currUser.name}</p>
         <p className={styles.text__message}>
-          {messageObject.message}
+          {/* {messageObject.message} */}
           {/*{`${messageObject.message} ${moment(messageObject.timestamp).fromNow()}`} */}
         </p>
+        <div
+          className={`user_status ${currUser.isOnline ? 'online' : 'offline'}`}
+        ></div>
       </div>
       <div className={styles.timestamp}>
-        {moment(messageObject.timestamp).fromNow()}
+        {/* {moment(messageObject.timestamp).fromNow()} */}
       </div>
     </div>
   );

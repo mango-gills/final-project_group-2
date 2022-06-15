@@ -74,6 +74,9 @@ body {
 .uploadavatar__header {
   margin-bottom: 1rem;
 }
+img {
+  width:50px
+}
 
 .uploadavatar__input {
   margin-bottom: 4rem;

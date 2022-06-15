@@ -118,12 +118,16 @@ body {
 }
 
 .chatpreview__wrapper_text {
+
   flex-grow: 1;
+  display: flex;
   overflow: hidden;
   padding-left: 1rem;
   line-height: 1.5;
   /* border: 1px solid #a307d5; */
 }
+
+
 
 .text__friendname {
   font-size: 1.7rem;
@@ -143,3 +147,4 @@ body {
   flex-shrink: 0;
   font-size: .9rem;
 }
+

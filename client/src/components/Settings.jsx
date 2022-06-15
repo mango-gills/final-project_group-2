@@ -2,8 +2,13 @@ import React from 'react';
 import styles from '../styles/Settings.module.css';
 import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
 import DarkModeToggle from './DarkModeToggle';
+import { auth, db } from '../firebase';
+import { signOut } from 'firebase/auth';
+import { updateDoc, doc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 const Settings = ({
+  user,
   isMobile,
   isDarkMode,
   toggleDarkMode,
@@ -37,7 +42,14 @@ const Settings = ({
       </div>
     );
   }
-
+  const navigate = useNavigate();
+  const handleSignout = async () => {
+    await updateDoc(doc(db, 'users', auth.currentUser.uid), {
+      isOnline: false,
+    });
+    await signOut(auth);
+    navigate('/');
+  };
   // Desktop Style
   return (
     <div className={styles.container_settings}>
@@ -45,11 +57,11 @@ const Settings = ({
         <div className={styles.wrapper__image}>
           <img
             className={styles.profile__image}
-            src={defaultProfilePic}
+            src={user?.avatar || defaultProfilePic}
             alt=""
           />
         </div>
-        <h2 className={styles.profile__name}>{sampleLoggedInUser.name}</h2>
+        <h2 className={styles.profile__name}>{user?.name}</h2>
         <span className={styles.profile__status}>
           <span
             className={
@@ -87,7 +99,12 @@ const Settings = ({
           toggleDarkMode={toggleDarkMode}
         />
       </div>
-      <button className={styles.settings__button_logout}>Logout</button>
+      <button
+        className={styles.settings__button_logout}
+        onClick={handleSignout}
+      >
+        Logout
+      </button>
     </div>
   );
 };
