@@ -68,6 +68,8 @@ const sampleData2 = [
 ];
 
 const ChatFeed = ({
+  selectUser,
+  users,
   isMobile,
   isDarkMode,
   toggleDarkMode,
@@ -100,6 +102,7 @@ const ChatFeed = ({
   }
 
   // DESKTOP VERSION
+
   return (
     <div className={styles.chatfeed__wrapper_desktop}>
       <div className={styles.chatfeed__header_wrapper_desktop}>
@@ -114,8 +117,15 @@ const ChatFeed = ({
         </button>
       </div>
       <div className={styles.chatfeed__previews__wrapper_desktop}>
-        {sampleData2.map((messageObject) => (
+        {/* {sampleData2.map((messageObject) => (
           <ChatPreview messageObject={messageObject} />
+        ))} */}
+        {users.map((currUser) => (
+          <ChatPreview
+            key={currUser.uid}
+            currUser={currUser}
+            selectUser={selectUser}
+          />
         ))}
       </div>
     </div>

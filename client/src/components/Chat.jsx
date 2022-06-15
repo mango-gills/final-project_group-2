@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
 import styles from '../styles/Chat.module.css';
 import addPhotoIcon from '../assets/icons/add_photo_white.svg';
+import ChatMessage from './ChatMessage';
 
 const sampleChatData = [
   {
@@ -43,7 +44,16 @@ const sampleChatData = [
   },
 ];
 
-const Chat = ({ isMobile, isDarkMode, toggleDarkMode }) => {
+const Chat = ({
+  msgs,
+  isMobile,
+  isDarkMode,
+  toggleDarkMode,
+  chat,
+  text,
+  setText,
+  handleSubmit,
+}) => {
   const loggedInUserId = '6AYHXtSfMR';
   const friendInfo = {
     name: 'Mango Gills',
@@ -56,8 +66,8 @@ const Chat = ({ isMobile, isDarkMode, toggleDarkMode }) => {
   const [photoButtonClicked, togglePhotoButtonClicked] = useState(false);
   const [showPhotoAddedIndicator, toggleShowPhotoAddedIndicator] =
     useState(false);
-  
-    useEffect(() => {
+
+  useEffect(() => {
     const imageInput = document.querySelector('#image_input');
 
     if (imageInput[0]?.files.length > 0) {
@@ -109,68 +119,49 @@ const Chat = ({ isMobile, isDarkMode, toggleDarkMode }) => {
 
   return (
     <div className={styles.container__chat_desktop}>
-      <div className={styles.wrapper__header}>
-        <div className={styles.wrapper__friendavatar}>
-          <img
-            className={styles.friendavatar_image}
-            src={friendInfo.avatar}
-            alt=""
-          />
-        </div>
-        <div className={styles.wrapper__friendinfo}>
-          <h2 className={styles.friendInfo_name}>{friendInfo.name}</h2>
-          <div className={styles.wrapper__friendinfo_status}>
-            <span className={styles.friendinfo__status_indicator}></span>
-            <span className={styles.friendinfo__status}>
-              {friendInfo.online ? 'online' : 'offline'}
-            </span>
-          </div>
-        </div>
-      </div>
-      <div className={styles.wrapper__messages}>
-        {sampleChatData.map((message) =>
-          message.senderId === loggedInUserId ? (
-            <div
-              className={`${styles.wrapper__message} ${styles.wrapper__message_user}`}
-            >
-              <div className={styles.message_user}>{message.message}</div>
-              <div className={styles.message__avatar_wrapper}>
-                <img
-                  className={styles.message__avatar_image}
-                  src={defaultProfilePic}
-                  alt=""
-                />
-              </div>
+      {chat ? (
+        <>
+          {' '}
+          <div className={styles.wrapper__header}>
+            <div className={styles.wrapper__friendavatar}>
+              <img
+                className={styles.friendavatar_image}
+                src={chat.avatar || defaultProfilePic}
+                alt=""
+              />
             </div>
-          ) : (
-            <div
-              className={`${styles.wrapper__message} ${styles.wrapper__message_friend}`}
-            >
-              <div className={styles.message__avatar_wrapper}>
-                <img
-                  className={styles.message__avatar_image}
-                  src={defaultProfilePic}
-                  alt=""
-                />
+            <div className={styles.wrapper__friendinfo}>
+              <h2 className={styles.friendInfo_name}>{chat.name}</h2>
+              <div className={styles.wrapper__friendinfo_status}>
+                <span className={styles.friendinfo__status_indicator}></span>
+                <span className={styles.friendinfo__status}>
+                  {chat.isOnline ? 'online' : 'offline'}
+                </span>
               </div>
-              <div className={styles.message_friend}>{message.message}</div>
-            </div>
-          )
-        )}
-      </div>
 
-      <form className={styles.wrapper__form}>
+              {msgs.length
+                ? msgs.map((msg, i) => <ChatMessage key={i} msg={msg} />)
+                : null}
+            </div>
+          </div>
+        </>
+      ) : (
+        <h3>Select a User to Start a Conversation</h3>
+      )}
+
+      <form className={styles.wrapper__form} onSubmit={handleSubmit}>
         <textarea
           className={styles.form__textarea}
+          type="text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
           placeholder="Start writing your message...."
         ></textarea>
         <div className={styles.wrapper_form_buttons}>
           {/*<button className={styles.form__button_addphoto} type="button">
               <img className={styles.button_addphoto_image} src={addPhotoIcon} />
           </button>*/}
-          <label
-            className={styles.form__button_addphoto}
-          >
+          <label className={styles.form__button_addphoto}>
             {showPhotoAddedIndicator ? (
               <span className={styles.form__photoadded_indicator}></span>
             ) : (

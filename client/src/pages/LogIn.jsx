@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../styles/Login.module.css';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth';
 import { auth, db } from '../firebase';
 import { updateDoc, doc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
@@ -22,6 +26,24 @@ const LogIn = () => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      await updateDoc(doc(db, 'users', result.user.uid), {
+        isOnline: true,
+      });
+      setData({
+        email: '',
+        password: '',
+        error: null,
+        loading: false,
+      });
+      navigate('/conversations');
+    } catch (err) {
+      setData({ ...data, error: err.message, loading: false });
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     setData({ ...data, error: null, loading: true });
@@ -69,6 +91,9 @@ const LogIn = () => {
             value={password}
             onChange={handleChange}
           />
+          <button className={styles.text} onClick={handleGoogleSignIn}>
+            GOOGLE SIGNIN
+          </button>
           <button className={styles.form__button} type="submit">
             Login
           </button>

@@ -16,6 +16,13 @@ import {
 import { getDoc, doc, updateDoc } from 'firebase/firestore';
 
 const DesktopContainer = ({
+  msgs,
+  setText,
+  text,
+  handleSubmit,
+  selectUser,
+  users,
+  chat,
   isMobile,
   isDarkMode,
   toggleDarkMode,
@@ -26,7 +33,7 @@ const DesktopContainer = ({
   showChangePasswordComponent,
   toggleChangePasswordVisibility,
 }) => {
-  console.log('Change Password Component', showChangePasswordComponent);
+  // console.log('Change Password Component', showChangePasswordComponent);
   const [img, setImg] = useState('');
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
@@ -69,15 +76,27 @@ const DesktopContainer = ({
       setLoading(false);
     }
   }, [img]);
+
   return (
     <div className={styles.container_desktop}>
       <ChatFeed
+        selectUser={selectUser}
+        users={users}
         isMobile={isMobile}
         isDarkMode={isDarkMode}
         showAddFriendComponent={showAddFriendComponent}
         toggleAddFriendVisibility={toggleAddFriendVisibility}
       />
-      <Chat isMobile={isMobile} isDarkMode={isDarkMode} />
+      <Chat
+        msgs={msgs}
+        setText={setText}
+        text={text}
+        handleSubmit={handleSubmit}
+        isMobile={isMobile}
+        isDarkMode={isDarkMode}
+        chat={chat}
+        selectUser={selectUser}
+      />
       <Settings
         user={user}
         isMobile={isMobile}
