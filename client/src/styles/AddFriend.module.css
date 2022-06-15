@@ -36,9 +36,57 @@ body {
 /* MOBILE STYLES */
 
 .mobile_container__addfriend {
+  /* border: 2px solid red; */
   width: 100%;
   height: 100vh;
-  background-color: #f6e5fb;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
+.mobile_wrapper__addfriend_form {
+  /* border: 2px solid green; */
+  margin: 0 auto;
+  width: 29rem;
+text-align: center;
+}
+
+.mobile_addfriend__form {
+/* border: 2px solid blue; */
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile_addfriend__header {
+  font-size: 3rem;
+}
+
+.mobile_addfriend__input {
+  font-size: 2.5rem;
+text-align: center;
+margin: 2rem 0;
+border: none;
+border-bottom: 1px solid #707070;
+padding: 1rem 0;
+}
+
+.mobile_addfriend__input::placeholder {
+  color: #707070;
+}
+
+.mobile_addfriend__button {
+background-color: #a307d5;
+color: #ffffff;
+font-size: 2rem;
+padding: 1rem 0;
+border: none;
+border-radius: 3rem;
+}
+
+.mobile_addfriend__goback {
+/* border: 2px solid red; */
+display: block;
+  margin-top: 3rem;
 }
 
 /* DESKTOP STYLES */

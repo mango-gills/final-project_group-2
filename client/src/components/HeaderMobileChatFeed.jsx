@@ -36,6 +36,7 @@ const HeaderMobileChatFeed = ({
           className={styles.header__button}
           onClick={() => {
             toggleAddFriendVisibility(!showAddFriendComponent);
+            toggleChatFeedVisibility(false);
           }}
         >
           <img className={styles.header__button_icon} src={addFriendIcon} />

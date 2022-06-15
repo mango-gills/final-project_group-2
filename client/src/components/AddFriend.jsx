@@ -12,14 +12,31 @@ const AddFriend = ({
 }) => {
   if (isMobile) {
     return (
-      <div className={styles.mobile_container__addfriend}>
-        <div>mobile add comononet</div>
-        <button onClick={() => {
-          toggleChatFeedVisibility(!showAddFriendComponent);
-        }}>
-        go back
-        </button>
+      <div className={`${styles.mobile_container__addfriend} ${styles.mobile_backdrop_blur}`}>
+      <div className={styles.mobile_wrapper__addfriend_form}>
+        <form className={styles.mobile_addfriend__form}>
+          <h2 className={styles.mobile_addfriend__header}>Find a friend</h2>
+          <input
+            className={styles.mobile_addfriend__input}
+            placeholder="<username>#0000"
+          />
+          <button type="submit" className={styles.mobile_addfriend__button}>
+            Start Talking
+          </button>
+        </form>
+        <span
+          className={styles.mobile_addfriend__goback}
+          onClick={() => {
+            toggleAddFriendVisibility(!showAddFriendComponent);
+            toggleChatFeedVisibility(true);
+          }}
+        >
+          Go Back to your Message Feed
+        </span>
       </div>
+      
+    </div>
+
     );
   }
 
@@ -45,7 +62,6 @@ const AddFriend = ({
           Go Back to your Message Feed
         </span>
       </div>
-      <div className={styles.desktop_container__addfriend_blur}></div>
     </div>
   );
 };
