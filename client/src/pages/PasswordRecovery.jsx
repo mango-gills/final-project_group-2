@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import styles from '../styles/Password.module.css';
 
@@ -16,7 +17,9 @@ const PasswordRecovery = () => {
           ></input>
           <button className={styles.form__button}>SUBMIT</button>
         </form>
-        <div className={styles.backlink}>Go back to Login page</div>
+        <Link className={styles.backlink} to="/login">
+          Go back to Login page
+        </Link>
       </section>
     </main>
   );

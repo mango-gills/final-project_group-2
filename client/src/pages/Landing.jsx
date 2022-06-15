@@ -2,27 +2,43 @@ import React from 'react';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { IoMdVideocam } from 'react-icons/io';
 import { MdPresentToAll } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 import styles from '../styles/Landing.module.css';
 
 const Landing = () => {
   return (
     <main className={styles.main__container}>
-      <div className={styles.text__welcome}>Welcome to</div>
-      <div className={styles.text__logo}>CHAPP</div>
-      <img className={styles.image} src="src/assets/landing-img.svg"></img>
-      <section className={styles.icons__section}>
-        <div className={styles.icon}>
-          <FaPhoneAlt />
-        </div>
-        <div className={styles.icon}>
-          <IoMdVideocam />
-        </div>
-        <div className={styles.icon}>
-          <MdPresentToAll />
+      <section className={styles.section__image}>
+        <img
+          className={styles.image}
+          src="src/assets/landing-img.svg"
+          alt=".landing-image"
+        />
+      </section>
+      <section className={styles.section__logo}>
+        <div className={styles.section__logo__container}>
+          <div className={styles.logo}>CHAPP</div>
+          <section className={styles.icons}>
+            <FaPhoneAlt className={styles.call} />
+            <IoMdVideocam className={styles.show} />
+            <MdPresentToAll className={styles.present} />
+          </section>
+          <div className={styles.landing__buttons}>
+            <span>
+              <Link className={styles.landing__button} to="/login">
+                Login
+              </Link>
+            </span>
+            <span className={styles.landing__button}>|</span>
+            <span>
+              <Link className={styles.landing__button} to="/registration">
+                Signup
+              </Link>
+            </span>
+          </div>
         </div>
       </section>
-      <section className={styles.cta}>Login | Signup</section>
     </main>
   );
 };
