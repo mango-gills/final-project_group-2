@@ -113,8 +113,9 @@ body {
   border-radius: 50%;;
 }
 
-.desktop_chatpreview__wrapper_text {
+.chatpreview__wrapper_text {
   flex-grow: 1;
+  display: flex;
   overflow: hidden;
   padding-left: 1rem;
   line-height: 1.5;
@@ -139,3 +140,4 @@ body {
   flex-shrink: 0;
   font-size: .9rem;
 }
+

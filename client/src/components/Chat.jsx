@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
 import styles from '../styles/Chat.module.css';
 import addPhotoIcon from '../assets/icons/add_photo_white.svg';
+import ChatMessage from './ChatMessage';
 
 const sampleChatData = [
   {
@@ -43,7 +44,18 @@ const sampleChatData = [
   },
 ];
 
-const Chat = ({ isMobile, isDarkMode, toggleDarkMode }) => {
+const Chat = ({
+  user,
+  user1,
+  msgs,
+  isMobile,
+  isDarkMode,
+  toggleDarkMode,
+  chat,
+  text,
+  setText,
+  handleSubmit,
+}) => {
   const loggedInUserId = '6AYHXtSfMR';
   const friendInfo = {
     name: 'Mango Gills',
@@ -147,65 +159,52 @@ const Chat = ({ isMobile, isDarkMode, toggleDarkMode }) => {
 
   return (
     <div className={styles.desktop_container__chat}>
-      <div className={styles.desktop_wrapper__header}>
-        <div className={styles.desktop_wrapper__friendavatar}>
-          <img
-            className={styles.desktop_friendavatar_image}
-            src={friendInfo.avatar}
-            alt=""
-          />
-        </div>
-        <div className={styles.desktop_wrapper__friendinfo}>
-          <h2 className={styles.desktop_friendInfo_name}>{friendInfo.name}</h2>
-          <div className={styles.desktop_wrapper__friendinfo_status}>
-            <span
-              className={styles.desktop_friendinfo__status_indicator}
-            ></span>
-            <span className={styles.desktop_friendinfo__status}>
-              {friendInfo.online ? 'online' : 'offline'}
-            </span>
+      {chat ? (
+        <>
+          <div className={styles.desktop_wrapper__header}>
+            <div className={styles.desktop_wrapper__friendavatar}>
+              <img
+                className={styles.desktop_friendavatar_image}
+                src={chat.avatar || defaultProfilePic}
+                alt=""
+              />
+            </div>
+            <div className={styles.desktop_wrapper__friendinfo}>
+              <h2 className={styles.desktop_friendInfo_name}>{chat.name}</h2>
+              <div className={styles.desktop_wrapper__friendinfo_status}>
+                <span
+                  className={styles.desktop_friendinfo__status_indicator}
+                ></span>
+                <span className={styles.desktop_friendinfo__status}>
+                  {friendInfo.online ? 'online' : 'offline'}
+                </span>
+              </div>
+            </div>
+            <div className={styles.wrapper__messages}>
+              {msgs.length
+                ? msgs.map((msg, i) => (
+                    <ChatMessage
+                      key={i}
+                      msg={msg}
+                      user1={user1}
+                      chat={chat}
+                      user={user}
+                    />
+                  ))
+                : null}
+            </div>
           </div>
-        </div>
-      </div>
-      <div className={styles.desktop_wrapper__messages}>
-        {sampleChatData.map((message) =>
-          message.senderId === loggedInUserId ? (
-            <div
-              className={`${styles.desktop_wrapper__message} ${styles.desktop_wrapper__message_user}`}
-            >
-              <div className={styles.desktop_message_user}>
-                {message.message}
-              </div>
-              <div className={styles.desktop_message__avatar_wrapper}>
-                <img
-                  className={styles.desktop_message__avatar_image}
-                  src={defaultProfilePic}
-                  alt=""
-                />
-              </div>
-            </div>
-          ) : (
-            <div
-              className={`${styles.desktop_wrapper__message} ${styles.desktop_wrapper__message_friend}`}
-            >
-              <div className={styles.desktop_message__avatar_wrapper}>
-                <img
-                  className={styles.desktop_message__avatar_image}
-                  src={defaultProfilePic}
-                  alt=""
-                />
-              </div>
-              <div className={styles.desktop_message_friend}>
-                {message.message}
-              </div>
-            </div>
-          )
-        )}
-      </div>
+        </>
+      ) : (
+        <h3>Select a User to Start a Conversation</h3>
+      )}
 
-      <form className={styles.desktop_wrapper__form}>
+      <form className={styles.desktop_wrapper__form} onSubmit={handleSubmit}>
         <textarea
           className={styles.desktop_form__textarea}
+          type="text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
           placeholder="Start writing your message...."
         ></textarea>
         <div className={styles.desktop_wrapper_form_buttons}>

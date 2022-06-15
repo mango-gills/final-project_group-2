@@ -4,8 +4,13 @@ import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
 import DarkModeToggle from './DarkModeToggle';
 import exitIcon from '../assets/icons/close.svg';
 import editIcon from '../assets/icons/edit_white.svg';
+import { auth, db } from '../firebase';
+import { signOut } from 'firebase/auth';
+import { updateDoc, doc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 const Settings = ({
+  user,
   isMobile,
   isDarkMode,
   toggleDarkMode,
@@ -99,15 +104,12 @@ const Settings = ({
               className={styles.mobile_input_change_password}
               value={sampleLoggedInUser.password}
               type="password"
-              onChange={()=>{
+              onChange={() => {
                 //insert code here to change state, and bind 2-way
               }}
             />
 
-            <button
-              className={styles.mobile_submit_changes}
-              type="submit"
-            >
+            <button className={styles.mobile_submit_changes} type="submit">
               Update
             </button>
           </form>
@@ -122,7 +124,14 @@ const Settings = ({
       </div>
     );
   }
-
+  const navigate = useNavigate();
+  const handleSignout = async () => {
+    await updateDoc(doc(db, 'users', auth.currentUser.uid), {
+      isOnline: false,
+    });
+    await signOut(auth);
+    navigate('/');
+  };
   // Desktop Style
   return (
     <div className={styles.desktop_container_settings}>
@@ -130,13 +139,11 @@ const Settings = ({
         <div className={styles.desktop_wrapper__image}>
           <img
             className={styles.desktop_profile__image}
-            src={defaultProfilePic}
+            src={user?.avatar || defaultProfilePic}
             alt=""
           />
         </div>
-        <h2 className={styles.desktop_profile__name}>
-          {sampleLoggedInUser.name}
-        </h2>
+        <h2 className={styles.desktop_profile__name}>{user?.name}</h2>
         <span className={styles.desktop_profile__status}>
           <span
             className={
@@ -174,7 +181,12 @@ const Settings = ({
           toggleDarkMode={toggleDarkMode}
         />
       </div>
-      <button className={styles.desktop_settings__button_logout}>Logout</button>
+      <button
+        className={styles.desktop_settings__button_logout}
+        onClick={handleSignout}
+      >
+        Logout
+      </button>
     </div>
   );
 };
