@@ -13,7 +13,7 @@
   --darkpurple: #442e4b;
   --gray: #707070;
   --lightgray: rgba(112, 112, 112, 0.65);
-  --goldenorange: #e8aa15;
+  --goldenorange: #efac54;
   --offwhite: #f9effc;
 }
 
@@ -80,7 +80,6 @@
   padding: 5px 30px;
   text-align: center;
   font-size: 1.8rem;
-
   background-color: var(--goldenorange);
   border-radius: 20px;
 }

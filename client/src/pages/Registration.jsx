@@ -132,8 +132,9 @@ const Registration = () => {
           ></input>
           <button className={styles.form__button}>SIGNUP</button>
         </form>
-        <button className={styles.text} onClick={handleGoogleSignIn}>
-          GOOGLE SIGNIN
+        <div className={styles.login__text}>OR</div>
+        <button className={styles.google__signin} onClick={handleGoogleSignIn}>
+          SIGN IN WITH GOOGLE
         </button>
         <div className={styles.terms__text}>
           By continuing, you agree to accept our Privacy Policy and Terms of

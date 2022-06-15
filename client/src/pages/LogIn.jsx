@@ -91,13 +91,14 @@ const LogIn = () => {
             value={password}
             onChange={handleChange}
           />
-          <button className={styles.text} onClick={handleGoogleSignIn}>
-            GOOGLE SIGNIN
-          </button>
           <button className={styles.form__button} type="submit">
             Login
           </button>
         </form>
+        <p className={styles.container__text}> OR </p>
+        <button className={styles.google__signin} onClick={handleGoogleSignIn}>
+          SIGN IN WITH GOOGLE
+        </button>
         <p className={styles.container__text}>
           Don't have an account yet?{' '}
           <Link className={styles.container__backlink} to="/registration">

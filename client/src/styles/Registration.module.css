@@ -9,7 +9,7 @@
   --darkpurple: #442e4b;
   --gray: #707070;
   --lightgray: rgba(112, 112, 112, 0.65);
-  --goldenorange: #e8aa15;
+  --goldenorange: #efac54;
 }
 
 .main__container {
@@ -68,8 +68,21 @@
 .form__button {
   width: 300px;
   height: 50px;
-  margin: 10px 0;
+  margin: 15px 0 10px;
   background-color: var(--purple);
+  border: none;
+  border-radius: 5rem;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.7rem;
+  cursor: pointer;
+}
+
+.google__signin {
+  width: 300px;
+  height: 50px;
+  margin: 10px 0;
+  background-color: var(--goldenorange);
   border: none;
   border-radius: 5rem;
   color: #fff;
@@ -80,17 +93,18 @@
 
 .terms__text {
   width: 300px;
+  margin: 10px 0 20px;
   font-size: 1.2rem;
   text-align: center;
   color: var(--gray);
 }
 
 .login__text {
-  margin-top: 20px;
   font-size: 1.5rem;
   color: var(--gray);
 }
 
 .backlink {
   color: var(--purple);
+  margin-left: 5px;
 }
