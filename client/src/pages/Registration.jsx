@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import styles from '../styles/Registration.module.css';
 
@@ -42,7 +43,11 @@ const Registration = () => {
         </div>
         <div className={styles.login__text}>
           Already have an account?
-          <span className={styles.backlink}> Login</span>
+          <span>
+            <Link className={styles.backlink} to="/login">
+              Login
+            </Link>
+          </span>
         </div>
       </section>
     </main>
