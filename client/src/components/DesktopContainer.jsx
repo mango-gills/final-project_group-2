@@ -60,7 +60,12 @@ const DesktopContainer = ({
           console.log(err.message);
         }
       };
-      await uploadImg();
+      try {
+        await uploadImg();
+      } catch (err) {
+        err.message;
+      }
+
       setLoading(false);
     }
   }, [img]);

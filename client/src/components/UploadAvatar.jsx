@@ -20,43 +20,6 @@ const UploadAvatar = ({
     );
   }
 
-  // const [img, setImg] = useState('');
-  // const [user, setUser] = useState();
-  // useEffect(() => {
-  //   getDoc(doc(db, 'users', auth.currentUser.uid)).then((docSnap) => {
-  //     if (docSnap.exists) {
-  //       setUser(docSnap.data());
-  //     }
-  //   });
-
-  //   if (img) {
-  //     const uploadImg = async () => {
-  //       const imgRef = ref(
-  //         storage,
-  //         `avatar/${new Date().getTime()} - ${img.name}`
-  //       );
-  //       try {
-  //         if (user.avatarPath) {
-  //           await deleteObject(ref(storage, user.avatarPath));
-  //         }
-  //         const snap = await uploadBytes(imgRef, img);
-  //         const url = await getDownloadURL(ref(storage, snap.ref.fullPath));
-
-  //         await updateDoc(doc(db, 'users', auth.currentUser.uid), {
-  //           avatar: url,
-  //           avatarPath: snap.ref.fullPath,
-  //         });
-
-  //         setImg('');
-  //       } catch (err) {
-  //         console.log(err.message);
-  //       }
-  //     };
-  //     uploadImg();
-  //   }
-  // }, [img]);
-  // console.log(user);
-
   // DESKTOP VERSION
   return (
     <div
