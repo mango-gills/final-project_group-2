@@ -68,6 +68,7 @@ const sampleData2 = [
 ];
 
 const ChatFeed = ({
+  user1,
   selectUser,
   users,
   isMobile,

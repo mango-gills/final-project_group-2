@@ -16,6 +16,7 @@ import {
 import { getDoc, doc, updateDoc } from 'firebase/firestore';
 
 const DesktopContainer = ({
+  user1,
   msgs,
   setText,
   text,
@@ -88,6 +89,8 @@ const DesktopContainer = ({
         toggleAddFriendVisibility={toggleAddFriendVisibility}
       />
       <Chat
+        user={user}
+        user1={user1}
         msgs={msgs}
         setText={setText}
         text={text}

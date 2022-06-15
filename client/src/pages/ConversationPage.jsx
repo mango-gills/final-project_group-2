@@ -63,7 +63,6 @@ const ConversationPage = () => {
 
   const selectUser = async (user) => {
     setChat(user);
-
     const user2 = user.uid;
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
 
@@ -115,6 +114,7 @@ const ConversationPage = () => {
         />
       ) : (
         <DesktopContainer
+          user1={user1}
           msgs={msgs}
           setText={setText}
           text={text}

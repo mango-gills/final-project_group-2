@@ -45,6 +45,8 @@ const sampleChatData = [
 ];
 
 const Chat = ({
+  user,
+  user1,
   msgs,
   isMobile,
   isDarkMode,
@@ -121,7 +123,6 @@ const Chat = ({
     <div className={styles.container__chat_desktop}>
       {chat ? (
         <>
-          {' '}
           <div className={styles.wrapper__header}>
             <div className={styles.wrapper__friendavatar}>
               <img
@@ -138,11 +139,20 @@ const Chat = ({
                   {chat.isOnline ? 'online' : 'offline'}
                 </span>
               </div>
-
-              {msgs.length
-                ? msgs.map((msg, i) => <ChatMessage key={i} msg={msg} />)
-                : null}
             </div>
+          </div>
+          <div className={styles.wrapper__messages}>
+            {msgs.length
+              ? msgs.map((msg, i) => (
+                  <ChatMessage
+                    key={i}
+                    msg={msg}
+                    user1={user1}
+                    chat={chat}
+                    user={user}
+                  />
+                ))
+              : null}
           </div>
         </>
       ) : (
