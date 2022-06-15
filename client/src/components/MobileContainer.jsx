@@ -6,19 +6,26 @@ import Chat from './Chat';
 import Settings from './Settings';
 import { useState } from 'react';
 import styles from '../styles/MobileContainer.module.css';
+import AddFriend from './AddFriend';
 
 const MobileContainer = ({
   isMobile,
+  isDarkMode,
+  toggleDarkMode,
   showAddFriendComponent,
-  toggleAddFriendVisibility
+  toggleAddFriendVisibility,
+  showUploadAvatarComponent,
+  toggleUploadAvatarVisibility,
+  showChangePasswordComponent,
+  toggleChangePasswordVisibility,
 }) => {
   const [showChatFeed, toggleChatFeedVisibility] = useState(true);
   const [showChat, toggleChatVisibility] = useState(false);
   const [showSettings, toggleSettingsVisibility] = useState(false);
   return (
-    <div>
+    <div className={styles.mobile__main_container}>
       {showChatFeed ? (
-        <div>
+        <div className={styles.mobile__main_container}>
           <HeaderMobileChatFeed
             showSettings={showSettings}
             toggleSettingsVisibility={toggleSettingsVisibility}
@@ -39,7 +46,7 @@ const MobileContainer = ({
         ''
       )}
       {showChat ? (
-        <div>
+        <div className={styles.mobile__main_container}>
           <HeaderMobileChat
             showChatFeed={showChatFeed}
             toggleChatFeedVisibility={toggleChatFeedVisibility}
@@ -56,6 +63,17 @@ const MobileContainer = ({
           isMobile={isMobile}
           showSettings={showSettings}
           toggleSettingsVisibility={toggleSettingsVisibility}
+          showChatFeed={showChatFeed}
+          toggleChatFeedVisibility={toggleChatFeedVisibility}
+        />
+      ) : (
+        ''
+      )}
+      {showAddFriendComponent ? (
+        <AddFriend
+          isMobile={isMobile}
+          showAddFriendComponent={showAddFriendComponent}
+          toggleAddFriendVisibility={toggleAddFriendVisibility}
           showChatFeed={showChatFeed}
           toggleChatFeedVisibility={toggleChatFeedVisibility}
         />

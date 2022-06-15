@@ -142,9 +142,8 @@ const ChatFeed = ({
   // MOBILE VERSION
   if (isMobile) {
     return (
-      <div className={styles.chatfeed__wrapper}>
+      <div className={styles.mobile_chatfeed__wrapper}>
         {/*<h2 style={{ color: 'red' }}>Messages</h2>*/}
-        <div>
           {sampleData2.map((messageObject) => (
             <ChatPreview
               isMobile={isMobile}
@@ -155,23 +154,22 @@ const ChatFeed = ({
               toggleChatFeedVisibility={toggleChatFeedVisibility}
             />
           ))}
-        </div>
       </div>
     );
   }
 
   // DESKTOP VERSION
   return (
-    <div className={styles.chatfeed__wrapper_desktop}>
-      <div className={styles.chatfeed__header_wrapper_desktop}>
-        <h2 className={styles.chatfeed__header_text_desktop}>Messages</h2>
-        <button className={styles.chatfeed__header_button_desktop} onClick={()=>{
+    <div className={styles.desktop_chatfeed__wrapper}>
+      <div className={styles.desktop_chatfeed__header_wrapper}>
+        <h2 className={styles.desktop_chatfeed__header_text}>Messages</h2>
+        <button className={styles.desktop_chatfeed__header_button} onClick={()=>{
           toggleAddFriendVisibility(!showAddFriendComponent);
         }}>
           <img src={addPersonIcon} />
         </button>
       </div>
-      <div className={styles.chatfeed__previews__wrapper_desktop}>
+      <div className={styles.desktop_chatfeed__previews__wrapper}>
         {sampleData2.map((messageObject) => (
           <ChatPreview messageObject={messageObject} />
         ))}

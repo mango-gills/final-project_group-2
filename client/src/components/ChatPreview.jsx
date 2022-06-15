@@ -13,28 +13,28 @@ const ChatPreview = ({
   if (isMobile) {
     return (
       <div
-        className={styles.chatcard__wrapper}
+        className={styles.mobile_chatcard__wrapper}
         onClick={() => {
           toggleChatVisibility(true);
           toggleChatFeedVisibility(false);
         }}
       >
-        <div className={styles.chatcard__avatar_wrapper}>
+        <div className={styles.mobile_chatcard__avatar_wrapper}>
           <img
-            className={styles.chatcard__avatar_image}
+            className={styles.mobile_chatcard__avatar_image}
             src={messageObject.senderAvatar}
           />
         </div>
-        <div className={styles.chatcard__text_wrapper}>
-          <p className={styles.chatcard__text_sender}>
+        <div className={styles.mobile_chatcard__text_wrapper}>
+          <p className={styles.mobile_chatcard__text_sender}>
             {messageObject.senderName}
           </p>
-          <p className={styles.chatcard__text_messages}>
+          <p className={styles.mobile_chatcard__text_messages}>
             {messageObject.message}
             {/*{`${messageObject.message} ${moment(messageObject.timestamp).fromNow()}`} */}
           </p>
         </div>
-        <div className={styles.chatcard__timestamp}>
+        <div className={styles.mobile_chatcard__timestamp}>
           {moment(messageObject.timestamp).fromNow()}
         </div>
       </div>
@@ -43,27 +43,27 @@ const ChatPreview = ({
 
   return (
     <div
-      className={styles.wrapper__chatpreview}
+      className={styles.desktop_wrapper__chatpreview}
       onClick={() => {
         // code to show message in Chat.jsx component
       }}
     >
-      <div className={styles.chatpreview__wrapper_avatar}>
+      <div className={styles.desktop_chatpreview__wrapper_avatar}>
         <img
-          className={styles.avatar__image}
+          className={styles.desktop_avatar__image}
           src={messageObject.senderAvatar}
         />
       </div>
-      <div className={styles.chatpreview__wrapper_text}>
-        <p className={styles.text__friendname}>
+      <div className={styles.desktop_chatpreview__wrapper_text}>
+        <p className={styles.desktop_text__friendname}>
           {messageObject.senderName}
         </p>
-        <p className={styles.text__message}>
+        <p className={styles.desktop_text__message}>
           {messageObject.message}
           {/*{`${messageObject.message} ${moment(messageObject.timestamp).fromNow()}`} */}
         </p>
       </div>
-      <div className={styles.timestamp}>
+      <div className={styles.desktop_timestamp}>
         {moment(messageObject.timestamp).fromNow()}
       </div>
     </div>

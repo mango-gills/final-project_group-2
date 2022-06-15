@@ -31,13 +31,13 @@ body {
 
 /* PAGE STYLES */
 
-.chatfeed__wrapper {
+.mobile_chatfeed__wrapper {
   padding-top: 8rem;
 }
 
 /* DESKTOP STYLES */
 
-.chatfeed__wrapper_desktop {
+.desktop_chatfeed__wrapper {
   background-color: #f9effc;
   padding: 1.5rem 0 1.5rem 1.5rem;
   width: 30rem;
@@ -47,7 +47,7 @@ body {
   flex-shrink: 0;
 }
 
-.chatfeed__header_wrapper_desktop {
+.desktop_chatfeed__header_wrapper {
   padding-right: 1.5rem;
   /* padding-bottom: 2rem; */
   border-bottom: 1px solid rgba(112, 112, 112, .3);
@@ -58,19 +58,34 @@ body {
   align-items: center;
 }
 
-.chatfeed__header_text_desktop {
+.desktop_chatfeed__header_text {
 }
 
-.chatfeed__header_button_desktop {
+.desktop_chatfeed__header_button {
   background-color: inherit;
   border: none;
   cursor: pointer;
 
 }
 
-.chatfeed__previews__wrapper_desktop {
+.desktop_chatfeed__previews__wrapper {
   height: calc(100vh - 6.16rem);
   overflow-y: scroll;
   scrollbar-width: thin;
   padding-bottom: .5rem;
+}
+
+::-webkit-scrollbar {
+  height: .8rem;
+  width: .8rem;
+  background: #f0f0f0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cdcdcd;
+  /* -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75); */
+}
+
+::-webkit-scrollbar-corner {
+  background: #000;
 }

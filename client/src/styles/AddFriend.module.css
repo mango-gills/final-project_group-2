@@ -35,9 +35,15 @@ body {
 
 /* MOBILE STYLES */
 
+.mobile_container__addfriend {
+  width: 100%;
+  height: 100vh;
+  background-color: #f6e5fb;
+}
+
 /* DESKTOP STYLES */
 
-.container__addfriend {
+.desktop_container__addfriend {
   width: 100%;
   height: 100vh;
   position: absolute;
@@ -52,30 +58,30 @@ body {
 }
 
 @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-  .backdrop_blur {
+  .desktop_backdrop_blur {
     background-color: rgba(255, 255, 255, 0.5);
     -webkit-backdrop-filter: blur(0.5em);
     backdrop-filter: blur(0.5em);
   }
 }
 
-.wrapper__addfriend_form {
+.desktop_wrapper__addfriend_form {
   /* border: 1px solid red; */
   text-align: center;
 }
 
-.addfriend__form {
+.desktop_addfriend__form {
   margin-bottom: 1rem;
   /* border: 1px solid green; */
   display: flex;
   flex-direction: column;
 }
 
-.addfriend__header {
+.desktop_addfriend__header {
   margin-bottom: 1rem;
 }
 
-.addfriend__input {
+.desktop_addfriend__input {
   margin-bottom: 4rem;
   font-family: inherit;
   font-size: 1.9rem;
@@ -85,16 +91,16 @@ body {
   text-align: center;
 }
 
-.addfriend__input::placeholder {
+.desktop_addfriend__input::placeholder {
   color: #707070;
   text-align: center;
 }
 
-.addfriend__input:focus {
+.desktop_addfriend__input:focus {
   outline: none;
 }
 
-.addfriend__button {
+.desktop_addfriend__button {
   margin: 0 auto;
   width: 90%;
   color: white;
@@ -108,7 +114,7 @@ body {
   font-family: inherit;
 }
 
-.addfriend__goback {
+.desktop_addfriend__goback {
   cursor: pointer;
   font-size: 1.2rem;
   color: #707070;

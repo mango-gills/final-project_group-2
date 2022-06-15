@@ -35,7 +35,7 @@ body {
   /* border: 2px solid yellow; */
   display: flex;
   width: 100%;
-  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  padding: 3rem 1.5rem 1.5rem 1.5rem;
   font-size: 2.7rem;
   font-family: 'Open Sans';
   position: fixed;

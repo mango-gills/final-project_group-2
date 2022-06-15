@@ -7,32 +7,37 @@ const AddFriend = ({
   toggleDarkMode,
   showAddFriendComponent,
   toggleAddFriendVisibility,
-  blurBackground,
-  toggleBlurBackground,
+  showChatFeed,
+  toggleChatFeedVisibility
 }) => {
   if (isMobile) {
     return (
-      <div>
+      <div className={styles.mobile_container__addfriend}>
         <div>mobile add comononet</div>
+        <button onClick={() => {
+          toggleChatFeedVisibility(!showAddFriendComponent);
+        }}>
+        go back
+        </button>
       </div>
     );
   }
 
   return (
-    <div className={`${styles.container__addfriend} ${styles.backdrop_blur}`}>
-      <div className={styles.wrapper__addfriend_form}>
-        <form className={styles.addfriend__form}>
-          <h2 className={styles.addfriend__header}>Find a friend</h2>
+    <div className={`${styles.desktop_container__addfriend} ${styles.desktop_backdrop_blur}`}>
+      <div className={styles.desktop_wrapper__addfriend_form}>
+        <form className={styles.desktop_addfriend__form}>
+          <h2 className={styles.desktop_addfriend__header}>Find a friend</h2>
           <input
-            className={styles.addfriend__input}
+            className={styles.desktop_addfriend__input}
             placeholder="<username>#0000"
           />
-          <button type="submit" className={styles.addfriend__button}>
+          <button type="submit" className={styles.desktop_addfriend__button}>
             Start Talking
           </button>
         </form>
         <span
-          className={styles.addfriend__goback}
+          className={styles.desktop_addfriend__goback}
           onClick={() => {
             toggleAddFriendVisibility(!showAddFriendComponent);
           }}
@@ -40,7 +45,7 @@ const AddFriend = ({
           Go Back to your Message Feed
         </span>
       </div>
-      <div className={styles.container__addfriend_blur}></div>
+      <div className={styles.desktop_container__addfriend_blur}></div>
     </div>
   );
 };

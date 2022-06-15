@@ -10,23 +10,26 @@ import PasswordReset from '../pages/PasswordReset.jsx';
 import NotFound from '../pages/NotFound.jsx';
 
 import ConversationPage from '../pages/ConversationPage.jsx';
+import { SharedProvider } from '../contexts/SharedContext.jsx';
 
 const RoutesComponent = () => {
   return (
     <main>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/registration" element={<Registration />} />
-        <Route path="/login" element={<LogIn />} />
-        <Route path="/conversations" element={<ConversationPage />} />
-        <Route path="/password-recovery" element={<PasswordRecovery />} />
-        <Route
-          path="/password-verification"
-          element={<PasswordVerification />}
-        />
-        <Route path="/password-reset" element={<PasswordReset />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      {/*<SharedProvider>*/}
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/conversations" element={<ConversationPage />} />
+          <Route path="/password-recovery" element={<PasswordRecovery />} />
+          <Route
+            path="/password-verification"
+            element={<PasswordVerification />}
+          />
+          <Route path="/password-reset" element={<PasswordReset />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      {/*</SharedProvider>*/}
     </main>
   );
 };

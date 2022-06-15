@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import DesktopContainer from '../components/DesktopContainer';
 import MobileContainer from '../components/MobileContainer';
 
 const ConversationPage = () => {
+  // const {width, setWidth, isDarkMode, toggleDarkMode, isMobile, setIsMobile} = useContext(SharedContext);
   const [width, setWidth] = useState(window.innerWidth);
   const [isDarkMode, toggleDarkMode] = useState(false);
   const [isMobile, setIsMobile] = useState(width <= 768);

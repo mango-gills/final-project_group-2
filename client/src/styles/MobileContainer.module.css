@@ -30,3 +30,7 @@ body {
 }
 
 /* PAGE STYLES */
+
+.mobile__main_container {
+  width: 100%;
+}
