@@ -97,20 +97,12 @@ display: block;
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: #ffffff;
   /* backdrop-filter: blur(1rem); */
   /* -webkit-backdrop-filter: blur(1rem); */
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-  .desktop_backdrop_blur {
-    background-color: rgba(255, 255, 255, 0.5);
-    -webkit-backdrop-filter: blur(0.5em);
-    backdrop-filter: blur(0.5em);
-  }
 }
 
 .desktop_wrapper__addfriend_form {

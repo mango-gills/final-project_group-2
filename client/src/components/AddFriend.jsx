@@ -12,7 +12,7 @@ const AddFriend = ({
 }) => {
   if (isMobile) {
     return (
-      <div className={`${styles.mobile_container__addfriend} ${styles.mobile_backdrop_blur}`}>
+      <div className={styles.mobile_container__addfriend}>
       <div className={styles.mobile_wrapper__addfriend_form}>
         <form className={styles.mobile_addfriend__form}>
           <h2 className={styles.mobile_addfriend__header}>Find a friend</h2>
@@ -41,7 +41,7 @@ const AddFriend = ({
   }
 
   return (
-    <div className={`${styles.desktop_container__addfriend} ${styles.desktop_backdrop_blur}`}>
+    <div className={styles.desktop_container__addfriend}>
       <div className={styles.desktop_wrapper__addfriend_form}>
         <form className={styles.desktop_addfriend__form}>
           <h2 className={styles.desktop_addfriend__header}>Find a friend</h2>

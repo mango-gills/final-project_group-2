@@ -1,7 +1,7 @@
 import React from 'react';
-import menuIcon from '../assets/icons/menu_black_24dp.svg';
-import addFriendIcon from '../assets/icons/person_add_black_24dp.svg';
-import searchIcon from '../assets/icons/search_black_24dp.svg';
+import menuIcon from '../assets/icons/menu_black.svg';
+import addFriendIcon from '../assets/icons/person_add_black.svg';
+import searchIcon from '../assets/icons/search_black.svg';
 import styles from '../styles/HeaderMobileChatFeed.module.css';
 
 const HeaderMobileChatFeed = ({
