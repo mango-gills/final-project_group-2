@@ -69,9 +69,12 @@ const ChatPreview = ({
           className={`user_status ${currUser.isOnline ? 'online' : 'offline'}`}
         ></div>
       </div>
-      <div className={styles.desktop_timestamp}>
-        {/*moment(messageObject.timestamp).fromNow()*/}
-      </div>
+      { /*
+        
+        <div className={styles.desktop_timestamp}>
+        moment(messageObject.timestamp).fromNow()
+        </div>
+    */}
     </div>
   );
 };
