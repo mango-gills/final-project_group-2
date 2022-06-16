@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import DesktopContainer from '../components/DesktopContainer';
-import MobileContainer from '../components/MobileContainer';
-import { db, auth } from '../firebase';
+import React, { useState, useEffect } from "react";
+import DesktopContainer from "../components/DesktopContainer";
+import MobileContainer from "../components/MobileContainer";
+import { db, auth } from "../firebase";
 import {
   collection,
   query,
@@ -13,7 +13,7 @@ import {
   doc,
   getDoc,
   updateDoc,
-} from 'firebase/firestore';
+} from "firebase/firestore";
 
 const ConversationPage = () => {
   const [chat, setChat] = useState();
@@ -36,9 +36,9 @@ const ConversationPage = () => {
   const user1 = auth.currentUser.uid;
 
   useEffect(() => {
-    window.addEventListener('resize', handleWindowSizeChange);
+    window.addEventListener("resize", handleWindowSizeChange);
     return () => {
-      window.removeEventListener('resize', handleWindowSizeChange);
+      window.removeEventListener("resize", handleWindowSizeChange);
     };
   }, []);
 
@@ -46,10 +46,10 @@ const ConversationPage = () => {
     setIsMobile(width <= 768);
   }, [width]);
   useEffect(() => {
-    const usersRef = collection(db, 'users');
+    const usersRef = collection(db, "friends/friend", user1);
     const q = query(
       usersRef,
-      where('uid', 'not-in', [auth.currentUser.uid], [user1])
+      where("uid", "not-in", [auth.currentUser.uid], [user1])
     );
     const unsub = onSnapshot(q, (querySnapshot) => {
       let users = [];
@@ -67,8 +67,8 @@ const ConversationPage = () => {
     const user2 = user.uid;
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
 
-    const msgsRef = collection(db, 'messages', id, 'chat');
-    const q = query(msgsRef, orderBy('createdAt', 'asc'));
+    const msgsRef = collection(db, "messages", id, "chat");
+    const q = query(msgsRef, orderBy("createdAt", "asc"));
 
     onSnapshot(q, (querySnapshot) => {
       let msgs = [];
@@ -77,11 +77,11 @@ const ConversationPage = () => {
       });
       setMsgs(msgs);
     });
-    const docSnap = await getDoc(doc(db, 'lastMsg', id));
+    const docSnap = await getDoc(doc(db, "lastMsg", id));
     // if last message exists and message is from selected user
     if (docSnap.data() && docSnap.data().from !== user1) {
       // update last message doc, set unread to false
-      await updateDoc(doc(db, 'lastMsg', id), { unread: false });
+      await updateDoc(doc(db, "lastMsg", id), { unread: false });
     }
   };
 
@@ -90,13 +90,13 @@ const ConversationPage = () => {
 
     const user2 = chat.uid;
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
-    await addDoc(collection(db, 'messages', id, 'chat'), {
+    await addDoc(collection(db, "messages", id, "chat"), {
       text,
       from: user1,
       to: user2,
       createdAt: Timestamp.fromDate(new Date()),
     });
-    setText('');
+    setText("");
   };
 
   return (

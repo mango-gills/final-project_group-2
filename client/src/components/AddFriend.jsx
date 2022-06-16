@@ -6,7 +6,13 @@ import styles from "../styles/AddFriend.module.css";
 import { auth, db } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  setDoc,
+  doc,
+  serverTimestamp,
+} from "firebase/firestore";
 
 const AddFriend = ({
   isMobile,
@@ -27,22 +33,47 @@ const AddFriend = ({
 
   const [user] = useAuthState(auth);
   const [chatEmail, setChatEmail] = useState("");
+  const [friends, setFriends] = useState([]);
+  const [snapshot, loading, error] = useCollection(collection(db, "users"));
+
+  const chatUsers = snapshot?.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+
+  // console.log(user);
+
+  const friend = [];
+  const addFriendIfExists = () => {
+    chatUsers?.map((c) => {
+      const { name, email, uid } = c;
+      if (c.email == chatEmail) {
+        // friend.push(c);
+        setTimeout(async () => {
+          await setDoc(doc(db, `friends/friend/${user.uid}/${uid}`), {
+            name,
+            email,
+            uid,
+          });
+        }, 1500);
+      } else {
+        console.log("not found");
+      }
+    });
+    setFriends(friend);
+  };
 
   const addFriend = async () => {
     const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
     if (chatEmail.match(mailformat)) {
       successAddEmail();
+      addFriendIfExists();
 
-      auth.getUserByEmail(chatEmail).then((userRecord) => {
-        console.log(userRecord.toJSON());
-      });
-
-      setTimeout(async () => {
-        await addDoc(collection(db, "friends"), {
-          friend: [user.uid],
-        });
-      }, 1500);
+      // setTimeout(async () => {
+      //   await addDoc(collection(db, "friends"), {
+      //     friend: [chatEmail],
+      //   });
+      // }, 1500);
     } else {
       errorAddEmail();
       setChatEmail("");

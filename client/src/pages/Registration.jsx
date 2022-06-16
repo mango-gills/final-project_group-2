@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import { MdPresentToAll } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { MdPresentToAll } from "react-icons/md";
+import { Link } from "react-router-dom";
 
-import styles from '../styles/Registration.module.css';
+import styles from "../styles/Registration.module.css";
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
-} from 'firebase/auth';
-import { auth, db } from '../firebase';
-import { setDoc, doc, Timestamp } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
+} from "firebase/auth";
+import { auth, db } from "../firebase";
+import { setDoc, doc, Timestamp } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 const Registration = () => {
   const [data, setData] = useState({
-    name: '',
-    email: '',
-    password: '',
+    name: "",
+    email: "",
+    password: "",
     error: null,
     loading: false,
   });
@@ -33,7 +33,7 @@ const Registration = () => {
     e.preventDefault();
     setData({ ...data, error: null, loading: true });
     if (!name || !email || !password) {
-      return setData({ ...data, error: 'All fields are required' });
+      return setData({ ...data, error: "All fields are required" });
     }
     try {
       const result = await createUserWithEmailAndPassword(
@@ -41,7 +41,7 @@ const Registration = () => {
         email,
         password
       );
-      await setDoc(doc(db, 'users', result.user.uid), {
+      await setDoc(doc(db, "users", result.user.uid), {
         uid: result.user.uid,
         name,
         email,
@@ -49,13 +49,13 @@ const Registration = () => {
         isOnline: true,
       });
       setData({
-        name: '',
-        email: '',
-        password: '',
+        name: "",
+        email: "",
+        password: "",
         error: null,
         loading: false,
       });
-      navigate('/');
+      navigate("/");
     } catch (err) {
       setData({ ...data, error: err.message, loading: false });
     }
@@ -66,7 +66,7 @@ const Registration = () => {
     try {
       const result = await signInWithPopup(auth, provider);
       const { displayName, email } = result.user;
-      await setDoc(doc(db, 'users', result.user.uid), {
+      await setDoc(doc(db, "users", result.user.uid), {
         uid: result.user.uid,
         name: displayName,
         email,
@@ -74,13 +74,13 @@ const Registration = () => {
         isOnline: true,
       });
       setData({
-        name: '',
-        email: '',
-        password: '',
+        name: "",
+        email: "",
+        password: "",
         error: null,
         loading: false,
       });
-      navigate('/conversations');
+      navigate("/conversations");
     } catch (err) {
       setData({ ...data, error: err.message, loading: false });
     }

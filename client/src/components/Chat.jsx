@@ -1,45 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
-import styles from '../styles/Chat.module.css';
-import addPhotoIcon from '../assets/icons/add_photo_white.svg';
-import ChatMessage from './ChatMessage';
+import React, { useEffect, useState } from "react";
+import defaultProfilePic from "../assets/images-avatars/placeholder_avatar.png";
+import styles from "../styles/Chat.module.css";
+import addPhotoIcon from "../assets/icons/add_photo_white.svg";
+import ChatMessage from "./ChatMessage";
 
 const sampleChatData = [
   {
     senderAvatar: defaultProfilePic,
-    senderId: '6AYHXtSfMR',
-    message: 'hello',
+    senderId: "6AYHXtSfMR",
+    message: "hello",
     timestamp: Date(2022, 6, 9, 10, 33, 30, 0).toString(),
   },
   {
     senderAvatar: defaultProfilePic,
-    senderId: '6AYHXtSfMR',
-    message: 'hello',
+    senderId: "6AYHXtSfMR",
+    message: "hello",
     timestamp: Date(2022, 6, 9, 10, 45, 30, 0).toString(),
   },
   {
     senderAvatar: defaultProfilePic,
-    senderId: 'fMTSAEEHmr',
-    message: 'hello',
+    senderId: "fMTSAEEHmr",
+    message: "hello",
     timestamp: Date(2022, 6, 9, 10, 46, 30, 0).toString(),
   },
   {
     senderAvatar: defaultProfilePic,
-    senderId: '6AYHXtSfMR',
-    message: 'hello',
+    senderId: "6AYHXtSfMR",
+    message: "hello",
     timestamp: Date(2022, 6, 9, 10, 50, 30, 0).toString(),
   },
   {
     senderAvatar: defaultProfilePic,
-    senderId: '6AYHXtSfMR',
-    message: 'hello',
+    senderId: "6AYHXtSfMR",
+    message: "hello",
     timestamp: Date(2022, 6, 9, 10, 57, 30, 0).toString(),
   },
   {
     senderAvatar: defaultProfilePic,
-    senderId: 'fMTSAEEHmr',
+    senderId: "fMTSAEEHmr",
     message:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     timestamp: Date(2022, 6, 9, 10, 46, 30, 0).toString(),
   },
 ];
@@ -54,9 +54,9 @@ const Chat = ({
   setText,
   handleSubmit,
 }) => {
-  const loggedInUserId = '6AYHXtSfMR';
+  const loggedInUserId = "6AYHXtSfMR";
   const friendInfo = {
-    name: 'Mango Gills',
+    name: "Mango Gills",
     online: true,
     avatar: defaultProfilePic,
   };
@@ -68,16 +68,16 @@ const Chat = ({
     useState(false);
 
   useEffect(() => {
-    const imageInput = document.querySelector('#image_input');
+    const imageInput = document.querySelector("#image_input");
 
     if (imageInput[0]?.files.length > 0) {
-      console.log('files attached', imageInput.files.length);
+      console.log("files attached", imageInput.files.length);
       toggleShowPhotoAddedIndicator(true);
       return;
     }
 
     toggleShowPhotoAddedIndicator(false);
-    console.log('files attached', imageInput.files.length);
+    console.log("files attached", imageInput.files.length);
   }, [photoButtonClicked]);
 
   // Mobile Version
@@ -88,24 +88,24 @@ const Chat = ({
           message.senderId === loggedInUserId ? (
             <div
               style={{
-                display: 'flex',
-                width: '100%',
-                justifyContent: 'flex-end',
+                display: "flex",
+                width: "100%",
+                justifyContent: "flex-end",
               }}
             >
-              <div style={{ width: 'fit-content', backgroundColor: 'green' }}>
+              <div style={{ width: "fit-content", backgroundColor: "green" }}>
                 {message.message}
               </div>
             </div>
           ) : (
             <div
               style={{
-                display: 'flex',
-                width: '100%',
-                justifyContent: 'flex-start',
+                display: "flex",
+                width: "100%",
+                justifyContent: "flex-start",
               }}
             >
-              <div style={{ width: 'fit-content', backgroundColor: 'blue' }}>
+              <div style={{ width: "fit-content", backgroundColor: "blue" }}>
                 {message.message}
               </div>
             </div>
@@ -121,7 +121,7 @@ const Chat = ({
     <div className={styles.container__chat_desktop}>
       {chat ? (
         <>
-          {' '}
+          {" "}
           <div className={styles.wrapper__header}>
             <div className={styles.wrapper__friendavatar}>
               <img
@@ -135,7 +135,7 @@ const Chat = ({
               <div className={styles.wrapper__friendinfo_status}>
                 <span className={styles.friendinfo__status_indicator}></span>
                 <span className={styles.friendinfo__status}>
-                  {chat.isOnline ? 'online' : 'offline'}
+                  {chat.isOnline ? "online" : "offline"}
                 </span>
               </div>
 
@@ -165,7 +165,7 @@ const Chat = ({
             {showPhotoAddedIndicator ? (
               <span className={styles.form__photoadded_indicator}></span>
             ) : (
-              ''
+              ""
             )}
             <input
               id="image_input"
