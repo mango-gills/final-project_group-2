@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ChatPreview from './ChatPreview';
 import styles from '../styles/ChatFeed.module.css';
 import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
-import addPersonIcon from '../assets/icons/person_add_black_24dp.svg';
+import addPersonIcon from '../assets/icons/person_add_black.svg';
 
 const sampleData2 = [
   {

@@ -1,10 +1,10 @@
 import React from 'react';
-import GoBackIcon from '../assets/icons/arrow_back_black_24dp.svg';
-import PhoneCallIcon from '../assets/icons/call_black_24dp.svg';
-import VideoCallIcon from '../assets/icons/video_call_black_24dp.svg';
-import MenuIcon from '../assets/icons/menu_black_24dp.svg';
-import InfoIcon from '../assets/icons/info_black_24dp.svg';
-import SearchIcon from '../assets/icons/search_black_24dp.svg';
+import GoBackIcon from '../assets/icons/arrow_back_black.svg';
+import PhoneCallIcon from '../assets/icons/call_black.svg';
+import VideoCallIcon from '../assets/icons/video_call_black.svg';
+import MenuIcon from '../assets/icons/menu_black.svg';
+import InfoIcon from '../assets/icons/info_black.svg';
+import SearchIcon from '../assets/icons/search_black.svg';
 import styles from '../styles/HeaderMobileChat.module.css';
 import GoBackIconTwo from '../assets/icons/west_black.svg';
 

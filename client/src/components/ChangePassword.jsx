@@ -19,7 +19,7 @@ const ChangePassword = ({
 
   // DESKTOP VERSION
   return (
-    <div className={`${styles.container__changepassword} ${styles.backdrop_blur}`}>
+    <div className={styles.container__changepassword}>
       <div className={styles.wrapper__changepassword_form}>
         <form className={styles.changepassword__form}>
           <h2 className={styles.changepassword__header}>Change Password</h2>

@@ -69,7 +69,7 @@ body {
   cursor: pointer;
   height: 3rem;
   width: 3rem;
-  background: url('../assets/icons/person_add_black_24dp.svg') no-repeat;
+  background: url('../assets/icons/person_add_black.svg') no-repeat;
   background-position: center;
 }
 

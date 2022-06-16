@@ -23,7 +23,7 @@ const UploadAvatar = ({
   // DESKTOP VERSION
   return (
     <div
-      className={`${styles.container__uploadavatar} ${styles.backdrop_blur}`}
+      className={styles.container__uploadavatar}
     >
       <div className={styles.wrapper__uploadavatar_form}>
         <form className={styles.uploadavatar__form}>
