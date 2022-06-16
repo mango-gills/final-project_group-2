@@ -99,6 +99,8 @@ const DesktopContainer = ({
         isDarkMode={isDarkMode}
         chat={chat}
         selectUser={selectUser}
+        showAddFriendComponent={showAddFriendComponent}
+        toggleAddFriendVisibility={toggleAddFriendVisibility}
       />
       <Settings
         user={user}

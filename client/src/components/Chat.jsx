@@ -3,6 +3,7 @@ import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
 import styles from '../styles/Chat.module.css';
 import addPhotoIcon from '../assets/icons/add_photo_white.svg';
 import ChatMessage from './ChatMessage';
+import EmptyStateImage from '../assets/other-images/empty-state.png';
 
 const sampleChatData = [
   {
@@ -55,6 +56,8 @@ const Chat = ({
   text,
   setText,
   handleSubmit,
+  showAddFriendComponent,
+  toggleAddFriendVisibility,
 }) => {
   const loggedInUserId = '6AYHXtSfMR';
   const friendInfo = {
@@ -160,43 +163,61 @@ const Chat = ({
   return (
     <div className={styles.desktop_container__chat}>
       {chat ? (
-        <>
-          <div className={styles.desktop_wrapper__header}>
-            <div className={styles.desktop_wrapper__friendavatar}>
-              <img
-                className={styles.desktop_friendavatar_image}
-                src={chat.avatar || defaultProfilePic}
-                alt=""
-              />
-            </div>
-            <div className={styles.desktop_wrapper__friendinfo}>
-              <h2 className={styles.desktop_friendInfo_name}>{chat.name}</h2>
-              <div className={styles.desktop_wrapper__friendinfo_status}>
-                <span
-                  className={styles.desktop_friendinfo__status_indicator}
-                ></span>
-                <span className={styles.desktop_friendinfo__status}>
-                  {friendInfo.online ? 'online' : 'offline'}
-                </span>
-              </div>
-            </div>
-            <div className={styles.wrapper__messages}>
-              {msgs.length
-                ? msgs.map((msg, i) => (
-                    <ChatMessage
-                      key={i}
-                      msg={msg}
-                      user1={user1}
-                      chat={chat}
-                      user={user}
-                    />
-                  ))
-                : null}
+        <div className={styles.desktop_wrapper__header}>
+          <div className={styles.desktop_wrapper__friendavatar}>
+            <img
+              className={styles.desktop_friendavatar_image}
+              src={chat.avatar || defaultProfilePic}
+              alt=""
+            />
+          </div>
+          <div className={styles.desktop_wrapper__friendinfo}>
+            <h2 className={styles.desktop_friendInfo_name}>{chat.name}</h2>
+            <div className={styles.desktop_wrapper__friendinfo_status}>
+              <span
+                className={styles.desktop_friendinfo__status_indicator}
+              ></span>
+              <span className={styles.desktop_friendinfo__status}>
+                {friendInfo.online ? 'online' : 'offline'}
+              </span>
             </div>
           </div>
-        </>
+          <div className={styles.wrapper__messages}>
+            {msgs.length
+              ? msgs.map((msg, i) => (
+                  <ChatMessage
+                    key={i}
+                    msg={msg}
+                    user1={user1}
+                    chat={chat}
+                    user={user}
+                  />
+                ))
+              : null}
+          </div>
+        </div>
       ) : (
-        <h3>Select a User to Start a Conversation</h3>
+        <div className={styles.desktop_container__empty_state}>
+          <img
+            className={styles.desktop_container__empty_state_image}
+            src={EmptyStateImage}
+            alt=""
+          />
+          <h3 className={styles.desktop_container__empty_state_text}>
+            Select a friend from the left panel to start conversing!
+          </h3>
+          <h3 className={styles.desktop_container__empty_state_text}>
+            or{' '}
+            <span
+              className={styles.desktop_container__empty_state_text_addfriend}
+              onClick={() => {
+                toggleAddFriendVisibility(!showAddFriendComponent);
+              }}
+            >
+              Add a friend?
+            </span>
+          </h3>
+        </div>
       )}
 
       <form className={styles.desktop_wrapper__form} onSubmit={handleSubmit}>
