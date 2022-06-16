@@ -1,42 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { SharedContext } from '../contexts/SharedContext';
 import styles from '../styles/AddFriend.module.css';
 
-const AddFriend = ({
-  isMobile,
-  isDarkMode,
-  toggleDarkMode,
-  showAddFriendComponent,
-  toggleAddFriendVisibility,
-  showChatFeed,
-  toggleChatFeedVisibility
-}) => {
+const AddFriend = () => {
+  const { isMobile, toggleChatFeedVisibility, showAddFriendComponent, toggleAddFriendVisibility } =
+    useContext(SharedContext);
   if (isMobile) {
     return (
       <div className={styles.mobile_container__addfriend}>
-      <div className={styles.mobile_wrapper__addfriend_form}>
-        <form className={styles.mobile_addfriend__form}>
-          <h2 className={styles.mobile_addfriend__header}>Find a friend</h2>
-          <input
-            className={styles.mobile_addfriend__input}
-            placeholder="<username>#0000"
-          />
-          <button type="submit" className={styles.mobile_addfriend__button}>
-            Start Talking
-          </button>
-        </form>
-        <span
-          className={styles.mobile_addfriend__goback}
-          onClick={() => {
-            toggleAddFriendVisibility(!showAddFriendComponent);
-            toggleChatFeedVisibility(true);
-          }}
-        >
-          Go Back to your Message Feed
-        </span>
+        <div className={styles.mobile_wrapper__addfriend_form}>
+          <form className={styles.mobile_addfriend__form}>
+            <h2 className={styles.mobile_addfriend__header}>Find a friend</h2>
+            <input
+              className={styles.mobile_addfriend__input}
+              placeholder="<username>#0000"
+            />
+            <button type="submit" className={styles.mobile_addfriend__button}>
+              Start Talking
+            </button>
+          </form>
+          <span
+            className={styles.mobile_addfriend__goback}
+            onClick={() => {
+              toggleAddFriendVisibility(!showAddFriendComponent);
+              toggleChatFeedVisibility(true);
+            }}
+          >
+            Go Back to your Message Feed
+          </span>
+        </div>
       </div>
-      
-    </div>
-
     );
   }
 

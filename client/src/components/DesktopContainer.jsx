@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { SharedContext } from '../contexts/SharedContext';
 import ChatFeed from './ChatFeed';
 import Chat from './Chat';
 import Settings from './Settings';
@@ -24,17 +25,12 @@ const DesktopContainer = ({
   selectUser,
   users,
   chat,
-  isMobile,
-  isDarkMode,
-  toggleDarkMode,
-  showAddFriendComponent,
-  toggleAddFriendVisibility,
-  showUploadAvatarComponent,
-  toggleUploadAvatarVisibility,
-  showChangePasswordComponent,
-  toggleChangePasswordVisibility,
 }) => {
-  // console.log('Change Password Component', showChangePasswordComponent);
+  const {
+    showAddFriendComponent,
+    showUploadAvatarComponent,
+    showChangePasswordComponent,
+  } = useContext(SharedContext);
   const [img, setImg] = useState('');
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
@@ -80,14 +76,7 @@ const DesktopContainer = ({
 
   return (
     <div className={styles.container_desktop}>
-      <ChatFeed
-        selectUser={selectUser}
-        users={users}
-        isMobile={isMobile}
-        isDarkMode={isDarkMode}
-        showAddFriendComponent={showAddFriendComponent}
-        toggleAddFriendVisibility={toggleAddFriendVisibility}
-      />
+      <ChatFeed selectUser={selectUser} users={users} />
       <Chat
         user={user}
         user1={user1}
@@ -95,60 +84,17 @@ const DesktopContainer = ({
         setText={setText}
         text={text}
         handleSubmit={handleSubmit}
-        isMobile={isMobile}
-        isDarkMode={isDarkMode}
         chat={chat}
         selectUser={selectUser}
-        showAddFriendComponent={showAddFriendComponent}
-        toggleAddFriendVisibility={toggleAddFriendVisibility}
       />
-      <Settings
-        user={user}
-        isMobile={isMobile}
-        isDarkMode={isDarkMode}
-        toggleDarkMode={toggleDarkMode}
-        showChangePasswordComponent={showChangePasswordComponent}
-        toggleChangePasswordVisibility={toggleChangePasswordVisibility}
-        showUploadAvatarComponent={showUploadAvatarComponent}
-        toggleUploadAvatarVisibility={toggleUploadAvatarVisibility}
-      />
-      {showAddFriendComponent ? (
-        <AddFriend
-          isMobile={isMobile}
-          isDarkMode={isDarkMode}
-          toggleDarkMode={toggleDarkMode}
-          showAddFriendComponent={showAddFriendComponent}
-          toggleAddFriendVisibility={toggleAddFriendVisibility}
-        />
-      ) : (
-        ''
-      )}
+      <Settings user={user} />
+      {showAddFriendComponent ? <AddFriend /> : ''}
       {showUploadAvatarComponent ? (
-        <UploadAvatar
-          loading={loading}
-          img={img}
-          setImg={setImg}
-          user={user}
-          isMobile={isMobile}
-          isDarkMode={isDarkMode}
-          toggleDarkMode={toggleDarkMode}
-          showUploadAvatarComponent={showUploadAvatarComponent}
-          toggleUploadAvatarVisibility={toggleUploadAvatarVisibility}
-        />
+        <UploadAvatar loading={loading} img={img} setImg={setImg} user={user} />
       ) : (
         ''
       )}
-      {showChangePasswordComponent ? (
-        <ChangePassword
-          isMobile={isMobile}
-          isDarkMode={isDarkMode}
-          toggleDarkMode={toggleDarkMode}
-          showChangePasswordComponent={showChangePasswordComponent}
-          toggleChangePasswordVisibility={toggleChangePasswordVisibility}
-        />
-      ) : (
-        ''
-      )}
+      {showChangePasswordComponent ? <ChangePassword /> : ''}
     </div>
   );
 };

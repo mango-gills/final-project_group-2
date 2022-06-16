@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { SharedContext } from '../contexts/SharedContext';
 import ChatPreview from './ChatPreview';
 import styles from '../styles/ChatFeed.module.css';
 import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
-import addPersonIcon from '../assets/icons/person_add_black.svg';
 
 const sampleData2 = [
   {
@@ -67,34 +67,17 @@ const sampleData2 = [
   },
 ];
 
-const ChatFeed = ({
-  user1,
-  selectUser,
-  users,
-  isMobile,
-  isDarkMode,
-  toggleDarkMode,
-  showChat,
-  toggleChatVisibility,
-  showChatFeed,
-  toggleChatFeedVisibility,
-  showAddFriendComponent,
-  toggleAddFriendVisibility,
-}) => {
+const ChatFeed = ({ user1, selectUser, users }) => {
+  const { isMobile, showAddFriendComponent, toggleAddFriendVisibility } =
+    useContext(SharedContext);
+
   // MOBILE VERSION
   if (isMobile) {
     return (
       <div className={styles.mobile_chatfeed__wrapper}>
         {/*<h2 style={{ color: 'red' }}>Messages</h2>*/}
         {sampleData2.map((messageObject) => (
-          <ChatPreview
-            isMobile={isMobile}
-            messageObject={messageObject}
-            showChat={showChat}
-            toggleChatVisibility={toggleChatVisibility}
-            showChatFeed={showChatFeed}
-            toggleChatFeedVisibility={toggleChatFeedVisibility}
-          />
+          <ChatPreview messageObject={messageObject} />
         ))}
       </div>
     );
