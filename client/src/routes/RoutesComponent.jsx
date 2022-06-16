@@ -15,22 +15,22 @@ import AuthProvider from '../contexts/auth.jsx';
 const RoutesComponent = () => {
   return (
     <main>
-    <AuthProvider>
-    {/*<SharedProvider>*/}
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/registration" element={<Registration />} />
-          <Route path="/login" element={<LogIn />} />
-          <Route path="/conversations" element={<ConversationPage />} />
-          <Route path="/password-recovery" element={<PasswordRecovery />} />
-          <Route
-            path="/password-verification"
-            element={<PasswordVerification />}
-          />
-          <Route path="/password-reset" element={<PasswordReset />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        {/*</SharedProvider>*/}
+      <AuthProvider>
+        <SharedProvider>
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/registration" element={<Registration />} />
+            <Route path="/login" element={<LogIn />} />
+            <Route path="/conversations" element={<ConversationPage />} />
+            <Route path="/password-recovery" element={<PasswordRecovery />} />
+            <Route
+              path="/password-verification"
+              element={<PasswordVerification />}
+            />
+            <Route path="/password-reset" element={<PasswordReset />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </SharedProvider>
       </AuthProvider>
     </main>
   );

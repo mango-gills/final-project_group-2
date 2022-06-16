@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react'
+import { SharedContext } from '../contexts/SharedContext';
 import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
 import styles from '../styles/Chat.module.css';
-import addPhotoIcon from '../assets/icons/add_photo_white.svg';
 import ChatMessage from './ChatMessage';
 import EmptyStateImage from '../assets/other-images/empty-state.png';
 
@@ -49,16 +49,14 @@ const Chat = ({
   user,
   user1,
   msgs,
-  isMobile,
-  isDarkMode,
-  toggleDarkMode,
   chat,
   text,
   setText,
   handleSubmit,
-  showAddFriendComponent,
-  toggleAddFriendVisibility,
 }) => {
+  const { isMobile, showAddFriendComponent, toggleAddFriendVisibility } =
+    useContext(SharedContext);
+
   const loggedInUserId = '6AYHXtSfMR';
   const friendInfo = {
     name: 'Mango Gills',

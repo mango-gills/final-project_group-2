@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { SharedContext } from '../contexts/SharedContext';
 import menuIcon from '../assets/icons/menu_black.svg';
 import addFriendIcon from '../assets/icons/person_add_black.svg';
 import searchIcon from '../assets/icons/search_black.svg';
 import styles from '../styles/HeaderMobileChatFeed.module.css';
 
-const HeaderMobileChatFeed = ({
-  showSettings,
-  toggleSettingsVisibility,
-  showChatFeed,
-  toggleChatFeedVisibility,
-  showAddFriendComponent,
-  toggleAddFriendVisibility,
-}) => {
+const HeaderMobileChatFeed = () => {
+  const {
+    toggleSettingsVisibility,
+    toggleChatFeedVisibility,
+    showAddFriendComponent,
+    toggleAddFriendVisibility,
+  } = useContext(SharedContext);
+
   return (
     <div className={styles.header__wrapper}>
       <div className={styles.header__button_wrapper_left}>

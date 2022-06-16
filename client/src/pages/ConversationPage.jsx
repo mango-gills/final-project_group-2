@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { SharedContext } from '../contexts/SharedContext';
 import DesktopContainer from '../components/DesktopContainer';
 import MobileContainer from '../components/MobileContainer';
 import { db, auth } from '../firebase';
@@ -16,18 +17,10 @@ import {
 } from 'firebase/firestore';
 
 const ConversationPage = () => {
-  // const {width, setWidth, isDarkMode, toggleDarkMode, isMobile, setIsMobile} = useContext(SharedContext);
+  const { width, setWidth, isMobile, setIsMobile } = useContext(SharedContext);
   const [chat, setChat] = useState();
   const [text, setText] = useState();
   const [users, setUsers] = useState([]);
-  const [width, setWidth] = useState(window.innerWidth);
-  const [isDarkMode, toggleDarkMode] = useState(false);
-  const [isMobile, setIsMobile] = useState(width <= 768);
-  const [showAddFriendComponent, toggleAddFriendVisibility] = useState(false);
-  const [showUploadAvatarComponent, toggleUploadAvatarVisibility] =
-    useState(false);
-  const [showChangePasswordComponent, toggleChangePasswordVisibility] =
-    useState(false);
   const [msgs, setMsgs] = useState([]);
 
   const handleWindowSizeChange = () => {
@@ -102,17 +95,7 @@ const ConversationPage = () => {
   return (
     <div>
       {isMobile ? (
-        <MobileContainer
-          isMobile={isMobile}
-          isDarkMode={isDarkMode}
-          toggleDarkMode={toggleDarkMode}
-          showAddFriendComponent={showAddFriendComponent}
-          toggleAddFriendVisibility={toggleAddFriendVisibility}
-          showUploadAvatarComponent={showUploadAvatarComponent}
-          toggleUploadAvatarVisibility={toggleUploadAvatarVisibility}
-          showChangePasswordComponent={showChangePasswordComponent}
-          toggleChangePasswordVisibility={toggleChangePasswordVisibility}
-        />
+        <MobileContainer />
       ) : (
         <DesktopContainer
           user1={user1}
@@ -123,15 +106,6 @@ const ConversationPage = () => {
           selectUser={selectUser}
           chat={chat}
           users={users}
-          isMobile={isMobile}
-          isDarkMode={isDarkMode}
-          toggleDarkMode={toggleDarkMode}
-          showAddFriendComponent={showAddFriendComponent}
-          toggleAddFriendVisibility={toggleAddFriendVisibility}
-          showUploadAvatarComponent={showUploadAvatarComponent}
-          toggleUploadAvatarVisibility={toggleUploadAvatarVisibility}
-          showChangePasswordComponent={showChangePasswordComponent}
-          toggleChangePasswordVisibility={toggleChangePasswordVisibility}
         />
       )}
     </div>
