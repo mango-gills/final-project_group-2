@@ -113,21 +113,22 @@ body {
   border-radius: 50%;;
 }
 
-.chatpreview__wrapper_text {
+.desktop_chatpreview__wrapper_text {
   flex-grow: 1;
   display: flex;
   overflow: hidden;
   padding-left: 1rem;
   line-height: 1.5;
-  /* border: 1px solid #a307d5; */
+  /* border: 1px solid cyan; */
 }
 
 .desktop_text__friendname {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 
 .desktop_text__message {
+  font-size: 1.2rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
