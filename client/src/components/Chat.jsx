@@ -187,6 +187,47 @@ const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
                 ))
               : null}
           </div>
+          <form
+            className={styles.desktop_wrapper__form}
+            onSubmit={handleSubmit}
+          >
+            <textarea
+              className={styles.desktop_form__textarea}
+              type="text"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              placeholder="Start writing your message...."
+            ></textarea>
+            <div className={styles.desktop_wrapper_form_buttons}>
+              {/*<button className={styles.desktop_form__button_addphoto} type="button">
+                <img className={styles.desktop_button_addphoto_image} src={addPhotoIcon} />
+            </button>*/}
+              <label className={styles.desktop_form__button_addphoto}>
+                {showPhotoAddedIndicator ? (
+                  <span
+                    className={styles.desktop_form__photoadded_indicator}
+                  ></span>
+                ) : (
+                  ''
+                )}
+                <input
+                  id="image_input"
+                  type="file"
+                  accept="image/*"
+                  className={styles.desktop_button_addphoto_input}
+                  onChange={() => {
+                    togglePhotoButtonClicked(!photoButtonClicked);
+                  }}
+                />
+              </label>
+              <button
+                className={styles.desktop_form__button_send}
+                type="submit"
+              >
+                Send
+              </button>
+            </div>
+          </form>
         </div>
       ) : (
         <div className={styles.desktop_container__empty_state}>
@@ -211,42 +252,6 @@ const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
           </h3>
         </div>
       )}
-
-      <form className={styles.desktop_wrapper__form} onSubmit={handleSubmit}>
-        <textarea
-          className={styles.desktop_form__textarea}
-          type="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="Start writing your message...."
-        ></textarea>
-        <div className={styles.desktop_wrapper_form_buttons}>
-          {/*<button className={styles.desktop_form__button_addphoto} type="button">
-              <img className={styles.desktop_button_addphoto_image} src={addPhotoIcon} />
-          </button>*/}
-          <label className={styles.desktop_form__button_addphoto}>
-            {showPhotoAddedIndicator ? (
-              <span
-                className={styles.desktop_form__photoadded_indicator}
-              ></span>
-            ) : (
-              ''
-            )}
-            <input
-              id="image_input"
-              type="file"
-              accept="image/*"
-              className={styles.desktop_button_addphoto_input}
-              onChange={() => {
-                togglePhotoButtonClicked(!photoButtonClicked);
-              }}
-            />
-          </label>
-          <button className={styles.desktop_form__button_send} type="submit">
-            Send
-          </button>
-        </div>
-      </form>
     </div>
   );
 };
