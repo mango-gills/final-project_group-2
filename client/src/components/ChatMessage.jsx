@@ -25,7 +25,7 @@ const ChatMessage = ({ msg, user1, chat, user, stamp }) => {
               alt="avatar"
             />
 
-            <p> {moment(msg?.createdAt.format).fromNow()}</p>
+            {/* <p> {moment(msg?.createdAt.format).fromNow()}</p> */}
           </div>
         </div>
       ) : (
