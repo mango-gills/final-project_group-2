@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import styles from '../styles/Login.module.css';
 import GoogleButton from 'react-google-button';
+import Footer from '../components/Footer';
+
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
@@ -112,6 +115,7 @@ const LogIn = () => {
           </Link>
         </p>
       </div>
+      <Footer />
     </div>
   );
 };

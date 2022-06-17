@@ -5,6 +5,7 @@ import { MdPresentToAll } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
 import styles from '../styles/Landing.module.css';
+import Footer from '../components/Footer';
 
 const Landing = () => {
   return (
@@ -39,6 +40,7 @@ const Landing = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   );
 };

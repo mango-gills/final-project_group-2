@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { MdPresentToAll } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
 import styles from '../styles/Registration.module.css';
+import Footer from '../components/Footer';
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -148,6 +148,7 @@ const Registration = () => {
           </span>
         </div>
       </section>
+      <Footer />
     </main>
   );
 };
