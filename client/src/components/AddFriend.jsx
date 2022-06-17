@@ -46,14 +46,27 @@ const AddFriend = ({
   const friend = [];
   const addFriendIfExists = () => {
     chatUsers?.map((c) => {
-      const { name, email, uid } = c;
+      const {
+        name,
+        email,
+        uid,
+        createdAt,
+        isOnline,
+        avatarPath = "avatar/placeholder_avatar.png",
+        avatar = "https://firebasestorage.googleapis.com/v0/b/chat-app-official-9f0ee.appspot.com/o/avatar%2Fplaceholder_avatar.png?alt=media&token=97695394-a2cd-48d7-8391-261430cd4769",
+      } = c;
+      // console.log(c);
       if (c.email == chatEmail) {
         // friend.push(c);
         setTimeout(async () => {
-          await setDoc(doc(db, `friends/friend/${user.uid}/${uid}`), {
+          await setDoc(doc(db, `friends/friend/${user.uid}/${uid}/`), {
             name,
             email,
             uid,
+            createdAt,
+            isOnline,
+            avatarPath,
+            avatar,
           });
         }, 1500);
       } else {
