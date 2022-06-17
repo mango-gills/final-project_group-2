@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import styles from '../styles/Chat.module.css';
 import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
-// import moment from 'moment';
+import moment from 'moment';
 
 const ChatMessage = ({ msg, user1, chat, user, stamp }) => {
   const scrollRef = useRef();
@@ -22,10 +22,10 @@ const ChatMessage = ({ msg, user1, chat, user, stamp }) => {
             <img
               className={styles.message__avatar_image}
               src={user.avatar || defaultProfilePic}
-              alt=""
+              alt="avatar"
             />
 
-            {/* <p> {moment(msg.createdAt.timestamp).fromNow()}</p> */}
+            <p> {moment(msg?.createdAt.format).fromNow()}</p>
           </div>
         </div>
       ) : (
@@ -36,7 +36,7 @@ const ChatMessage = ({ msg, user1, chat, user, stamp }) => {
             <img
               className={styles.message__avatar_image}
               src={chat.avatar || defaultProfilePic}
-              alt=""
+              alt="avatar"
             />
           </div>
           {msg.media ? <img src={msg.media} alt={msg.text} /> : null}

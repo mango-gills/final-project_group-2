@@ -6,7 +6,6 @@ import { onSnapshot, doc } from 'firebase/firestore';
 import { db } from '../firebase';
 
 const ChatPreview = ({
-  user,
   chat,
   user1,
   selectUser,
@@ -17,6 +16,17 @@ const ChatPreview = ({
   showChatFeed,
   toggleChatFeedVisibility,
 }) => {
+  const user2 = currUser?.uid;
+  const [data, setData] = useState('');
+
+  useEffect(() => {
+    const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
+    let unsub = onSnapshot(doc(db, 'lastMsg', id), (doc) => {
+      setData(doc.data());
+    });
+    return () => unsub;
+  }, []);
+
   if (isMobile) {
     return (
       <div
@@ -46,57 +56,46 @@ const ChatPreview = ({
     );
   }
 
-  const user2 = currUser?.uid;
-  const [data, setData] = useState('');
-
-  useEffect(() => {
-    const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
-    let unsub = onSnapshot(doc(db, 'lastMsg', id), (doc) => {
-      setData(doc.data());
-    });
-    return () => unsub;
-  }, []);
-
-  console.log(chat);
+  console.log(currUser?.name);
+  console.log(chat?.name);
   return (
-    <div
-      className={styles.wrapper__chatpreview}
-      // `${
-      //   chat.name === currUser.name && 'selected_user'
-      // }`
-      onClick={() => {
-        selectUser(currUser);
-        // code to show message in Chat.jsx component
-      }}
-    >
-      <div className={styles.chatpreview__wrapper_avatar}>
-        <img
-          className={styles.avatar__image}
-          src={currUser.avatar || defaultProfilePic}
-        />
-      </div>
-      <div className={styles.chatpreview__wrapper_text}>
-        <p className={styles.text__friendname}>{currUser.name}</p>
-        {data?.from !== user1 && data?.unread && <p>new</p>}
+    <>
+      <div
+        className={styles.wrapper__chatpreview}
+        onClick={() => {
+          selectUser(currUser);
+          // code to show message in Chat.jsx component
+        }}
+      >
+        <div className={styles.chatpreview__wrapper_avatar}>
+          <img
+            className={styles.avatar__image}
+            src={currUser.avatar || defaultProfilePic}
+          />
+        </div>
+        <div className={styles.chatpreview__wrapper_text}>
+          <p className={styles.text__friendname}>{currUser.name}</p>
+          {data?.from !== user1 && data?.unread && <p>new</p>}
 
-        {data && (
-          <p className={styles.text__message}>
-            {data.from === user1 ? 'me' : null} {data.text}{' '}
-          </p>
-        )}
-        {/* {messageObject.message} */}
-        {/*{`${messageObject.message} ${moment(messageObject.timestamp).fromNow()}`} */}
+          {data && (
+            <p className={styles.text__message}>
+              {data.from === user1 ? 'me' : null} {data.text}{' '}
+            </p>
+          )}
+          {/* {messageObject.message} */}
+          {/*{`${messageObject.message} ${moment(messageObject.timestamp).fromNow()}`} */}
 
-        <div
-          className={`user_status ${currUser.isOnline ? 'online' : 'offline'}`}
-        >
-          STATUS
+          {currUser.isOnline ? (
+            <span className={styles.user_status_online}></span>
+          ) : (
+            <span className={styles.user_status_offline}></span>
+          )}
+        </div>
+        <div className={styles.timestamp}>
+          {/* {moment(messageObject.timestamp).fromNow()} */}
         </div>
       </div>
-      <div className={styles.timestamp}>
-        {/* {moment(messageObject.timestamp).fromNow()} */}
-      </div>
-    </div>
+    </>
   );
 };
 

@@ -19,7 +19,7 @@ import {
 
 const ConversationPage = () => {
   const [attachImg, setAttachImg] = useState('');
-  const [chat, setChat] = useState();
+  const [chat, setChat] = useState('');
   const [text, setText] = useState();
   const [users, setUsers] = useState([]);
   const [width, setWidth] = useState(window.innerWidth);

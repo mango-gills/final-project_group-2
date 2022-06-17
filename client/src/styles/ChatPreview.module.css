@@ -106,6 +106,13 @@ body {
   /* border: 1px solid #a307d5; */
 }
 
+.wrapper__chatpreview:hover {
+  background-color: var(--color-message-theirs);
+  border-radius: 30px;
+  color: black;
+  transition: color 100ms ease-out;
+}
+
 .chatpreview__wrapper_avatar {
   /* border: 1px solid red; */
   width: 4.5rem;
@@ -148,19 +155,21 @@ body {
   font-size: .9rem;
 }
 
-.user_status {
-  border-style: solid;
-  border-color:red;
-  background: red;
-  width: 100px;
+.user_status_online {
+  display: inline-block;
+  width: 10px;
   height: 10px;
   border-radius: 50%;
+  background-color: #34eb52;
 }
-
-.online {
-  background: #34eb52;
+.user_status_offline {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: gray;
 }
-.offline {
-  background: gray;
+.selected_user{
+ background: red;
 }
 
