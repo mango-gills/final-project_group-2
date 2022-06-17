@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useContext } from 'react';
 import { SharedContext } from '../contexts/SharedContext';
 import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
 import styles from '../styles/Chat.module.css';
@@ -45,15 +45,7 @@ const sampleChatData = [
   },
 ];
 
-const Chat = ({
-  user,
-  user1,
-  msgs,
-  chat,
-  text,
-  setText,
-  handleSubmit,
-}) => {
+const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
   const { isMobile, showAddFriendComponent, toggleAddFriendVisibility } =
     useContext(SharedContext);
 
@@ -161,26 +153,28 @@ const Chat = ({
   return (
     <div className={styles.desktop_container__chat}>
       {chat ? (
-        <div className={styles.desktop_wrapper__header}>
-          <div className={styles.desktop_wrapper__friendavatar}>
-            <img
-              className={styles.desktop_friendavatar_image}
-              src={chat.avatar || defaultProfilePic}
-              alt=""
-            />
-          </div>
-          <div className={styles.desktop_wrapper__friendinfo}>
-            <h2 className={styles.desktop_friendInfo_name}>{chat.name}</h2>
-            <div className={styles.desktop_wrapper__friendinfo_status}>
-              <span
-                className={styles.desktop_friendinfo__status_indicator}
-              ></span>
-              <span className={styles.desktop_friendinfo__status}>
-                {friendInfo.online ? 'online' : 'offline'}
-              </span>
+        <div className={styles.desktop_container_inner__chat}>
+          <div className={styles.desktop_wrapper__header}>
+            <div className={styles.desktop_wrapper__friendavatar}>
+              <img
+                className={styles.desktop_friendavatar_image}
+                src={chat.avatar || defaultProfilePic}
+                alt=""
+              />
+            </div>
+            <div className={styles.desktop_wrapper__friendinfo}>
+              <h2 className={styles.desktop_friendInfo_name}>{chat.name}</h2>
+              <div className={styles.desktop_wrapper__friendinfo_status}>
+                <span
+                  className={styles.desktop_friendinfo__status_indicator}
+                ></span>
+                <span className={styles.desktop_friendinfo__status}>
+                  {friendInfo.online ? 'online' : 'offline'}
+                </span>
+              </div>
             </div>
           </div>
-          <div className={styles.wrapper__messages}>
+          <div className={styles.desktop_wrapper__messages}>
             {msgs.length
               ? msgs.map((msg, i) => (
                   <ChatMessage
