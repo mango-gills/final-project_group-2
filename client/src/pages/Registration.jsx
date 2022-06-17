@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MdPresentToAll } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-
+import GoogleButton from 'react-google-button';
 import styles from '../styles/Registration.module.css';
 import {
   createUserWithEmailAndPassword,
@@ -55,7 +55,7 @@ const Registration = () => {
         error: null,
         loading: false,
       });
-      navigate('/');
+      navigate('/login');
     } catch (err) {
       setData({ ...data, error: err.message, loading: false });
     }
@@ -132,9 +132,9 @@ const Registration = () => {
           ></input>
           <button className={styles.form__button}>SIGNUP</button>
         </form>
-        <button className={styles.text} onClick={handleGoogleSignIn}>
-          GOOGLE SIGNIN
-        </button>
+        <p>Or</p>
+        <GoogleButton style={{ width: 301 }} onClick={handleGoogleSignIn} />
+        <br></br>
         <div className={styles.terms__text}>
           By continuing, you agree to accept our Privacy Policy and Terms of
           service.

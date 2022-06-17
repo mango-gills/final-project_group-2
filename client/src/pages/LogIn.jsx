@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../styles/Login.module.css';
+import GoogleButton from 'react-google-button';
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
@@ -91,12 +92,13 @@ const LogIn = () => {
             value={password}
             onChange={handleChange}
           />
-          <button className={styles.text} onClick={handleGoogleSignIn}>
-            GOOGLE SIGNIN
-          </button>
+
           <button className={styles.form__button} type="submit">
             Login
           </button>
+          <p>Or</p>
+          <GoogleButton style={{ width: 301 }} onClick={handleGoogleSignIn} />
+          <br></br>
         </form>
         <p className={styles.container__text}>
           Don't have an account yet?{' '}
