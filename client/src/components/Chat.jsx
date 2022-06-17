@@ -45,6 +45,8 @@ const sampleChatData = [
 ];
 
 const Chat = ({
+  attachImg,
+  setAttachImg,
   user,
   user1,
   msgs,
@@ -150,6 +152,7 @@ const Chat = ({
                     user1={user1}
                     chat={chat}
                     user={user}
+                    stamp={msg.createdAt}
                   />
                 ))
               : null}
@@ -167,10 +170,11 @@ const Chat = ({
           onChange={(e) => setText(e.target.value)}
           placeholder="Start writing your message...."
         ></textarea>
+
         <div className={styles.wrapper_form_buttons}>
-          {/*<button className={styles.form__button_addphoto} type="button">
-              <img className={styles.button_addphoto_image} src={addPhotoIcon} />
-          </button>*/}
+          <button className={styles.form__button_addphoto} type="button">
+            <img className={styles.button_addphoto_image} src={addPhotoIcon} />
+          </button>
           <label className={styles.form__button_addphoto}>
             {showPhotoAddedIndicator ? (
               <span className={styles.form__photoadded_indicator}></span>
@@ -182,9 +186,7 @@ const Chat = ({
               type="file"
               accept="image/*"
               className={styles.button_addphoto_input}
-              onChange={() => {
-                togglePhotoButtonClicked(!photoButtonClicked);
-              }}
+              onChange={(e) => setAttachImg(e.target.files[0])}
             />
           </label>
           <button className={styles.form__button_send} type="submit">

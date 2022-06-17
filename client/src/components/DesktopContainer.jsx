@@ -16,6 +16,8 @@ import {
 import { getDoc, doc, updateDoc } from 'firebase/firestore';
 
 const DesktopContainer = ({
+  attachImg,
+  setAttachImg,
   user1,
   msgs,
   setText,
@@ -89,6 +91,8 @@ const DesktopContainer = ({
         toggleAddFriendVisibility={toggleAddFriendVisibility}
       />
       <Chat
+        attachImg={attachImg}
+        setAttachImg={setAttachImg}
         user={user}
         user1={user1}
         msgs={msgs}

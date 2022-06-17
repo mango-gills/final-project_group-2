@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import DesktopContainer from '../components/DesktopContainer';
 import MobileContainer from '../components/MobileContainer';
-import { db, auth } from '../firebase';
+import { db, auth, storage } from '../firebase';
+import { ref, getDownloadURL, uploadBytes } from 'firebase/storage';
 import {
   collection,
   query,
@@ -16,6 +17,7 @@ import {
 } from 'firebase/firestore';
 
 const ConversationPage = () => {
+  const [attachImg, setAttachImg] = useState('');
   const [chat, setChat] = useState();
   const [text, setText] = useState();
   const [users, setUsers] = useState([]);
@@ -89,14 +91,27 @@ const ConversationPage = () => {
 
     const user2 = chat.uid;
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
+    let url;
+    if (attachImg) {
+      const imgRef = ref(
+        storage,
+        `images/${new Date().getTime()} - ${attachImg.name}`
+      );
+      const snap = await uploadBytes(imgRef, attachImg);
+      const dlUrl = await getDownloadURL(ref(storage, snap.ref.fullPath));
+      url = dlUrl;
+    }
     await addDoc(collection(db, 'messages', id, 'chat'), {
       text,
       from: user1,
       to: user2,
       createdAt: Timestamp.fromDate(new Date()),
+      media: url || '',
     });
     setText('');
+    setAttachImg('');
   };
+  console.log(attachImg);
 
   return (
     <div>
@@ -114,6 +129,8 @@ const ConversationPage = () => {
         />
       ) : (
         <DesktopContainer
+          attachImg={attachImg}
+          setAttachImg={setAttachImg}
           user1={user1}
           msgs={msgs}
           setText={setText}

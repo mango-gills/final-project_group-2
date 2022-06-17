@@ -1,8 +1,9 @@
 import React, { useRef, useEffect } from 'react';
 import styles from '../styles/Chat.module.css';
 import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
+// import moment from 'moment';
 
-const ChatMessage = ({ msg, user1, chat, user }) => {
+const ChatMessage = ({ msg, user1, chat, user, stamp }) => {
   const scrollRef = useRef();
 
   useEffect(() => {
@@ -15,6 +16,7 @@ const ChatMessage = ({ msg, user1, chat, user }) => {
         <div
           className={`${styles.wrapper__message} ${styles.wrapper__message_user}`}
         >
+          {msg.media ? <img src={msg.media} alt={msg.text} /> : null}
           <div className={styles.message_user}>{msg.text}</div>
           <div className={styles.message__avatar_wrapper}>
             <img
@@ -22,6 +24,8 @@ const ChatMessage = ({ msg, user1, chat, user }) => {
               src={user.avatar || defaultProfilePic}
               alt=""
             />
+
+            {/* <p> {moment(msg.createdAt.timestamp).fromNow()}</p> */}
           </div>
         </div>
       ) : (
@@ -35,6 +39,7 @@ const ChatMessage = ({ msg, user1, chat, user }) => {
               alt=""
             />
           </div>
+          {msg.media ? <img src={msg.media} alt={msg.text} /> : null}
           <div className={styles.message_friend}>{msg.text}</div>
         </div>
       )}
