@@ -4,8 +4,8 @@ import moment from 'moment';
 import styles from '../styles/ChatPreview.module.css';
 import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
 
-const ChatPreview = ({ selectUser, isMobile, currUser }) => {
-  const { toggleChatVisibility, toggleChatFeedVisibility } =
+const ChatPreview = ({ selectUser, currUser }) => {
+  const { isMobile, toggleChatVisibility, toggleChatFeedVisibility } =
     useContext(SharedContext);
 
   // MOBILE STYLES
