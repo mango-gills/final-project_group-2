@@ -12,7 +12,7 @@ const Landing = () => {
       <section className={styles.section__image}>
         <img
           className={styles.image}
-          src="src/assets/landing-img.svg"
+          src="src/assets/other-images/landing-img.svg"
           alt=".landing-image"
         />
       </section>
