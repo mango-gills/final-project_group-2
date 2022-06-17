@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import styles from '../styles/ChatPreview.module.css';
 import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
+import { onSnapshot, doc } from 'firebase/firestore';
+import { db } from '../firebase';
 
 const ChatPreview = ({
+  user,
+  chat,
+  user1,
   selectUser,
   isMobile,
   currUser,
@@ -41,9 +46,24 @@ const ChatPreview = ({
     );
   }
 
+  const user2 = currUser?.uid;
+  const [data, setData] = useState('');
+
+  useEffect(() => {
+    const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
+    let unsub = onSnapshot(doc(db, 'lastMsg', id), (doc) => {
+      setData(doc.data());
+    });
+    return () => unsub;
+  }, []);
+
+  console.log(chat);
   return (
     <div
       className={styles.wrapper__chatpreview}
+      // `${
+      //   chat.name === currUser.name && 'selected_user'
+      // }`
       onClick={() => {
         selectUser(currUser);
         // code to show message in Chat.jsx component
@@ -57,13 +77,21 @@ const ChatPreview = ({
       </div>
       <div className={styles.chatpreview__wrapper_text}>
         <p className={styles.text__friendname}>{currUser.name}</p>
-        <p className={styles.text__message}>
-          {/* {messageObject.message} */}
-          {/*{`${messageObject.message} ${moment(messageObject.timestamp).fromNow()}`} */}
-        </p>
+        {data?.from !== user1 && data?.unread && <p>new</p>}
+
+        {data && (
+          <p className={styles.text__message}>
+            {data.from === user1 ? 'me' : null} {data.text}{' '}
+          </p>
+        )}
+        {/* {messageObject.message} */}
+        {/*{`${messageObject.message} ${moment(messageObject.timestamp).fromNow()}`} */}
+
         <div
           className={`user_status ${currUser.isOnline ? 'online' : 'offline'}`}
-        ></div>
+        >
+          STATUS
+        </div>
       </div>
       <div className={styles.timestamp}>
         {/* {moment(messageObject.timestamp).fromNow()} */}

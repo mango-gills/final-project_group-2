@@ -83,6 +83,9 @@ const DesktopContainer = ({
   return (
     <div className={styles.container_desktop}>
       <ChatFeed
+        user={user}
+        chat={chat}
+        user1={user1}
         selectUser={selectUser}
         users={users}
         isMobile={isMobile}

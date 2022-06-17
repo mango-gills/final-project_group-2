@@ -68,6 +68,8 @@ const sampleData2 = [
 ];
 
 const ChatFeed = ({
+  user,
+  chat,
   user1,
   selectUser,
   users,
@@ -123,6 +125,9 @@ const ChatFeed = ({
         ))} */}
         {users.map((currUser) => (
           <ChatPreview
+            user={user}
+            user1={user1}
+            chat={chat}
             key={currUser.uid}
             currUser={currUser}
             selectUser={selectUser}

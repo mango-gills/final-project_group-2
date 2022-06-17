@@ -148,3 +148,19 @@ body {
   font-size: .9rem;
 }
 
+.user_status {
+  border-style: solid;
+  border-color:red;
+  background: red;
+  width: 100px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.online {
+  background: #34eb52;
+}
+.offline {
+  background: gray;
+}
+

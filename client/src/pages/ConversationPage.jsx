@@ -14,6 +14,7 @@ import {
   doc,
   getDoc,
   updateDoc,
+  setDoc,
 } from 'firebase/firestore';
 
 const ConversationPage = () => {
@@ -107,6 +108,15 @@ const ConversationPage = () => {
       to: user2,
       createdAt: Timestamp.fromDate(new Date()),
       media: url || '',
+    });
+
+    await setDoc(doc(db, 'lastMsg', id), {
+      text,
+      from: user1,
+      to: user2,
+      createdAt: Timestamp.fromDate(new Date()),
+      media: url || '',
+      unread: true,
     });
     setText('');
     setAttachImg('');
