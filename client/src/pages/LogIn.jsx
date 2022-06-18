@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
 import { AuthContext } from '../contexts/auth';
+import Footer from '../components/Footer';
 
 import styles from '../styles/Login.module.css';
 import {
@@ -105,6 +106,7 @@ const LogIn = () => {
           <button className={styles.form__button} type="submit">
             Login
           </button>
+          <div className={styles.error__message}>{error}</div>
           <p>Or</p>
           <GoogleButton style={{ width: 301 }} onClick={handleGoogleSignIn} />
         </form>
@@ -120,6 +122,7 @@ const LogIn = () => {
           </Link>
         </p>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -19,7 +19,6 @@ const RoutesComponent = () => {
       <AuthProvider>
         <SharedProvider>
           <Routes>
-            <Route path="/" element={<Landing />} />
             <Route path="/registration" element={<Registration />} />
             <Route path="/login" element={<LogIn />} />
             <Route path="/conversations" element={<PrivateRoute />}>
@@ -31,6 +30,7 @@ const RoutesComponent = () => {
               element={<PasswordVerification />}
             />
             <Route path="/password-reset" element={<PasswordReset />} />
+            <Route path="/" element={<Landing />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </SharedProvider>

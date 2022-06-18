@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../contexts/auth';
 
 import styles from '../styles/Landing.module.css';
+import Footer from '../components/Footer';
 
 const Landing = () => {
   const { user } = useContext(AuthContext);
@@ -18,7 +19,7 @@ const Landing = () => {
       <section className={styles.section__image}>
         <img
           className={styles.image}
-          src="src/assets/landing-img.svg"
+          src="src/assets/other-images/landing-img.svg"
           alt=".landing-image"
         />
       </section>
@@ -45,6 +46,7 @@ const Landing = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   );
 };

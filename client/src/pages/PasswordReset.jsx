@@ -9,6 +9,7 @@ import { AuthContext } from '../contexts/auth';
 import { useContext } from 'react';
 
 import styles from '../styles/Password.module.css';
+import Footer from '../components/Footer';
 import { useState } from 'react';
 
 const PasswordReset = () => {
@@ -77,6 +78,7 @@ const PasswordReset = () => {
           Go back to Login page
         </Link>
       </section>
+      <Footer />
     </main>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import  React, { useContext } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { useState } from 'react';
@@ -7,8 +7,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import styles from '../styles/Password.module.css';
 import { auth } from '../firebase';
 import { duration } from 'moment';
-import { useContext } from 'react';
+
 import { AuthContext } from '../contexts/auth';
+import Footer from '../components/Footer';
+
 const PasswordRecovery = () => {
   const [email, setEmail] = useState('');
 
@@ -55,6 +57,7 @@ const PasswordRecovery = () => {
           Go back to Login page
         </Link>
       </section>
+      <Footer />
     </main>
   );
 };
