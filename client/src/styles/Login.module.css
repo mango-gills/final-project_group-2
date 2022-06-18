@@ -107,6 +107,12 @@ p {
   cursor: pointer;
 }
 
+.error__message {
+  text-align: center;
+  color: red;
+  margin-bottom: 20px;
+}
+
 .container__text {
   font-size: 1.3rem;
   color: #707070;
