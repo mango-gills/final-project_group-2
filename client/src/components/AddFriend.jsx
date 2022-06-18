@@ -1,18 +1,20 @@
-import React, { useContext, useState } from "react";
-import { SharedContext } from "../contexts/SharedContext";
-import styles from "../styles/AddFriend.module.css";
+import React, { useContext, useState } from 'react';
+import { SharedContext } from '../contexts/SharedContext';
+import theme from '../styles/globals.module.css';
+import styles from '../styles/AddFriend.module.css';
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import { auth, db } from "../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollection } from "react-firebase-hooks/firestore";
-import { collection, setDoc, doc } from "firebase/firestore";
+import { auth, db } from '../firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useCollection } from 'react-firebase-hooks/firestore';
+import { collection, setDoc, doc } from 'firebase/firestore';
 
 const AddFriend = () => {
   const {
     isMobile,
+    isDarkMode,
     toggleChatFeedVisibility,
     showAddFriendComponent,
     toggleAddFriendVisibility,
@@ -47,8 +49,8 @@ const AddFriend = () => {
 
   const [user] = useAuthState(auth);
   const [userData, setUserData] = useState([]);
-  const [chatEmail, setChatEmail] = useState("");
-  const [snapshot, loading, error] = useCollection(collection(db, "users"));
+  const [chatEmail, setChatEmail] = useState('');
+  const [snapshot, loading, error] = useCollection(collection(db, 'users'));
   const chatUsers = snapshot?.docs.map((doc) => ({
     id: doc.id,
     ...doc.data(),
@@ -62,8 +64,8 @@ const AddFriend = () => {
         uid,
         createdAt,
         isOnline,
-        avatarPath = "avatar/placeholder_avatar.png",
-        avatar = "https://firebasestorage.googleapis.com/v0/b/chat-app-official-9f0ee.appspot.com/o/avatar%2Fplaceholder_avatar.png?alt=media&token=97695394-a2cd-48d7-8391-261430cd4769",
+        avatarPath = 'avatar/placeholder_avatar.png',
+        avatar = 'https://firebasestorage.googleapis.com/v0/b/chat-app-official-9f0ee.appspot.com/o/avatar%2Fplaceholder_avatar.png?alt=media&token=97695394-a2cd-48d7-8391-261430cd4769',
       } = c;
 
       if (c.email == chatEmail) {
@@ -91,8 +93,8 @@ const AddFriend = () => {
         uid,
         createdAt,
         isOnline,
-        avatarPath = "avatar/placeholder_avatar.png",
-        avatar = "https://firebasestorage.googleapis.com/v0/b/chat-app-official-9f0ee.appspot.com/o/avatar%2Fplaceholder_avatar.png?alt=media&token=97695394-a2cd-48d7-8391-261430cd4769",
+        avatarPath = 'avatar/placeholder_avatar.png',
+        avatar = 'https://firebasestorage.googleapis.com/v0/b/chat-app-official-9f0ee.appspot.com/o/avatar%2Fplaceholder_avatar.png?alt=media&token=97695394-a2cd-48d7-8391-261430cd4769',
       } = c;
 
       if (c.email == user.email) {
@@ -119,13 +121,13 @@ const AddFriend = () => {
       getFriend();
     } else {
       errorAddEmail();
-      setChatEmail("");
+      setChatEmail('');
     }
   };
 
   //   toast notifications
   const successAddEmail = () =>
-    toast.success("Email Added!", {
+    toast.success('Email Added!', {
       autoClose: 1000,
       pauseOnHover: false,
       closeOnClick: true,
@@ -133,7 +135,7 @@ const AddFriend = () => {
     });
 
   const errorAddEmail = () =>
-    toast.error("Invalid email address!", {
+    toast.error('Invalid email address!', {
       autoClose: 1000,
       pauseOnHover: false,
       closeOnClick: true,
@@ -141,7 +143,7 @@ const AddFriend = () => {
     });
 
   const emailNotFound = () => {
-    toast.warn("Email not found", {
+    toast.warn('Email not found', {
       autoClose: 1000,
       pauseOnHover: false,
       closeOnClick: true,
@@ -150,7 +152,10 @@ const AddFriend = () => {
   };
 
   return (
-    <div className={styles.desktop_container__addfriend}>
+    <div
+      id={isDarkMode ? theme.dark : theme.light}
+      className={styles.desktop_container__addfriend}
+    >
       <div className={styles.desktop_wrapper__addfriend_form}>
         <form
           className={styles.desktop_addfriend__form}
@@ -159,7 +164,7 @@ const AddFriend = () => {
           <h2 className={styles.desktop_addfriend__header}>Find a friend</h2>
           <input
             className={styles.desktop_addfriend__input}
-            placeholder="<username>#0000"
+            placeholder="Email"
             value={chatEmail}
             onChange={(e) => setChatEmail(e.target.value)}
           />

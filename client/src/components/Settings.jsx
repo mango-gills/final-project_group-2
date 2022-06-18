@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { SharedContext } from '../contexts/SharedContext';
+import theme from '../styles/globals.module.css';
 import styles from '../styles/Settings.module.css';
 import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
 import DarkModeToggle from './DarkModeToggle';
@@ -20,6 +21,7 @@ const sampleLoggedInUser = {
 const Settings = ({ user }) => {
   const {
     isMobile,
+    isDarkMode,
     showUploadAvatarComponent,
     toggleUploadAvatarVisibility,
     showChangePasswordComponent,
@@ -132,7 +134,7 @@ const Settings = ({ user }) => {
   };
   // Desktop Style
   return (
-    <div className={styles.desktop_container_settings}>
+    <div  id={isDarkMode ? theme.dark : theme.light} className={styles.desktop_container_settings}>
       <div className={styles.desktop_wrapper_profile}>
         <div className={styles.desktop_wrapper__image}>
           <img
