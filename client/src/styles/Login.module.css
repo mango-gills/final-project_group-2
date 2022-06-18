@@ -7,8 +7,24 @@
   --color-button-attach-file: #a307d5;
   --color-button-send: #efac54;
   --color-button-logout: #707070;
-  --color-grey: #707070;
+  --color-background-settings: #f6f6f6;
+  --color-online-status-indicator: #00ff00;
 }
+
+/* .light-mode {
+  --color-background-chat-feed: #f9effc;
+  --color-text-all: #2b2b2b;
+  --color-subtext: #707070;
+  --color-friend-name: #2b2b2b;
+  --color-status-text: #707070;
+  --color-message-background-friend: #f6e5fb;
+  --color-message-background-user: #c158e3;
+  --color-message-text-friend: #2b2b2b;
+  --color-message-text-user: #fefefe;
+  --color-button-attach-image: #a307d5;
+  --color-button-send-message: #efac54;
+  --color-background-settings: #f6f6f6;
+} */
 
 * {
   box-sizing: border-box;

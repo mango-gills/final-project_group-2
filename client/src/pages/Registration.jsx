@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { MdPresentToAll } from 'react-icons/md';
+import { Link, Navigate } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
+import { AuthContext } from '../contexts/auth';
+
 import styles from '../styles/Registration.module.css';
 import Footer from '../components/Footer';
 import {
@@ -11,6 +14,7 @@ import {
 import { auth, db } from '../firebase';
 import { setDoc, doc, Timestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Registration = () => {
   const [data, setData] = useState({
@@ -21,6 +25,8 @@ const Registration = () => {
     error: null,
     loading: false,
   });
+
+  const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -53,15 +59,14 @@ const Registration = () => {
         createdAt: Timestamp.fromDate(new Date()),
         isOnline: true,
       });
-      setData({
-        name: '',
-        email: '',
-        password: '',
-        confirmpassword: '',
-        error: null,
-        loading: false,
-      });
-      navigate('/login');
+      // setData({
+      //   name: '',
+      //   email: '',
+      //   password: '',
+      //   error: null,
+      //   loading: false,
+      // });
+      navigate('/conversations');
     } catch (err) {
       setData({ ...data, error: err.message, loading: false });
     }
@@ -97,7 +102,9 @@ const Registration = () => {
     //   console.log(re.user.photoURL);
     // })
   };
-  return (
+  return user ? (
+    <Navigate to="/login" />
+  ) : (
     <main className={styles.main__container}>
       <section className={styles.main__section}>
         <div className={styles.heading__container}>
@@ -139,11 +146,13 @@ const Registration = () => {
             value={confirmpassword}
             onChange={handleChange}
           ></input>
+          <br></br>
+
           <button className={styles.form__button}>SIGNUP</button>
           <div className={styles.error__message}>{error}</div>
+          <p>Or</p>
+          <GoogleButton style={{ width: 301 }} onClick={handleGoogleSignIn} />
         </form>
-        <p>Or</p>
-        <GoogleButton style={{ width: 301 }} onClick={handleGoogleSignIn} />
         <br></br>
         <div className={styles.terms__text}>
           By continuing, you agree to accept our Privacy Policy and Terms of

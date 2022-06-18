@@ -2,16 +2,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
-:root {
-  --color-chat-feed: #f9effc;
-  --color-message-theirs: #f6e5fb;
-  --color-message-yours: #c158e3;
-  --color-button-attach-file: #a307d5;
-  --color-button-send: #efac54;
-  --color-button-logout: #707070;
-  --color-online-status-indicator: #00ff00;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -158,11 +148,12 @@ body {
 
 .desktop_container__chat {
   height: 100vh;
-  border-left: 1px solid rgba(112, 112, 112, 0.4);
-  border-right: 1px solid rgba(112, 112, 112, 0.4);
+  border-left: 1px solid var(--color-border-color);
+  border-right: 1px solid var(--color-border-color);
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  background-color: var(--color-chat-bg-color);
   /* border: 1px solid red; */
 }
 
@@ -197,6 +188,7 @@ body {
 .desktop_friendInfo_name {
   margin: 0;
   font-size: 3rem;
+  color: var(--color-chat-header-name-color);
 }
 
 .desktop_friendinfo__status_indicator {
@@ -209,7 +201,7 @@ body {
 }
 
 .desktop_wrapper__friendinfo_status {
-  color: #707070;
+  color: var(--color-chat-header-status-color);
   text-transform: uppercase;
   font-size: 1.3rem;
 }
@@ -255,6 +247,8 @@ body {
 
 .desktop_message__avatar_image {
   /* border: 2px solid orange; */
+  aspect-ratio: 1;
+  object-fit: cover;
   width: 100%;
   border-radius: 50%;
 }
@@ -263,8 +257,8 @@ body {
   /* border: 1px solid goldenrod; */
 
   max-width: 65%;
-  background-color: #c158e3;
-  color: #ffffff;
+  background-color: var(--color-chat-message-user-bg-color);
+  color: var(--color-chat-message-user-text-color);
   padding: 1.2rem;
   font-size: 1.4rem;
   border-radius: 1.7rem;
@@ -274,7 +268,8 @@ body {
 .desktop_message_friend {
   /* border: 1px solid rgb(38, 32, 218); */
   max-width: 65%;
-  background-color: #f6e5fb;
+  background-color: var(--color-chat-message-friend-bg-color);
+  color: var(--color-chat-message-friend-text-color);
   padding: 1.2rem;
   font-size: 1.4rem;
   border-radius: 1.7rem;
@@ -285,7 +280,7 @@ body {
   /* border: 2px solid orchid; */
   display: flex;
   padding: 1.5rem 3rem;
-  border-top: 1px solid rgba(112, 112, 112, 0.2);
+  border-top: 1px solid var(--color-border-color);
 }
 
 .desktop_form__textarea {
@@ -294,8 +289,9 @@ body {
   border: none;
   border-radius: 1rem;
   padding: 1rem;
-  background-color: rgba(140, 140, 140, 0.1);
+  background-color: var(--color-chat-text-area-bg-color);
   font-family: inherit;
+  color: var(--color-pop-up-component-button-text-color);
 }
 
 .desktop_form__textarea:focus {
@@ -303,7 +299,7 @@ body {
 }
 
 .desktop_form__textarea::placeholder {
-  color: #969696;
+  color: var(--color-chat-text-area-placeholder-color);
 }
 
 .desktop_wrapper_form_buttons {
@@ -316,14 +312,14 @@ body {
 .desktop_wrapper_form_buttons button {
   border: none;
   margin-left: 1.5rem;
-  color: #ffffff;
   cursor: pointer;
 }
 
 .desktop_form__button_addphoto {
   border-radius: 50%;
   background: url('../assets/icons/add_photo_white.svg');
-  background-color: var(--color-button-attach-file);
+  color: var(--color-chat-button-add-image-text-color);
+  background-color: var(--color-chat-button-add-image-bg-color);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 2rem;
@@ -358,18 +354,18 @@ body {
   padding: 0.8rem 3rem;
   font-size: 1.7rem;
   text-transform: uppercase;
-  background-color: var(--color-button-send);
+  color: var(--color-chat-button-submit-text-color);
+  background-color: var(--color-chat-button-submit-bg-color);
 }
 
 ::-webkit-scrollbar {
   height: 0.8rem;
   width: 0.8rem;
-  background: #f0f0f0;
+  background: var(--color-chat-bg-color);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cdcdcd;
-  /* -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75); */
+  background: var(--color-border-color);
 }
 
 ::-webkit-scrollbar-corner {
@@ -395,11 +391,12 @@ body {
 .desktop_container__empty_state_text {
   font-size: 1.5rem;
   font-weight: 400;
+  color: var(--color-shared-empty-state-color);
 }
 
 .desktop_container__empty_state_text_addfriend {
   font-weight: 700;
-  color: #a307d5;
+  color: var(--color-shared-empty-state-link-color);
   cursor: pointer;
-  border-bottom: 2px solid #a307d5;
+  border-bottom: 2px solid var(--color-shared-empty-state-link-color);
 }

@@ -11,6 +11,7 @@ import NotFound from '../pages/NotFound.jsx';
 import ConversationPage from '../pages/ConversationPage.jsx';
 import { SharedProvider } from '../contexts/SharedContext.jsx';
 import AuthProvider from '../contexts/auth.jsx';
+import PrivateRoute from '../components/PrivateRoute.jsx';
 
 const RoutesComponent = () => {
   return (
@@ -20,7 +21,9 @@ const RoutesComponent = () => {
           <Routes>
             <Route path="/registration" element={<Registration />} />
             <Route path="/login" element={<LogIn />} />
-            <Route path="/conversations" element={<ConversationPage />} />
+            <Route path="/conversations" element={<PrivateRoute />}>
+              <Route path="/conversations" element={<ConversationPage />} />
+            </Route>
             <Route path="/password-recovery" element={<PasswordRecovery />} />
             <Route
               path="/password-verification"

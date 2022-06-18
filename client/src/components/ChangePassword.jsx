@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { SharedContext } from '../contexts/SharedContext';
+import theme from '../styles/globals.module.css';
 import styles from '../styles/ChangePassword.module.css';
 
 const ChangePassword = () => {
-  const { isMobile, showChangePasswordComponent, toggleChangePasswordVisibility } = useContext(SharedContext);
+  const { isMobile, isDarkMode, showChangePasswordComponent, toggleChangePasswordVisibility } = useContext(SharedContext);
 
   // MOBILE VERSION
   if (isMobile) {
@@ -16,7 +17,7 @@ const ChangePassword = () => {
 
   // DESKTOP VERSION
   return (
-    <div className={styles.container__changepassword}>
+    <div  id={isDarkMode ? theme.dark : theme.light} className={styles.container__changepassword}>
       <div className={styles.wrapper__changepassword_form}>
         <form className={styles.changepassword__form}>
           <h2 className={styles.changepassword__header}>Change Password</h2>

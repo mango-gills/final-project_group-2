@@ -1,10 +1,12 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, Navigate, useLocation } from 'react-router-dom';
 import { confirmPasswordReset } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { auth } from '../firebase';
+import { AuthContext } from '../contexts/auth';
+import { useContext } from 'react';
 
 import styles from '../styles/Password.module.css';
 import Footer from '../components/Footer';
@@ -19,6 +21,8 @@ const PasswordReset = () => {
     const location = useLocation();
     return new URLSearchParams(location.search);
   };
+
+  const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -45,7 +49,9 @@ const PasswordReset = () => {
     }, 3000);
   };
 
-  return (
+  return user ? (
+    <Navigate to="/conversations" />
+  ) : (
     <main className={styles.main__container}>
       <section className={styles.main__section}>
         <div className={styles.heading}>Reset Password</div>
