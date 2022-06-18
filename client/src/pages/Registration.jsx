@@ -125,7 +125,7 @@ const Registration = () => {
             className={`${styles.form__input} ${styles.password}`}
             id="password"
             placeholder="password"
-            type="text"
+            type="password"
             name="password"
             value={password}
             onChange={handleChange}
@@ -134,7 +134,7 @@ const Registration = () => {
             className={`${styles.form__input} ${styles.password}`}
             id="confirmpassword"
             placeholder="confirm password"
-            type="text"
+            type="password"
             name="confirmpassword"
             value={confirmpassword}
             onChange={handleChange}
