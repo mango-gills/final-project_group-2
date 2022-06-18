@@ -46,6 +46,7 @@ const AddFriend = () => {
   }
 
   const [user] = useAuthState(auth);
+  const [userData, setUserData] = useState([]);
   const [chatEmail, setChatEmail] = useState("");
   const [snapshot, loading, error] = useCollection(collection(db, "users"));
   const chatUsers = snapshot?.docs.map((doc) => ({
@@ -64,10 +65,39 @@ const AddFriend = () => {
         avatarPath = "avatar/placeholder_avatar.png",
         avatar = "https://firebasestorage.googleapis.com/v0/b/chat-app-official-9f0ee.appspot.com/o/avatar%2Fplaceholder_avatar.png?alt=media&token=97695394-a2cd-48d7-8391-261430cd4769",
       } = c;
-      // console.log(c);
+
       if (c.email == chatEmail) {
         setTimeout(async () => {
           await setDoc(doc(db, `friends/friend/${user.uid}/${uid}/`), {
+            name,
+            email,
+            uid,
+            createdAt,
+            isOnline,
+            avatarPath,
+            avatar,
+          });
+        }, 1500);
+        getUser(uid);
+      }
+    });
+  };
+
+  const getUser = (id) => {
+    chatUsers?.map((c) => {
+      const {
+        name,
+        email,
+        uid,
+        createdAt,
+        isOnline,
+        avatarPath = "avatar/placeholder_avatar.png",
+        avatar = "https://firebasestorage.googleapis.com/v0/b/chat-app-official-9f0ee.appspot.com/o/avatar%2Fplaceholder_avatar.png?alt=media&token=97695394-a2cd-48d7-8391-261430cd4769",
+      } = c;
+
+      if (c.email == user.email) {
+        setTimeout(async () => {
+          await setDoc(doc(db, `friends/friend/${id}/${uid}/`), {
             name,
             email,
             uid,
