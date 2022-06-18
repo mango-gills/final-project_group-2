@@ -19,6 +19,7 @@ import {
 
 const ConversationPage = () => {
   const [attachImg, setAttachImg] = useState('');
+  const [previewUrl, setPreviewUrl] = useState('');
   const [chat, setChat] = useState('');
   const [text, setText] = useState();
   const [users, setUsers] = useState([]);
@@ -64,8 +65,19 @@ const ConversationPage = () => {
     return () => unsub();
   }, []);
 
+  useEffect(() => {
+    if (!attachImg) {
+      return;
+    }
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewUrl(fileReader.result);
+    };
+    fileReader.readAsDataURL(attachImg);
+  }, [attachImg]);
   const selectUser = async (user) => {
     setChat(user);
+    setPreviewUrl('');
     const user2 = user.uid;
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
 
@@ -93,23 +105,27 @@ const ConversationPage = () => {
     const user2 = chat.uid;
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
     let url;
-    if (attachImg) {
-      const imgRef = ref(
-        storage,
-        `images/${new Date().getTime()} - ${attachImg.name}`
-      );
-      const snap = await uploadBytes(imgRef, attachImg);
-      const dlUrl = await getDownloadURL(ref(storage, snap.ref.fullPath));
-      url = dlUrl;
-    }
-    await addDoc(collection(db, 'messages', id, 'chat'), {
-      text,
-      from: user1,
-      to: user2,
-      createdAt: Timestamp.fromDate(new Date()),
-      media: url || '',
-    });
 
+    try {
+      if (attachImg) {
+        const imgRef = ref(
+          storage,
+          `images/${new Date().getTime()} - ${attachImg.name}`
+        );
+        const snap = await uploadBytes(imgRef, attachImg);
+        const dlUrl = await getDownloadURL(ref(storage, snap.ref.fullPath));
+        url = dlUrl;
+      }
+      await addDoc(collection(db, 'messages', id, 'chat'), {
+        text,
+        from: user1,
+        to: user2,
+        createdAt: Timestamp.fromDate(new Date()),
+        media: url || '',
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
     await setDoc(doc(db, 'lastMsg', id), {
       text,
       from: user1,
@@ -120,13 +136,24 @@ const ConversationPage = () => {
     });
     setText('');
     setAttachImg('');
+    setPreviewUrl('');
   };
   console.log(attachImg);
-
   return (
     <div>
       {isMobile ? (
         <MobileContainer
+          previewUrl={previewUrl}
+          attachImg={attachImg}
+          setAttachImg={setAttachImg}
+          user1={user1}
+          msgs={msgs}
+          setText={setText}
+          text={text}
+          handleSubmit={handleSubmit}
+          selectUser={selectUser}
+          chat={chat}
+          users={users}
           isMobile={isMobile}
           isDarkMode={isDarkMode}
           toggleDarkMode={toggleDarkMode}
@@ -139,6 +166,7 @@ const ConversationPage = () => {
         />
       ) : (
         <DesktopContainer
+          previewUrl={previewUrl}
           attachImg={attachImg}
           setAttachImg={setAttachImg}
           user1={user1}

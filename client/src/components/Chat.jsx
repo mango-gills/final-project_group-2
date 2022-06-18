@@ -45,6 +45,7 @@ const sampleChatData = [
 ];
 
 const Chat = ({
+  previewUrl,
   attachImg,
   setAttachImg,
   user,
@@ -163,6 +164,17 @@ const Chat = ({
       )}
 
       <form className={styles.wrapper__form} onSubmit={handleSubmit}>
+        <div>
+          {previewUrl ? (
+            <div className={styles.wrapper__preview_image}>
+              <img
+                className={styles.preview_image}
+                src={previewUrl}
+                alt="previewImage"
+              />
+            </div>
+          ) : null}
+        </div>
         <textarea
           className={styles.form__textarea}
           type="text"

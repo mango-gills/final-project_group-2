@@ -24,9 +24,11 @@ const ChatPreview = ({
     let unsub = onSnapshot(doc(db, 'lastMsg', id), (doc) => {
       setData(doc.data());
     });
+
     return () => unsub;
   }, []);
 
+  const selectedUser = chat.uid === currUser.uid ? styles.selected_user : '';
   if (isMobile) {
     return (
       <div
@@ -56,12 +58,10 @@ const ChatPreview = ({
     );
   }
 
-  console.log(currUser?.name);
-  console.log(chat?.name);
   return (
     <>
       <div
-        className={styles.wrapper__chatpreview}
+        className={`${styles.wrapper__chatpreview} ${selectedUser}`}
         onClick={() => {
           selectUser(currUser);
           // code to show message in Chat.jsx component
@@ -75,24 +75,33 @@ const ChatPreview = ({
         </div>
         <div className={styles.chatpreview__wrapper_text}>
           <p className={styles.text__friendname}>{currUser.name}</p>
-          {data?.from !== user1 && data?.unread && <p>new</p>}
-
-          {data && (
-            <p className={styles.text__message}>
-              {data.from === user1 ? 'me' : null} {data.text}{' '}
+          {data?.from !== user1 && data?.unread && (
+            <p>
+              <strong>New!</strong>
             </p>
           )}
-          {/* {messageObject.message} */}
-          {/*{`${messageObject.message} ${moment(messageObject.timestamp).fromNow()}`} */}
-
           {currUser.isOnline ? (
             <span className={styles.user_status_online}></span>
           ) : (
             <span className={styles.user_status_offline}></span>
           )}
         </div>
-        <div className={styles.timestamp}>
-          {/* {moment(messageObject.timestamp).fromNow()} */}
+        <div className={styles.chat__text__preview}>
+          {data && (
+            <p className={styles.text__message}>
+              {data.from === user1 ? <strong>Me: </strong> : null}
+              {data.media !== '' && data.from === user1
+                ? 'Sent a Photo.'
+                : data.text}
+            </p>
+          )}
+          {data ? (
+            <div className={styles.timestamp}>
+              {moment(data.createdAt.toDate()).fromNow()}
+            </div>
+          ) : (
+            ''
+          )}
         </div>
       </div>
     </>

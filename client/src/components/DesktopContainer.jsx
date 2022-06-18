@@ -16,6 +16,7 @@ import {
 import { getDoc, doc, updateDoc } from 'firebase/firestore';
 
 const DesktopContainer = ({
+  previewUrl,
   attachImg,
   setAttachImg,
   user1,
@@ -37,7 +38,7 @@ const DesktopContainer = ({
   toggleChangePasswordVisibility,
 }) => {
   // console.log('Change Password Component', showChangePasswordComponent);
-  const [img, setImg] = useState('');
+  const [img, setImg] = useState();
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
   useEffect(async () => {
@@ -94,6 +95,7 @@ const DesktopContainer = ({
         toggleAddFriendVisibility={toggleAddFriendVisibility}
       />
       <Chat
+        previewUrl={previewUrl}
         attachImg={attachImg}
         setAttachImg={setAttachImg}
         user={user}

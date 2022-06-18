@@ -16,7 +16,9 @@ const ChatMessage = ({ msg, user1, chat, user, stamp }) => {
         <div
           className={`${styles.wrapper__message} ${styles.wrapper__message_user}`}
         >
-          {msg.media ? <img src={msg.media} alt={msg.text} /> : null}
+          <div className={styles.wrapper__media}>
+            {msg.media ? <img src={msg.media} alt={msg.text} /> : null}
+          </div>
           <div className={styles.message_user}>{msg.text}</div>
           <div className={styles.message__avatar_wrapper}>
             <img
@@ -24,9 +26,8 @@ const ChatMessage = ({ msg, user1, chat, user, stamp }) => {
               src={user.avatar || defaultProfilePic}
               alt="avatar"
             />
-
-            {/* <p> {moment(msg?.createdAt.format).fromNow()}</p> */}
           </div>
+          {/* <p>{moment(msg.createdAt.toDate()).fromNow()}</p> */}
         </div>
       ) : (
         <div

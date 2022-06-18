@@ -8,9 +8,20 @@ import { useState } from 'react';
 import styles from '../styles/MobileContainer.module.css';
 
 const MobileContainer = ({
+  previewUrl,
+  attachImg,
+  setAttachImg,
+  user1,
+  msgs,
+  setText,
+  text,
+  handleSubmit,
+  selectUser,
+  users,
+  chat,
   isMobile,
   showAddFriendComponent,
-  toggleAddFriendVisibility
+  toggleAddFriendVisibility,
 }) => {
   const [showChatFeed, toggleChatFeedVisibility] = useState(true);
   const [showChat, toggleChatVisibility] = useState(false);

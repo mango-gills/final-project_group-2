@@ -236,3 +236,8 @@ font-size: 1.7rem;
 text-transform: uppercase;
 background-color: var(--color-button-send);
 }
+
+.wrapper__preview_image {
+position:relative;
+left:400px
+}
