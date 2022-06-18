@@ -2,12 +2,18 @@ import React from 'react';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { IoMdVideocam } from 'react-icons/io';
 import { MdPresentToAll } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../contexts/auth';
 
 import styles from '../styles/Landing.module.css';
 
 const Landing = () => {
-  return (
+  const { user } = useContext(AuthContext);
+
+  return user ? (
+    <Navigate to="/conversations" />
+  ) : (
     <main className={styles.main__container}>
       <section className={styles.section__image}>
         <img
