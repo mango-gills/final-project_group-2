@@ -1,17 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { SharedContext } from '../contexts/SharedContext';
 import moment from 'moment';
+import theme from '../styles/globals.module.css';
 import styles from '../styles/ChatPreview.module.css';
 import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
 
-const ChatPreview = ({
-  selectUser,
-  isMobile,
-  currUser,
-  showChat,
-  toggleChatVisibility,
-  showChatFeed,
-  toggleChatFeedVisibility,
-}) => {
+const ChatPreview = ({ selectUser, currUser }) => {
+  const { isMobile, isDarkMode, toggleChatVisibility, toggleChatFeedVisibility } =
+    useContext(SharedContext);
+
+  // MOBILE STYLES
   if (isMobile) {
     return (
       <div
@@ -28,9 +26,7 @@ const ChatPreview = ({
           />
         </div>
         <div className={styles.mobile_chatcard__text_wrapper}>
-          <p className={styles.mobile_chatcard__text_sender}>
-            {currUser.name}
-          </p>
+          <p className={styles.mobile_chatcard__text_sender}>{currUser.name}</p>
           <p className={styles.mobile_chatcard__text_messages}>
             {/* {messageObject.message} */}
             {/*{`${messageObject.message} ${moment(messageObject.timestamp).fromNow()}`} */}
@@ -43,8 +39,10 @@ const ChatPreview = ({
     );
   }
 
+  // DESKTOP STYLES
   return (
     <div
+    id={isDarkMode ? theme.dark : theme.light}
       className={styles.desktop_wrapper__chatpreview}
       onClick={() => {
         selectUser(currUser);
@@ -58,9 +56,7 @@ const ChatPreview = ({
         />
       </div>
       <div className={styles.desktop_chatpreview__wrapper_text}>
-        <p className={styles.desktop_text__friendname}>
-        {currUser.name}
-        </p>
+        <p className={styles.desktop_text__friendname}>{currUser.name}</p>
         <p className={styles.desktop_text__message}>
           {/* {messageObject.message} */}
           {/*{`${messageObject.message} ${moment(messageObject.timestamp).fromNow()}`} */}
@@ -69,7 +65,7 @@ const ChatPreview = ({
           className={`user_status ${currUser.isOnline ? 'online' : 'offline'}`}
         ></div>
       </div>
-      { /*
+      {/*
         
         <div className={styles.desktop_timestamp}>
         moment(messageObject.timestamp).fromNow()

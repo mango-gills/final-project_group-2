@@ -16,7 +16,7 @@ import PrivateRoute from '../components/PrivateRoute.jsx';
 const RoutesComponent = () => {
   return (
     <main>
-      <AuthProvider>
+       <AuthProvider>
         {/*<SharedProvider>*/}
         <Routes>
           <Route path="/" element={<Landing />} />

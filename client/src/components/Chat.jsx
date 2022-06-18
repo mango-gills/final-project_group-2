@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { SharedContext } from '../contexts/SharedContext';
 import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
+import theme from '../styles/globals.module.css';
 import styles from '../styles/Chat.module.css';
-import addPhotoIcon from '../assets/icons/add_photo_white.svg';
 import ChatMessage from './ChatMessage';
 import EmptyStateImage from '../assets/other-images/empty-state.png';
 
@@ -45,20 +46,10 @@ const sampleChatData = [
   },
 ];
 
-const Chat = ({
-  user,
-  user1,
-  msgs,
-  isMobile,
-  isDarkMode,
-  toggleDarkMode,
-  chat,
-  text,
-  setText,
-  handleSubmit,
-  showAddFriendComponent,
-  toggleAddFriendVisibility,
-}) => {
+const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
+  const { isMobile, isDarkMode, showAddFriendComponent, toggleAddFriendVisibility } =
+    useContext(SharedContext);
+
   const loggedInUserId = '6AYHXtSfMR';
   const friendInfo = {
     name: 'Mango Gills',
@@ -161,28 +152,30 @@ const Chat = ({
   // Desktop Version
 
   return (
-    <div className={styles.desktop_container__chat}>
+    <div  id={isDarkMode ? theme.dark : theme.light} className={styles.desktop_container__chat}>
       {chat ? (
-        <div className={styles.desktop_wrapper__header}>
-          <div className={styles.desktop_wrapper__friendavatar}>
-            <img
-              className={styles.desktop_friendavatar_image}
-              src={chat.avatar || defaultProfilePic}
-              alt=""
-            />
-          </div>
-          <div className={styles.desktop_wrapper__friendinfo}>
-            <h2 className={styles.desktop_friendInfo_name}>{chat.name}</h2>
-            <div className={styles.desktop_wrapper__friendinfo_status}>
-              <span
-                className={styles.desktop_friendinfo__status_indicator}
-              ></span>
-              <span className={styles.desktop_friendinfo__status}>
-                {friendInfo.online ? 'online' : 'offline'}
-              </span>
+        <div className={styles.desktop_container_inner__chat}>
+          <div className={styles.desktop_wrapper__header}>
+            <div className={styles.desktop_wrapper__friendavatar}>
+              <img
+                className={styles.desktop_friendavatar_image}
+                src={chat.avatar || defaultProfilePic}
+                alt=""
+              />
+            </div>
+            <div className={styles.desktop_wrapper__friendinfo}>
+              <h2 className={styles.desktop_friendInfo_name}>{chat.name}</h2>
+              <div className={styles.desktop_wrapper__friendinfo_status}>
+                <span
+                  className={styles.desktop_friendinfo__status_indicator}
+                ></span>
+                <span className={styles.desktop_friendinfo__status}>
+                  {friendInfo.online ? 'online' : 'offline'}
+                </span>
+              </div>
             </div>
           </div>
-          <div className={styles.wrapper__messages}>
+          <div className={styles.desktop_wrapper__messages}>
             {msgs.length
               ? msgs.map((msg, i) => (
                   <ChatMessage
@@ -195,6 +188,47 @@ const Chat = ({
                 ))
               : null}
           </div>
+          <form
+            className={styles.desktop_wrapper__form}
+            onSubmit={handleSubmit}
+          >
+            <textarea
+              className={styles.desktop_form__textarea}
+              type="text"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              placeholder="Start writing your message...."
+            ></textarea>
+            <div className={styles.desktop_wrapper_form_buttons}>
+              {/*<button className={styles.desktop_form__button_addphoto} type="button">
+                <img className={styles.desktop_button_addphoto_image} src={addPhotoIcon} />
+            </button>*/}
+              <label className={styles.desktop_form__button_addphoto}>
+                {showPhotoAddedIndicator ? (
+                  <span
+                    className={styles.desktop_form__photoadded_indicator}
+                  ></span>
+                ) : (
+                  ''
+                )}
+                <input
+                  id="image_input"
+                  type="file"
+                  accept="image/*"
+                  className={styles.desktop_button_addphoto_input}
+                  onChange={() => {
+                    togglePhotoButtonClicked(!photoButtonClicked);
+                  }}
+                />
+              </label>
+              <button
+                className={styles.desktop_form__button_send}
+                type="submit"
+              >
+                Send
+              </button>
+            </div>
+          </form>
         </div>
       ) : (
         <div className={styles.desktop_container__empty_state}>
@@ -204,7 +238,7 @@ const Chat = ({
             alt=""
           />
           <h3 className={styles.desktop_container__empty_state_text}>
-            Select a friend from the left panel to start conversing!
+            Select a friend from the left panel to get started!
           </h3>
           <h3 className={styles.desktop_container__empty_state_text}>
             or{' '}
@@ -219,43 +253,8 @@ const Chat = ({
           </h3>
         </div>
       )}
-
-      <form className={styles.desktop_wrapper__form} onSubmit={handleSubmit}>
-        <textarea
-          className={styles.desktop_form__textarea}
-          type="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="Start writing your message...."
-        ></textarea>
-        <div className={styles.desktop_wrapper_form_buttons}>
-          {/*<button className={styles.desktop_form__button_addphoto} type="button">
-              <img className={styles.desktop_button_addphoto_image} src={addPhotoIcon} />
-          </button>*/}
-          <label className={styles.desktop_form__button_addphoto}>
-            {showPhotoAddedIndicator ? (
-              <span
-                className={styles.desktop_form__photoadded_indicator}
-              ></span>
-            ) : (
-              ''
-            )}
-            <input
-              id="image_input"
-              type="file"
-              accept="image/*"
-              className={styles.desktop_button_addphoto_input}
-              onChange={() => {
-                togglePhotoButtonClicked(!photoButtonClicked);
-              }}
-            />
-          </label>
-          <button className={styles.desktop_form__button_send} type="submit">
-            Send
-          </button>
-        </div>
-      </form>
     </div>
+
   );
 };
 

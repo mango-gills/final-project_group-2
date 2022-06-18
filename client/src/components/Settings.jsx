@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { SharedContext } from '../contexts/SharedContext';
+import theme from '../styles/globals.module.css';
 import styles from '../styles/Settings.module.css';
 import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
 import DarkModeToggle from './DarkModeToggle';
@@ -9,26 +11,24 @@ import { signOut } from 'firebase/auth';
 import { updateDoc, doc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
-const Settings = ({
-  user,
-  isMobile,
-  isDarkMode,
-  toggleDarkMode,
-  showSettings,
-  toggleSettingsVisibility,
-  showChatFeed,
-  toggleChatFeedVisibility,
-  showUploadAvatarComponent,
-  toggleUploadAvatarVisibility,
-  showChangePasswordComponent,
-  toggleChangePasswordVisibility,
-}) => {
-  const sampleLoggedInUser = {
-    name: 'Ruth Rodriguez',
-    online: true,
-    email: 'rrodriguez@gmail.com',
-    password: 'pw1234',
-  };
+const sampleLoggedInUser = {
+  name: 'Ruth Rodriguez',
+  online: true,
+  email: 'rrodriguez@gmail.com',
+  password: 'pw1234',
+};
+
+const Settings = ({ user }) => {
+  const {
+    isMobile,
+    isDarkMode,
+    showUploadAvatarComponent,
+    toggleUploadAvatarVisibility,
+    showChangePasswordComponent,
+    toggleChangePasswordVisibility,
+    toggleSettingsVisibility,
+    toggleChatFeedVisibility,
+  } = useContext(SharedContext);
 
   //Mobile Version
   if (isMobile) {
@@ -134,7 +134,7 @@ const Settings = ({
   };
   // Desktop Style
   return (
-    <div className={styles.desktop_container_settings}>
+    <div  id={isDarkMode ? theme.dark : theme.light} className={styles.desktop_container_settings}>
       <div className={styles.desktop_wrapper_profile}>
         <div className={styles.desktop_wrapper__image}>
           <img
@@ -176,10 +176,7 @@ const Settings = ({
       </div>
       <div className={styles.desktop_wrapper__darkmode}>
         <span className={styles.desktop_darkmode_label}>Dark Mode</span>
-        <DarkModeToggle
-          isDarkMode={isDarkMode}
-          toggleDarkMode={toggleDarkMode}
-        />
+        <DarkModeToggle />
       </div>
       <button
         className={styles.desktop_settings__button_logout}
