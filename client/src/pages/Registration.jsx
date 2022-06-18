@@ -68,7 +68,7 @@ const Registration = () => {
       // });
       navigate('/conversations');
     } catch (err) {
-      setData({ ...data, error: err.message, loading: false });
+      setData({ ...data, error: 'Email is already in use', loading: false });
     }
   };
 

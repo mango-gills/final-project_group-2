@@ -72,7 +72,11 @@ const LogIn = () => {
       // });
       navigate('/conversations');
     } catch (err) {
-      setData({ ...data, error: err.message, loading: false });
+      setData({
+        ...data,
+        error: 'Email/password is incorrect',
+        loading: false,
+      });
     }
   };
   return user ? (
