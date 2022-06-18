@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import styles from '../styles/Login.module.css';
 import GoogleButton from 'react-google-button';
+import Footer from '../components/Footer';
+
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
@@ -96,6 +99,7 @@ const LogIn = () => {
           <button className={styles.form__button} type="submit">
             Login
           </button>
+          <div className={styles.error__message}>{error}</div>
           <p>Or</p>
           <GoogleButton style={{ width: 301 }} onClick={handleGoogleSignIn} />
           <br></br>
@@ -112,6 +116,7 @@ const LogIn = () => {
           </Link>
         </p>
       </div>
+      <Footer />
     </div>
   );
 };

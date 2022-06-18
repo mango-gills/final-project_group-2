@@ -77,7 +77,11 @@
   font-size: 1.7rem;
   cursor: pointer;
 }
-
+.error__message {
+  text-align: center;
+  color: red;
+  margin-bottom: 20px;
+}
 .terms__text {
   width: 300px;
   font-size: 1.2rem;
@@ -92,5 +96,6 @@
 }
 
 .backlink {
+  margin-left: 5px;
   color: var(--purple);
 }

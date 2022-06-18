@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { MdPresentToAll } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
 import styles from '../styles/Registration.module.css';
+import Footer from '../components/Footer';
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -17,23 +17,28 @@ const Registration = () => {
     name: '',
     email: '',
     password: '',
+    confirmpassword: '',
     error: null,
     loading: false,
   });
 
   const navigate = useNavigate();
 
-  const { name, email, password, error, loading } = data;
+  const { name, email, password, confirmpassword, error, loading } = data;
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
+    console.log(data);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setData({ ...data, error: null, loading: true });
-    if (!name || !email || !password) {
+    if (!name || !email || !password || !confirmpassword) {
       return setData({ ...data, error: 'All fields are required' });
+    }
+    if (password !== confirmpassword) {
+      return setData({ ...data, error: 'Passwords do not match' });
     }
     try {
       const result = await createUserWithEmailAndPassword(
@@ -52,6 +57,7 @@ const Registration = () => {
         name: '',
         email: '',
         password: '',
+        confirmpassword: '',
         error: null,
         loading: false,
       });
@@ -119,18 +125,22 @@ const Registration = () => {
             className={`${styles.form__input} ${styles.password}`}
             id="password"
             placeholder="password"
-            type="password"
+            type="text"
             name="password"
             value={password}
             onChange={handleChange}
           ></input>
           <input
             className={`${styles.form__input} ${styles.password}`}
-            id="confirm password"
+            id="confirmpassword"
             placeholder="confirm password"
-            type="password"
+            type="text"
+            name="confirmpassword"
+            value={confirmpassword}
+            onChange={handleChange}
           ></input>
           <button className={styles.form__button}>SIGNUP</button>
+          <div className={styles.error__message}>{error}</div>
         </form>
         <p>Or</p>
         <GoogleButton style={{ width: 301 }} onClick={handleGoogleSignIn} />
@@ -148,6 +158,7 @@ const Registration = () => {
           </span>
         </div>
       </section>
+      <Footer />
     </main>
   );
 };
