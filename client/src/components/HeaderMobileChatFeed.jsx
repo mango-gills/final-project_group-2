@@ -3,10 +3,12 @@ import { SharedContext } from '../contexts/SharedContext';
 import menuIcon from '../assets/icons/menu_black.svg';
 import addFriendIcon from '../assets/icons/person_add_black.svg';
 import searchIcon from '../assets/icons/search_black.svg';
+import theme from '../styles/globals.module.css';
 import styles from '../styles/HeaderMobileChatFeed.module.css';
 
 const HeaderMobileChatFeed = () => {
   const {
+    isDarkMode,
     toggleSettingsVisibility,
     toggleChatFeedVisibility,
     showAddFriendComponent,
@@ -14,7 +16,7 @@ const HeaderMobileChatFeed = () => {
   } = useContext(SharedContext);
 
   return (
-    <div className={styles.header__wrapper}>
+    <div  id={isDarkMode ? theme.dark : theme.light} className={styles.header__wrapper}>
       <div className={styles.header__button_wrapper_left}>
         <button
           className={styles.header__button}

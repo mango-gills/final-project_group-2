@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { SharedContext } from '../contexts/SharedContext';
 import moment from 'moment';
+import theme from '../styles/globals.module.css';
 import styles from '../styles/ChatPreview.module.css';
 import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
 
 const ChatPreview = ({ selectUser, currUser }) => {
-  const { isMobile, toggleChatVisibility, toggleChatFeedVisibility } =
+  const { isMobile, isDarkMode, toggleChatVisibility, toggleChatFeedVisibility } =
     useContext(SharedContext);
 
   // MOBILE STYLES
@@ -41,6 +42,7 @@ const ChatPreview = ({ selectUser, currUser }) => {
   // DESKTOP STYLES
   return (
     <div
+    id={isDarkMode ? theme.dark : theme.light}
       className={styles.desktop_wrapper__chatpreview}
       onClick={() => {
         selectUser(currUser);

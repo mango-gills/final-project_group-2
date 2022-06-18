@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { SharedContext } from '../contexts/SharedContext';
 import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
+import theme from '../styles/globals.module.css';
 import styles from '../styles/Chat.module.css';
 import ChatMessage from './ChatMessage';
 import EmptyStateImage from '../assets/other-images/empty-state.png';
@@ -46,7 +47,7 @@ const sampleChatData = [
 ];
 
 const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
-  const { isMobile, showAddFriendComponent, toggleAddFriendVisibility } =
+  const { isMobile, isDarkMode, showAddFriendComponent, toggleAddFriendVisibility } =
     useContext(SharedContext);
 
   const loggedInUserId = '6AYHXtSfMR';
@@ -151,7 +152,7 @@ const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
   // Desktop Version
 
   return (
-    <div className={styles.desktop_container__chat}>
+    <div  id={isDarkMode ? theme.dark : theme.light} className={styles.desktop_container__chat}>
       {chat ? (
         <div className={styles.desktop_container_inner__chat}>
           <div className={styles.desktop_wrapper__header}>
@@ -237,7 +238,7 @@ const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
             alt=""
           />
           <h3 className={styles.desktop_container__empty_state_text}>
-            Select a friend from the left panel to start conversing!
+            Select a friend from the left panel to get started!
           </h3>
           <h3 className={styles.desktop_container__empty_state_text}>
             or{' '}
@@ -253,6 +254,7 @@ const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
         </div>
       )}
     </div>
+
   );
 };
 

@@ -2,15 +2,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
-:root {
-  --color-chat-feed: #f9effc;
-  --color-message-theirs: #f6e5fb;
-  --color-message-yours: #c158e3;
-  --color-button-attach-file: #a307d5;
-  --color-button-send: #efac54;
-  --color-button-logout: #707070;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -93,7 +84,7 @@ body {
 /* DESKTOP STYLES */
 
 .desktop_wrapper__chatpreview {
-  border-bottom: 1px solid rgba(112, 112, 112, .3);
+  border-bottom: 1px solid var(--color-border-color);
   width: 100%;
   display: flex;
   font-size: 1.2rem;
@@ -125,6 +116,7 @@ body {
 .desktop_text__friendname {
   font-size: 1.5rem;
   font-weight: 600;
+  color: var(--color-chat-preview-conversation-name-color);
 }
 
 .desktop_text__message {
@@ -132,7 +124,7 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: #707070;
+  color: var(--color-chat-preview-conversation-preview-color);
 }
 
 .desktop_timestamp {
