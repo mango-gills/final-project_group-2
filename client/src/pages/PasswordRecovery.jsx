@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
@@ -7,9 +7,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import styles from '../styles/Password.module.css';
 import { auth } from '../firebase';
 import { duration } from 'moment';
-
+import { useContext } from 'react';
+import { AuthContext } from '../contexts/auth';
 const PasswordRecovery = () => {
   const [email, setEmail] = useState('');
+
+  const { user } = useContext(AuthContext);
 
   const forgotPassword = (email) => {
     return sendPasswordResetEmail(auth, email, {
@@ -30,7 +33,9 @@ const PasswordRecovery = () => {
       .catch((e) => console.log(e.message));
   };
 
-  return (
+  return user ? (
+    <Navigate to="/conversations" />
+  ) : (
     <main className={styles.main__container}>
       <section className={styles.main__section}>
         <div className={styles.heading}>Recover Password</div>

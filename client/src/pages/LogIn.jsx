@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import styles from '../styles/Login.module.css';
+import React, { useState, useContext } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
+import { AuthContext } from '../contexts/auth';
+
+import styles from '../styles/Login.module.css';
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
+  signInWithRedirect,
 } from 'firebase/auth';
 import { auth, db } from '../firebase';
 import { updateDoc, doc } from 'firebase/firestore';
@@ -19,6 +22,8 @@ const LogIn = () => {
     loading: false,
   });
 
+  const { user } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
   const { email, password, error, loading } = data;
@@ -31,6 +36,7 @@ const LogIn = () => {
     const provider = new GoogleAuthProvider();
     try {
       const result = await signInWithPopup(auth, provider);
+      // const result = await signInWithRedirect(auth, provider);
       await updateDoc(doc(db, 'users', result.user.uid), {
         isOnline: true,
       });
@@ -57,18 +63,20 @@ const LogIn = () => {
       await updateDoc(doc(db, 'users', result.user.uid), {
         isOnline: true,
       });
-      setData({
-        email: '',
-        password: '',
-        error: null,
-        loading: false,
-      });
+      // setData({
+      //   email: '',
+      //   password: '',
+      //   error: null,
+      //   loading: false,
+      // });
       navigate('/conversations');
     } catch (err) {
       setData({ ...data, error: err.message, loading: false });
     }
   };
-  return (
+  return user ? (
+    <Navigate to="/conversations" />
+  ) : (
     <div className={styles.section}>
       <div className={styles.section__container}>
         <h1 className={styles.container__heading}>Login</h1>
@@ -93,12 +101,12 @@ const LogIn = () => {
             onChange={handleChange}
           />
 
+          <br></br>
           <button className={styles.form__button} type="submit">
             Login
           </button>
           <p>Or</p>
           <GoogleButton style={{ width: 301 }} onClick={handleGoogleSignIn} />
-          <br></br>
         </form>
         <p className={styles.container__text}>
           Don't have an account yet?{' '}
