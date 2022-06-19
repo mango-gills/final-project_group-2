@@ -141,7 +141,7 @@ const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
               <h2 className={styles.desktop_friendInfo_name}>{chat.name}</h2>
               <div className={styles.desktop_wrapper__friendinfo_status}>
                 <span
-                  className={styles.desktop_friendinfo__status_indicator}
+                  className={friendInfo.online ? styles.desktop_friendinfo__status_indicator_online : styles.desktop_friendinfo__status_indicator_offline}
                 ></span>
                 <span className={styles.desktop_friendinfo__status}>
                   {friendInfo.online ? 'online' : 'offline'}
