@@ -17,7 +17,7 @@ const ChangePassword = () => {
 
   // DESKTOP VERSION
   return (
-    <div  id={isDarkMode ? theme.dark : theme.light} className={styles.container__changepassword}>
+    <div id={isDarkMode ? theme.dark : theme.light} className={styles.container__changepassword}>
       <div className={styles.wrapper__changepassword_form}>
         <form className={styles.changepassword__form}>
           <h2 className={styles.changepassword__header}>Change Password</h2>
