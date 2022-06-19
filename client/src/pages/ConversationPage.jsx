@@ -3,7 +3,12 @@ import { SharedContext } from '../contexts/SharedContext';
 import DesktopContainer from '../components/DesktopContainer';
 import MobileContainer from '../components/MobileContainer';
 import { db, auth, storage } from '../firebase';
-import { ref, getDownloadURL, uploadBytes } from 'firebase/storage';
+import {
+  ref,
+  getDownloadURL,
+  uploadBytes,
+  deleteObject,
+} from 'firebase/storage';
 import {
   collection,
   query,
@@ -110,6 +115,49 @@ const ConversationPage = () => {
   const [text, setText] = useState();
   const [users, setUsers] = useState([]);
   const [msgs, setMsgs] = useState([]);
+
+  const [img, setImg] = useState('');
+  const [user, setUser] = useState();
+  const [loading, setLoading] = useState(true);
+  useEffect(async () => {
+    getDoc(doc(db, 'users', auth.currentUser.uid)).then((docSnap) => {
+      if (docSnap.exists) {
+        setUser(docSnap.data());
+      }
+    });
+
+    if (img) {
+      const uploadImg = async () => {
+        const imgRef = ref(
+          storage,
+          `avatar/${new Date().getTime()} - ${img.name}`
+        );
+        try {
+          if (user.avatarPath) {
+            await deleteObject(ref(storage, user.avatarPath));
+          }
+          const snap = await uploadBytes(imgRef, img);
+          const url = await getDownloadURL(ref(storage, snap.ref.fullPath));
+
+          await updateDoc(doc(db, 'users', auth.currentUser.uid), {
+            avatar: url,
+            avatarPath: snap.ref.fullPath,
+          });
+
+          setImg('');
+        } catch (err) {
+          console.log(err.message);
+        }
+      };
+      try {
+        await uploadImg();
+      } catch (err) {
+        err.message;
+      }
+
+      setLoading(false);
+    }
+  }, [img]);
 
   const handleWindowSizeChange = () => {
     setWidth(window.innerWidth);
@@ -224,9 +272,29 @@ const ConversationPage = () => {
   return (
     <div>
       {isMobile ? (
-        <MobileContainer />
+        <MobileContainer
+          img={img}
+          setImg={setImg}
+          loading={loading}
+          user={user}
+          previewUrl={previewUrl}
+          attachImg={attachImg}
+          setAttachImg={setAttachImg}
+          user1={user1}
+          msgs={msgs}
+          setText={setText}
+          text={text}
+          handleSubmit={handleSubmit}
+          selectUser={selectUser}
+          chat={chat}
+          users={users}
+        />
       ) : (
         <DesktopContainer
+          img={img}
+          setImg={setImg}
+          loading={loading}
+          user={user}
           previewUrl={previewUrl}
           attachImg={attachImg}
           setAttachImg={setAttachImg}

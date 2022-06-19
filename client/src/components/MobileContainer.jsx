@@ -8,7 +8,23 @@ import Settings from './Settings';
 import styles from '../styles/MobileContainer.module.css';
 import AddFriend from './AddFriend';
 
-const MobileContainer = () => {
+const MobileContainer = ({
+  img,
+  setImg,
+  loading,
+  user,
+  previewUrl,
+  attachImg,
+  setAttachImg,
+  user1,
+  msgs,
+  setText,
+  text,
+  handleSubmit,
+  selectUser,
+  users,
+  chat,
+}) => {
   const { showAddFriendComponent, showChatFeed, showChat, showSettings } =
     useContext(SharedContext);
 
@@ -17,7 +33,13 @@ const MobileContainer = () => {
       {showChatFeed ? (
         <div className={styles.mobile__main_container}>
           <HeaderMobileChatFeed />
-          <ChatFeed />
+          <ChatFeed
+            selectUser={selectUser}
+            users={users}
+            user={user}
+            chat={chat}
+            user1={user1}
+          />
         </div>
       ) : (
         ''
@@ -25,12 +47,24 @@ const MobileContainer = () => {
       {showChat ? (
         <div className={styles.mobile__main_container}>
           <HeaderMobileChat />
-          <Chat />
+          <Chat
+            user={user}
+            previewUrl={previewUrl}
+            attachImg={attachImg}
+            setAttachImg={setAttachImg}
+            user1={user1}
+            msgs={msgs}
+            setText={setText}
+            text={text}
+            handleSubmit={handleSubmit}
+            chat={chat}
+            selectUser={selectUser}
+          />
         </div>
       ) : (
         ''
       )}
-      {showSettings ? <Settings /> : ''}
+      {showSettings ? <Settings user={user} /> : ''}
       {showAddFriendComponent ? <AddFriend /> : ''}
     </div>
   );

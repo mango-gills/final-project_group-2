@@ -85,11 +85,14 @@ body {
 
 .desktop_wrapper__chatpreview {
   border-bottom: 1px solid var(--color-border-color);
+  /* border-bottom: red; */
   width: 100%;
   display: flex;
   font-size: 1.2rem;
   padding: 1.5rem 0;
   cursor: pointer;
+  position: relative;
+  flex-wrap: wrap;
   /* border: 1px solid #a307d5; */
 }
 
@@ -121,6 +124,8 @@ body {
 
 .desktop_text__message {
   font-size: 1.2rem;
+  display: block;
+   width: 12rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -129,8 +134,40 @@ body {
 
 .desktop_timestamp {
   /* border: 1px solid red; */
-  width: 5rem;
+  width: max-content;
   flex-shrink: 0;
   font-size: .9rem;
 }
+.user_status_online {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #34eb52;
+  position: absolute;
+  top:8px;
+  right:8px;
+}
+.user_status_offline {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: gray;
+  position:absolute;
+  top:8px;
+  right:8px;
+}
+.desktop_selected_user {
+  background: var(--color-message-theirs)
+  /* background-color: green; */
+}
 
+.desktop_chat_text_preview {
+  flex-basis: 100%;
+  /* position: relative; */
+  /* position: relative; */
+  /* display:flex;
+  justify-content: space-evenly; */
+
+}
