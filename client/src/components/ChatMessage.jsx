@@ -15,11 +15,19 @@ const ChatMessage = ({ msg, user1, chat, user }) => {
         <div
           className={`${styles.desktop_wrapper__message} ${styles.desktop_wrapper__message_user}`}
         >
-          <div className={styles.desktop_message_user}>{msg.text}</div>
+          <div className={styles.wrapper__media}>
+            {msg.media ? <img src={msg.media} alt={msg.text} /> : null}
+          </div>
+
+          {msg.text === '' ? (
+            ''
+          ) : (
+            <div className={styles.desktop_message_user}>{msg.text}</div>
+          )}
           <div className={styles.desktop_message__avatar_wrapper}>
             <img
               className={styles.desktop_message__avatar_image}
-              src={user.avatar || defaultProfilePic}
+              src={user?.avatar || defaultProfilePic}
               alt=""
             />
           </div>
@@ -35,6 +43,7 @@ const ChatMessage = ({ msg, user1, chat, user }) => {
               alt=""
             />
           </div>
+          {msg.media ? <img src={msg.media} alt={msg.text} /> : null}
           <div className={styles.desktop_message_friend}>{msg.text}</div>
         </div>
       )}

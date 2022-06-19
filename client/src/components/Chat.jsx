@@ -46,9 +46,24 @@ const sampleChatData = [
   },
 ];
 
-const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
-  const { isMobile, isDarkMode, showAddFriendComponent, toggleAddFriendVisibility } =
-    useContext(SharedContext);
+const Chat = ({
+  previewUrl,
+  attachImg,
+  setAttachImg,
+  user,
+  user1,
+  msgs,
+  chat,
+  text,
+  setText,
+  handleSubmit,
+}) => {
+  const {
+    isMobile,
+    isDarkMode,
+    showAddFriendComponent,
+    toggleAddFriendVisibility,
+  } = useContext(SharedContext);
 
   const loggedInUserId = '6AYHXtSfMR';
   const friendInfo = {
@@ -152,14 +167,17 @@ const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
   // Desktop Version
 
   return (
-    <div  id={isDarkMode ? theme.dark : theme.light} className={styles.desktop_container__chat}>
+    <div
+      id={isDarkMode ? theme.dark : theme.light}
+      className={styles.desktop_container__chat}
+    >
       {chat ? (
         <div className={styles.desktop_container_inner__chat}>
           <div className={styles.desktop_wrapper__header}>
             <div className={styles.desktop_wrapper__friendavatar}>
               <img
                 className={styles.desktop_friendavatar_image}
-                src={chat.avatar || defaultProfilePic}
+                src={chat?.avatar || defaultProfilePic}
                 alt=""
               />
             </div>
@@ -192,6 +210,17 @@ const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
             className={styles.desktop_wrapper__form}
             onSubmit={handleSubmit}
           >
+            <div>
+              {previewUrl ? (
+                <div className={styles.wrapper__preview_image}>
+                  <img
+                    className={styles.preview_image}
+                    src={previewUrl}
+                    alt="previewImage"
+                  />
+                </div>
+              ) : null}
+            </div>
             <textarea
               className={styles.desktop_form__textarea}
               type="text"
@@ -216,9 +245,7 @@ const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
                   type="file"
                   accept="image/*"
                   className={styles.desktop_button_addphoto_input}
-                  onChange={() => {
-                    togglePhotoButtonClicked(!photoButtonClicked);
-                  }}
+                  onChange={(e) => setAttachImg(e.target.files[0])}
                 />
               </label>
               <button
@@ -254,7 +281,6 @@ const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
         </div>
       )}
     </div>
-
   );
 };
 

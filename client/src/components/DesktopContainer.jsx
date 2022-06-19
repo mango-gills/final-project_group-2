@@ -17,6 +17,9 @@ import {
 import { getDoc, doc, updateDoc } from 'firebase/firestore';
 
 const DesktopContainer = ({
+  previewUrl,
+  attachImg,
+  setAttachImg,
   user1,
   msgs,
   setText,
@@ -76,9 +79,18 @@ const DesktopContainer = ({
 
   return (
     <div className={styles.container_desktop}>
-      <ChatFeed selectUser={selectUser} users={users} />
+      <ChatFeed
+        selectUser={selectUser}
+        users={users}
+        user={user}
+        chat={chat}
+        user1={user1}
+      />
       <Chat
         user={user}
+        previewUrl={previewUrl}
+        attachImg={attachImg}
+        setAttachImg={setAttachImg}
         user1={user1}
         msgs={msgs}
         setText={setText}
