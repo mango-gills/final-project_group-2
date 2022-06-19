@@ -88,6 +88,7 @@ const ChatPreview = ({ chat, user1, selectUser, currUser, user }) => {
         ) : (
           <span className={styles.user_status_offline}></span>
         )}
+
       </div>
       <div className={styles.desktop_chat_text_preview}>
         {data && (

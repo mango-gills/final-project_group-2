@@ -178,6 +178,8 @@ body {
 .desktop_friendavatar_image {
   width: 100%;
   border-radius: 50%;
+  aspect-ratio: 1;
+  object-fit: cover;
 }
 
 .desktop_wrapper__friendinfo {
@@ -191,13 +193,22 @@ body {
   color: var(--color-chat-header-name-color);
 }
 
-.desktop_friendinfo__status_indicator {
+.desktop_friendinfo__status_indicator_online {
   display: inline-block;
   height: 1rem;
   width: 1rem;
-  background-color: var(--color-online-status-indicator);
   border-radius: 50%;
   margin-right: 0.5rem;
+  background-color: var(--color-shared-status-indicator-online-color);
+}
+
+.desktop_friendinfo__status_indicator_offline {
+  display: inline-block;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  background-color: var(--color-shared-status-indicator-offline-color);
 }
 
 .desktop_wrapper__friendinfo_status {
@@ -247,10 +258,10 @@ body {
 
 .desktop_message__avatar_image {
   /* border: 2px solid orange; */
-  aspect-ratio: 1;
-  object-fit: cover;
   width: 100%;
   border-radius: 50%;
+  aspect-ratio: 1;
+  object-fit: cover;
 }
 
 .desktop_message_user {

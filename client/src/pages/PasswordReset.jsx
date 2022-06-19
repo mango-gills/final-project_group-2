@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, Navigate, useLocation } from 'react-router-dom';
 import { confirmPasswordReset } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
@@ -6,13 +6,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { auth } from '../firebase';
 import { AuthContext } from '../contexts/auth';
-import { useContext } from 'react';
-
+import { SharedContext } from "../contexts/SharedContext";
+import theme from "../styles/globals.module.css";
 import styles from '../styles/Password.module.css';
 import Footer from '../components/Footer';
 import { useState } from 'react';
 
 const PasswordReset = () => {
+  const { isDarkMode } = useContext(SharedContext);
   const resetPassword = (oobCode, newPassword) => {
     return confirmPasswordReset(auth, oobCode, newPassword);
   };
@@ -52,7 +53,7 @@ const PasswordReset = () => {
   return user ? (
     <Navigate to="/conversations" />
   ) : (
-    <main className={styles.main__container}>
+    <main id={isDarkMode ? theme.dark : theme.light} className={styles.main__container}>
       <section className={styles.main__section}>
         <div className={styles.heading}>Reset Password</div>
         <form className={styles.form__password} onSubmit={handleChange}>
@@ -61,13 +62,13 @@ const PasswordReset = () => {
             onChange={(e) => setNewPassword(e.target.value)}
             className={`${styles.form__input} ${styles.password}`}
             id="password"
-            placeholder="password"
+            placeholder="Password"
             type="password"
           ></input>
           <input
             className={`${styles.form__input} ${styles.password}`}
             id="confirm-password"
-            placeholder="confirm password"
+            placeholder="Confirm password"
             type="password"
           ></input>
           <button className={styles.form__button}>SUBMIT</button>

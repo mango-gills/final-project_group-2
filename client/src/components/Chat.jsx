@@ -167,10 +167,7 @@ const Chat = ({
   // Desktop Version
 
   return (
-    <div
-      id={isDarkMode ? theme.dark : theme.light}
-      className={styles.desktop_container__chat}
-    >
+    <div id={isDarkMode ? theme.dark : theme.light} className={styles.desktop_container__chat}>
       {chat ? (
         <div className={styles.desktop_container_inner__chat}>
           <div className={styles.desktop_wrapper__header}>
@@ -185,7 +182,7 @@ const Chat = ({
               <h2 className={styles.desktop_friendInfo_name}>{chat.name}</h2>
               <div className={styles.desktop_wrapper__friendinfo_status}>
                 <span
-                  className={styles.desktop_friendinfo__status_indicator}
+                  className={friendInfo.online ? styles.desktop_friendinfo__status_indicator_online : styles.desktop_friendinfo__status_indicator_offline}
                 ></span>
                 <span className={styles.desktop_friendinfo__status}>
                   {friendInfo.online ? 'online' : 'offline'}

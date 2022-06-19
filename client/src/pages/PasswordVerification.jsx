@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
-
+import { SharedContext } from "../contexts/SharedContext";
+import theme from "../styles/globals.module.css";
 import styles from '../styles/Password.module.css';
 
 const PasswordVerification = () => {
+  const { isDarkMode } = useContext(SharedContext);
   return (
-    <main className={styles.main__container}>
+    <main id={isDarkMode ? theme.dark : theme.light} className={styles.main__container}>
       <section className={styles.main__section}>
         <div className={styles.heading}>Verification</div>
         <form className={styles.form__password}>

@@ -1,5 +1,15 @@
 /* LIGHT MODE */
 #light {
+  --color-pages-bg-color: #f9effc;
+  --color-pages-header-color: #303030;
+  --color-pages-subtext-color: #707070;
+  --color-pages-input-bg-color: #f6f6f6;
+  --color-pages-input-placeholder-color: #707070;
+  --color-pages-input-text-color: #303030;
+  --color-pages-input-shadow-color: rgba(112, 112, 112, 0.1);
+  --color-pages-button-text-color: #f6f6f6;
+  --color-pages-button-bg-color: #a307d5;
+  --color-pages-link-color: #a307d5;
   --color-chat-feed-header-text-color: #303030;
   --color-chat-feed-header-button-color: #303030;
   --color-chat-feed-bg-color: #f9effc;
@@ -29,6 +39,7 @@
   --color-settings-darkmode-text-color: #707070;
   --color-settings-darkmode-toggle-light-bg-color: #efac54;
   --color-settings-darkmode-toggle-dark-bg-color: #efac54;
+  --color-settings-log-out-bg-color: #b8b8b8;
   --color-settings-log-out-bg-hover-color: #d90000;
   --color-shared-empty-state-color: #303030;
   --color-shared-empty-state-link-color: #a307d5;
@@ -44,6 +55,16 @@
 
 /* DARK MODE */
 #dark {
+  --color-pages-bg-color: #442e4b;
+  --color-pages-header-color: #f6f6f6;
+  --color-pages-subtext-color: #c0c0c0;
+  --color-pages-input-bg-color: #f6f6f6;
+  --color-pages-input-placeholder-color: #707070;
+  --color-pages-input-text-color: #303030;
+  --color-pages-input-shadow-color: rgba(112, 112, 112, 0.1);
+  --color-pages-button-text-color: #f6f6f6;
+  --color-pages-button-bg-color: #e8aa15;
+  --color-pages-link-color: #e8aa15;
   --color-chat-feed-header-text-color: #f6f6f6;
   --color-chat-feed-header-button-color: #f6f6f6;
   --color-chat-feed-bg-color: #492b53;
@@ -73,6 +94,7 @@
   --color-settings-darkmode-text-color: #dadada;
   --color-settings-darkmode-toggle-light-bg-color: #a307d5;
   --color-settings-darkmode-toggle-dark-bg-color: #a307d5;
+  --color-settings-log-out-bg-color: #281825;
   --color-settings-log-out-bg-hover-color: #d90000;
   --color-shared-empty-state-color: #f6f6f6;
   --color-shared-empty-state-link-color: #efac54;

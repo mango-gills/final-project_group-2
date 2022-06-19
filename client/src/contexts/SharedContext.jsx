@@ -14,6 +14,8 @@ export const SharedProvider = ({ children }) => {
   const [showChatFeed, toggleChatFeedVisibility] = useState(true);
   const [showChat, toggleChatVisibility] = useState(false);
   const [showSettings, toggleSettingsVisibility] = useState(false);
+  const [showLogOutModal, toggleLogOutModalVisibility] = useState(false);
+
 
   return (
     <SharedContext.Provider
@@ -36,6 +38,8 @@ export const SharedProvider = ({ children }) => {
         toggleChatVisibility,
         showSettings,
         toggleSettingsVisibility,
+        showLogOutModal, 
+        toggleLogOutModalVisibility
       }}
     >
       {children}
