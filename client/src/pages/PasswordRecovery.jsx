@@ -1,9 +1,10 @@
-import  React, { useContext } from 'react';
+import  React, { useState, useContext } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { sendPasswordResetEmail } from 'firebase/auth';
-import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { SharedContext } from "../contexts/SharedContext";
+import theme from "../styles/globals.module.css";
 import styles from '../styles/Password.module.css';
 import { auth } from '../firebase';
 import { duration } from 'moment';
@@ -12,6 +13,7 @@ import { AuthContext } from '../contexts/auth';
 import Footer from '../components/Footer';
 
 const PasswordRecovery = () => {
+  const { isDarkMode } = useContext(SharedContext);
   const [email, setEmail] = useState('');
 
   const { user } = useContext(AuthContext);
@@ -38,7 +40,7 @@ const PasswordRecovery = () => {
   return user ? (
     <Navigate to="/conversations" />
   ) : (
-    <main className={styles.main__container}>
+    <main id={ isDarkMode ? theme.dark : theme.light}  className={styles.main__container}>
       <section className={styles.main__section}>
         <div className={styles.heading}>Recover Password</div>
         <form className={styles.form__password} onSubmit={handleSubmit}>
@@ -47,8 +49,8 @@ const PasswordRecovery = () => {
             onChange={(e) => setEmail(e.target.value)}
             className={`${styles.form__input} ${styles.email}`}
             id="email"
-            placeholder="email address"
-            type="text"
+            placeholder="Email Address"
+            type="email"
           ></input>
           <button className={styles.form__button}>SUBMIT</button>
         </form>

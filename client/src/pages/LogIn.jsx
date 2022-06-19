@@ -3,7 +3,8 @@ import { Link, Navigate } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
 import { AuthContext } from '../contexts/auth';
 import Footer from '../components/Footer';
-
+import { SharedContext } from '../contexts/SharedContext';
+import theme from '../styles/globals.module.css';
 import styles from '../styles/Login.module.css';
 import {
   signInWithEmailAndPassword,
@@ -16,6 +17,7 @@ import { updateDoc, doc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
 const LogIn = () => {
+  const { isDarkMode } = useContext(SharedContext);
   const [data, setData] = useState({
     email: '',
     password: '',
@@ -82,7 +84,7 @@ const LogIn = () => {
   return user ? (
     <Navigate to="/conversations" />
   ) : (
-    <div className={styles.section}>
+    <div id={isDarkMode ? theme.dark : theme.light} className={styles.section}>
       <div className={styles.section__container}>
         <h1 className={styles.container__heading}>Login</h1>
         <p className={styles.container__subheading}>
@@ -111,7 +113,7 @@ const LogIn = () => {
             Login
           </button>
           <div className={styles.error__message}>{error}</div>
-          <p>Or</p>
+          <p className={styles.container__text}>or</p>
           <GoogleButton style={{ width: 301 }} onClick={handleGoogleSignIn} />
         </form>
         <p className={styles.container__text}>

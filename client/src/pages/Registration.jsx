@@ -3,7 +3,8 @@ import { MdPresentToAll } from 'react-icons/md';
 import { Link, Navigate } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
 import { AuthContext } from '../contexts/auth';
-
+import { SharedContext } from '../contexts/SharedContext';
+import theme from '../styles/globals.module.css';
 import styles from '../styles/Registration.module.css';
 import Footer from '../components/Footer';
 import {
@@ -17,6 +18,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 const Registration = () => {
+  const { isDarkMode } = useContext(SharedContext);
   const [data, setData] = useState({
     name: '',
     email: '',
@@ -105,7 +107,7 @@ const Registration = () => {
   return user ? (
     <Navigate to="/login" />
   ) : (
-    <main className={styles.main__container}>
+    <main id={isDarkMode? theme.dark : theme.light} className={styles.main__container}>
       <section className={styles.main__section}>
         <div className={styles.heading__container}>
           <div className={styles.heading}>Create an account</div>
@@ -115,15 +117,16 @@ const Registration = () => {
             className={`${styles.form__input} ${styles.username}`}
             id="username"
             name="name"
-            placeholder="username"
+            type="text"
+            placeholder="Username"
             value={name}
             onChange={handleChange}
           ></input>
           <input
             className={`${styles.form__input} ${styles.email}`}
             id="email"
-            placeholder="email"
-            type="text"
+            placeholder="Email"
+            type="email"
             name="email"
             value={email}
             onChange={handleChange}
@@ -131,7 +134,7 @@ const Registration = () => {
           <input
             className={`${styles.form__input} ${styles.password}`}
             id="password"
-            placeholder="password"
+            placeholder="Password"
             type="password"
             name="password"
             value={password}
@@ -140,7 +143,7 @@ const Registration = () => {
           <input
             className={`${styles.form__input} ${styles.password}`}
             id="confirmpassword"
-            placeholder="confirm password"
+            placeholder="Confirm password"
             type="password"
             name="confirmpassword"
             value={confirmpassword}

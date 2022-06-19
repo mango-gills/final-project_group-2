@@ -176,7 +176,7 @@ const Settings = ({ user }) => {
         </div>
       </div>
       <div className={styles.desktop_wrapper__darkmode}>
-        <span className={styles.desktop_darkmode_label}>Dark Mode</span>
+        <span className={styles.desktop_darkmode_label}>{isDarkMode? 'Dark' : 'Light' } Mode</span>
         <DarkModeToggle />
       </div>
       <button
