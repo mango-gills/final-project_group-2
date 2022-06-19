@@ -57,29 +57,6 @@ const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
     avatar: defaultProfilePic,
   };
 
-  // trying to implement an indicator for attached photos
-
-  const [photoButtonClicked, togglePhotoButtonClicked] = useState(false);
-  const [showPhotoAddedIndicator, toggleShowPhotoAddedIndicator] =
-    useState(false);
-
-  useEffect(() => {
-    const imageInput = document.querySelector('#image_input');
-
-    if (imageInput === null) {
-      return;
-    }
-
-    if (imageInput[0]?.files.length > 0) {
-      console.log('files attached', imageInput?.files.length);
-      toggleShowPhotoAddedIndicator(true);
-      return;
-    }
-
-    toggleShowPhotoAddedIndicator(false);
-    console.log('files attached', imageInput?.files.length);
-  }, [photoButtonClicked]);
-
   // Mobile Version
   if (isMobile) {
     return (
@@ -133,9 +110,6 @@ const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
               type="file"
               accept="image/*"
               className={styles.mobile_button_addphoto_input}
-              onChange={() => {
-                togglePhotoButtonClicked(!photoButtonClicked);
-              }}
             />
           </label>
           <textarea
@@ -200,25 +174,12 @@ const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
               placeholder="Start writing your message...."
             ></textarea>
             <div className={styles.desktop_wrapper_form_buttons}>
-              {/*<button className={styles.desktop_form__button_addphoto} type="button">
-                <img className={styles.desktop_button_addphoto_image} src={addPhotoIcon} />
-            </button>*/}
               <label className={styles.desktop_form__button_addphoto}>
-                {showPhotoAddedIndicator ? (
-                  <span
-                    className={styles.desktop_form__photoadded_indicator}
-                  ></span>
-                ) : (
-                  ''
-                )}
                 <input
                   id="image_input"
                   type="file"
                   accept="image/*"
                   className={styles.desktop_button_addphoto_input}
-                  onChange={() => {
-                    togglePhotoButtonClicked(!photoButtonClicked);
-                  }}
                 />
               </label>
               <button
