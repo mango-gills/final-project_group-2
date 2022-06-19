@@ -45,8 +45,8 @@ const Landing = () => {
             </span>
           </div>
         </div>
+        <Footer />
       </section>
-      <Footer />
     </main>
   );
 };
