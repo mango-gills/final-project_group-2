@@ -291,7 +291,7 @@ body {
   padding: 1rem;
   background-color: var(--color-chat-text-area-bg-color);
   font-family: inherit;
-  color: var(--color-pop-up-component-button-text-color);
+  color: var(--color-chat-feed-header-text-color);
 }
 
 .desktop_form__textarea:focus {
