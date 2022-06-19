@@ -68,7 +68,18 @@ const Registration = () => {
       // });
       navigate('/conversations');
     } catch (err) {
-      setData({ ...data, error: 'Email is already in use', loading: false });
+      // setData({ ...data, error: 'Email is already in use', loading: false });
+      switch (err.message) {
+        case 'Firebase: Error (auth/email-already-in-use).':
+          setData({ ...data, error: 'Email already in use.', loading: false });
+          break;
+        case 'Firebase: Password should be at least 6 characters (auth/weak-password).':
+          setData({ ...data, error: 'Password should be at least 6 characters.', loading: false });
+          break;
+        default:
+          setData({ ...data, error: 'An error occured. Try again.', loading: false });
+          break;
+      }
     }
   };
 
