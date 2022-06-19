@@ -72,11 +72,27 @@ const LogIn = () => {
       // });
       navigate('/conversations');
     } catch (err) {
-      setData({
-        ...data,
-        error: 'Email/password is incorrect',
-        loading: false,
-      });
+      switch (err.message) {
+        case 'Firebase: Error (auth/wrong-password).':
+          setData({
+            ...data,
+            error: 'Email/password is incorrect',
+            loading: false,
+          });
+          break;
+        default:
+          setData({
+            ...data,
+            error: 'An error occured. Try again',
+            loading: false,
+          });
+      }
+      // setData({
+      //   ...data,
+      //   error: err.message,
+      //   loading: false,
+      // });
+      // Firebase: Error (auth/wrong-password).
     }
   };
   return user ? (
