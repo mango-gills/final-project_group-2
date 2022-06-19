@@ -60,15 +60,6 @@ body {
   margin-bottom: 1rem;
 }
 
-p {
-  line-height: 0;
-  font-size: 1.5rem;
-  color: var(--color-pages-subtext-color);
-  text-align: center;
-  margin-bottom: 2.5rem;
-}
-
-
 input[type=text], input[type=email], input[type=password] {
   background-color: var(--color-pages-input-bg-color);
 }
@@ -103,19 +94,20 @@ input[type=text], input[type=email], input[type=password] {
   font-weight: 700;
   font-size: 1.5rem;
   cursor: pointer;
+  margin-bottom: 0;
 }
 
 .error__message {
   text-align: center;
   color: red;
-  margin-bottom: 20px;
+  margin: 10px 0;
 }
 
 .container__text {
   font-size: 1.3rem;
   color: var(--color-pages-subtext-color);
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 .container__backlink {

@@ -58,7 +58,7 @@ const ChatPreview = ({ selectUser, currUser }) => {
       <div className={styles.desktop_chatpreview__wrapper_text}>
         <p className={styles.desktop_text__friendname}>{currUser.name}</p>
         <p className={styles.desktop_text__message}>
-          {/* {messageObject.message} */}
+          {/*Message preview sample*/}
           {/*{`${messageObject.message} ${moment(messageObject.timestamp).fromNow()}`} */}
         </p>
         <div

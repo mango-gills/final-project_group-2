@@ -113,7 +113,7 @@ const LogIn = () => {
             Login
           </button>
           <div className={styles.error__message}>{error}</div>
-          <p>or</p>
+          <p className={styles.container__text}>or</p>
           <GoogleButton style={{ width: 301 }} onClick={handleGoogleSignIn} />
         </form>
         <p className={styles.container__text}>
