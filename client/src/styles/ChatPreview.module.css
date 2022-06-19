@@ -183,6 +183,7 @@ body {
 
 .selected_user {
   background: var(--color-message-theirs)
+  /* background-color: green; */
 }
 
 .chat__text__preview {

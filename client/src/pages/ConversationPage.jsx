@@ -105,7 +105,9 @@ const ConversationPage = () => {
     const user2 = chat.uid;
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
     let url;
-
+    if (text === '' || text.trim() === '') {
+      return;
+    }
     try {
       if (attachImg) {
         const imgRef = ref(

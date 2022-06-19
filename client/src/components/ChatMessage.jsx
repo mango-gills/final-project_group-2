@@ -19,7 +19,11 @@ const ChatMessage = ({ msg, user1, chat, user, stamp }) => {
           <div className={styles.wrapper__media}>
             {msg.media ? <img src={msg.media} alt={msg.text} /> : null}
           </div>
-          <div className={styles.message_user}>{msg.text}</div>
+          {msg.text === '' ? (
+            ''
+          ) : (
+            <div className={styles.message_user}>{msg.text}</div>
+          )}
           <div className={styles.message__avatar_wrapper}>
             <img
               className={styles.message__avatar_image}
