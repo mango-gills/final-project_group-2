@@ -126,7 +126,7 @@ const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
   // Desktop Version
 
   return (
-    <div  id={isDarkMode ? theme.dark : theme.light} className={styles.desktop_container__chat}>
+    <div id={isDarkMode ? theme.dark : theme.light} className={styles.desktop_container__chat}>
       {chat ? (
         <div className={styles.desktop_container_inner__chat}>
           <div className={styles.desktop_wrapper__header}>

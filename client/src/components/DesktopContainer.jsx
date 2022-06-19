@@ -6,6 +6,7 @@ import Settings from './Settings';
 import AddFriend from './AddFriend';
 import ChangePassword from './ChangePassword';
 import UploadAvatar from './UploadAvatar';
+import LogOutModal from './LogoutModal';
 import styles from '../styles/DesktopContainer.module.css';
 import { storage, db, auth } from '../firebase';
 import {
@@ -30,6 +31,7 @@ const DesktopContainer = ({
     showAddFriendComponent,
     showUploadAvatarComponent,
     showChangePasswordComponent,
+    showLogOutModal
   } = useContext(SharedContext);
   const [img, setImg] = useState('');
   const [user, setUser] = useState();
@@ -95,6 +97,7 @@ const DesktopContainer = ({
         ''
       )}
       {showChangePasswordComponent ? <ChangePassword /> : ''}
+      {showLogOutModal ? <LogOutModal /> : ''}
     </div>
   );
 };

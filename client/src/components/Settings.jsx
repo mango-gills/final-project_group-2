@@ -28,6 +28,7 @@ const Settings = ({ user }) => {
     toggleChangePasswordVisibility,
     toggleSettingsVisibility,
     toggleChatFeedVisibility,
+    toggleLogOutModalVisibility
   } = useContext(SharedContext);
 
   //Mobile Version
@@ -124,14 +125,14 @@ const Settings = ({ user }) => {
       </div>
     );
   }
-  const navigate = useNavigate();
-  const handleSignout = async () => {
-    await updateDoc(doc(db, 'users', auth.currentUser.uid), {
-      isOnline: false,
-    });
-    await signOut(auth);
-    navigate('/');
-  };
+  // const navigate = useNavigate();
+  // const handleSignout = async () => {
+  //   await updateDoc(doc(db, 'users', auth.currentUser.uid), {
+  //     isOnline: false,
+  //   });
+  //   await signOut(auth);
+  //   navigate('/');
+  // };
   // Desktop Style
   return (
     <div  id={isDarkMode ? theme.dark : theme.light} className={styles.desktop_container_settings}>
@@ -180,7 +181,7 @@ const Settings = ({ user }) => {
       </div>
       <button
         className={styles.desktop_settings__button_logout}
-        onClick={handleSignout}
+        onClick={() => {toggleLogOutModalVisibility(true)}}
       >
         Logout
       </button>

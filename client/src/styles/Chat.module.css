@@ -178,6 +178,8 @@ body {
 .desktop_friendavatar_image {
   width: 100%;
   border-radius: 50%;
+  aspect-ratio: 1;
+  object-fit: cover;
 }
 
 .desktop_wrapper__friendinfo {
@@ -247,10 +249,10 @@ body {
 
 .desktop_message__avatar_image {
   /* border: 2px solid orange; */
-  aspect-ratio: 1;
-  object-fit: cover;
   width: 100%;
   border-radius: 50%;
+  aspect-ratio: 1;
+  object-fit: cover;
 }
 
 .desktop_message_user {
