@@ -18,7 +18,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: var(--offwhite);
+  background-color: var(--color-pages-bg-color);
 }
 
 .main__section {
@@ -33,6 +33,7 @@
   font-size: 2rem;
   font-weight: 700;
   margin: 10px;
+  color: var(--color-pages-header-color);
 }
 
 .form__registration {
@@ -42,11 +43,11 @@
 }
 
 .form__input {
-  margin: 10px 0;
+  margin: 8px 0;
   padding: 12px 40px;
   border: none;
-  box-shadow: 1px 1px 1px 1px rgba(112, 112, 112, 0.1),
-    -1px 1px 1px 1px rgba(112, 112, 112, 0.1);
+  box-shadow: 1px 1px 1px 1px var(--color-pages-input-shadow-color),
+  -1px 1px 1px 1px var(--color-pages-input-shadow-color);
   border-radius: 0.25rem;
 }
 
@@ -69,7 +70,8 @@
   width: 300px;
   height: 50px;
   margin: 10px 0;
-  background-color: var(--purple);
+  color: var(--color-pages-button-text-color);
+  background-color: var(--color-pages-button-bg-color);
   border: none;
   border-radius: 5rem;
   color: #fff;
@@ -83,19 +85,25 @@
   margin-bottom: 20px;
 }
 .terms__text {
+  margin-top: 1rem;
   width: 300px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-align: center;
-  color: var(--gray);
+  color: var(--color-pages-subtext-color);
 }
 
 .login__text {
   margin-top: 20px;
   font-size: 1.5rem;
-  color: var(--gray);
+  color: var(--color-pages-subtext-color);
 }
 
 .backlink {
   margin-left: 5px;
-  color: var(--purple);
+  color: var(--color-pages-link-color);
+  text-decoration: none;
+}
+
+.backlink:hover {
+border-bottom: 1px solid  var(--color-pages-link-color);
 }
