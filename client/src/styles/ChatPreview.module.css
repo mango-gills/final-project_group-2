@@ -102,6 +102,8 @@ body {
 .desktop_avatar__image {
   width: 100%;
   border-radius: 50%;;
+  aspect-ratio: 1;
+  object-fit: cover;
 }
 
 .desktop_chatpreview__wrapper_text {

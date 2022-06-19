@@ -4,13 +4,13 @@
   box-sizing: border-box;
 }
 
-:root {
+/* :root {
   --purple: #a307d5;
   --darkpurple: #442e4b;
   --gray: #707070;
   --lightgray: rgba(112, 112, 112, 0.65);
   --goldenorange: #e8aa15;
-}
+} */
 
 .main__container {
   display: flex;
