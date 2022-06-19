@@ -14,7 +14,7 @@
   --color-chat-message-friend-text-color: #303030;
   --color-chat-message-user-bg-color: #c158e3;
   --color-chat-message-user-text-color: #f6f6f6;
-  --color-chat-text-area-bg-color: #f3f3f3;
+  --color-chat-text-area-bg-color: #e8e8e8;
   --color-chat-text-area-placeholder-color: #969696;
   --color-chat-button-add-image-bg-color: #a307d5;
   --color-chat-button-add-image-text-color: #f6f6f6;
@@ -34,6 +34,7 @@
   --color-shared-empty-state-link-color: #a307d5;
   --color-pop-up-component-bg-color: #f6f6f6;
   --color-pop-up-component-header-color: #595959;
+  --color-pop-up-component-input-bg-color: #f6f6f6;
   --color-pop-up-component-input-border-color: #a9a9a9;
   --color-pop-up-component-input-placeholder-color: #707070;
   --color-pop-up-component-button-bg-color: #a307d5;
@@ -53,7 +54,7 @@
   --color-chat-header-status-color: #dadada;
   --color-shared-status-indicator-online-color: #00ff66;
   --color-shared-status-indicator-offline-color: #707070;
-  --color-chat-message-friend-bg-color: #4e2959;
+  --color-chat-message-friend-bg-color: #5c3966;
   --color-chat-message-friend-text-color: #f6f6f6;
   --color-chat-message-user-bg-color: #8313a8;
   --color-chat-message-user-text-color: #f6f6f6;
@@ -77,6 +78,7 @@
   --color-shared-empty-state-link-color: #efac54;
   --color-pop-up-component-bg-color: #442e4b;
   --color-pop-up-component-header-color: #f6f6f6;
+  --color-pop-up-component-input-bg-color: #f6f6f6;
   --color-pop-up-component-input-border-color: #a9a9a9;
   --color-pop-up-component-input-placeholder-color: #707070;
   --color-pop-up-component-button-bg-color: #e8aa15;

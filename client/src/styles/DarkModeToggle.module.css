@@ -55,7 +55,7 @@ body {
   height: 1.3rem;
   width: 1.3rem;
   left: 2rem;
-  bottom: .4rem;
+  bottom: 0.35rem;
   background-color: var(--color-settings-darkmode-text-color);
   -webkit-transition: 0.4s;
   transition: 0.4s;
