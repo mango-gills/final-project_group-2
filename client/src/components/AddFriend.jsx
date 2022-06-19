@@ -130,6 +130,7 @@ const AddFriend = () => {
       }
     } else {
       emailNotFound();
+      setChatEmail("");
     }
   };
 
