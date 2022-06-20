@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useContext } from "react";
-import { SharedContext } from "../contexts/SharedContext";
-import defaultProfilePic from "../assets/images-avatars/placeholder_avatar.png";
-import theme from "../styles/globals.module.css";
-import styles from "../styles/Chat.module.css";
-import ChatMessage from "./ChatMessage";
-import EmptyStateImage from "../assets/other-images/empty-state.png";
+import React, { useEffect, useState, useContext } from 'react';
+import { SharedContext } from '../contexts/SharedContext';
+import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
+import theme from '../styles/globals.module.css';
+import styles from '../styles/Chat.module.css';
+import ChatMessage from './ChatMessage';
+import EmptyStateImage from '../assets/other-images/empty-state.png';
 
 const Chat = ({
   previewUrl,
@@ -25,29 +25,13 @@ const Chat = ({
     toggleAddFriendVisibility,
   } = useContext(SharedContext);
 
-  // trying to implement an indicator for attached photos
+  const loggedInUserId = '6AYHXtSfMR';
+  const friendInfo = {
+    name: 'Mango Gills',
+    online: true,
+    avatar: defaultProfilePic,
+  };
 
-  const [photoButtonClicked, togglePhotoButtonClicked] = useState(false);
-  const [showPhotoAddedIndicator, toggleShowPhotoAddedIndicator] =
-    useState(false);
-
-  useEffect(() => {
-    const imageInput = document.querySelector("#image_input");
-
-    if (imageInput === null) {
-      return;
-    }
-
-    if (imageInput[0]?.files.length > 0) {
-      console.log("files attached", imageInput?.files.length);
-      toggleShowPhotoAddedIndicator(true);
-      return;
-    }
-
-    toggleShowPhotoAddedIndicator(false);
-    console.log("files attached", imageInput?.files.length);
-  }, [photoButtonClicked]);
-  // console.log(chat);
   // Mobile Version
   if (isMobile) {
     return (
@@ -90,7 +74,7 @@ const Chat = ({
         <form
           className={styles.mobile_wrapper__form}
           onKeyUp={(e) => {
-            if (e.key === "Enter") {
+            if (e.key === 'Enter') {
               // insert code for accepting message data
             }
           }}
@@ -145,7 +129,7 @@ const Chat = ({
                   }
                 ></span>
                 <span className={styles.desktop_friendinfo__status}>
-                  {chat.isOnline ? "online" : "offline"}
+                  {chat.isOnline ? 'online' : 'offline'}
                 </span>
               </div>
             </div>
@@ -167,36 +151,25 @@ const Chat = ({
             className={styles.desktop_wrapper__form}
             onSubmit={handleSubmit}
           >
-            <div>
-              {previewUrl ? (
-                <div className={styles.wrapper__preview_image}>
-                  <img
-                    className={styles.preview_image}
-                    src={previewUrl}
-                    alt="previewImage"
-                  />
-                </div>
-              ) : null}
-            </div>
-            <textarea
-              className={styles.desktop_form__textarea}
-              type="text"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              placeholder="Start writing your message...."
-            ></textarea>
+            {previewUrl !== '' ? (
+              <div className={styles.desktop_form__textarea}>
+                <img
+                  className={styles.desktop_preview_image}
+                  src={previewUrl}
+                  alt="previewImage"
+                />
+              </div>
+            ) : (
+              <textarea
+                className={styles.desktop_form__textarea}
+                type="text"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                placeholder="Start writing your message...."
+              ></textarea>
+            )}
             <div className={styles.desktop_wrapper_form_buttons}>
-              {/*<button className={styles.desktop_form__button_addphoto} type="button">
-                <img className={styles.desktop_button_addphoto_image} src={addPhotoIcon} />
-            </button>*/}
               <label className={styles.desktop_form__button_addphoto}>
-                {showPhotoAddedIndicator ? (
-                  <span
-                    className={styles.desktop_form__photoadded_indicator}
-                  ></span>
-                ) : (
-                  ""
-                )}
                 <input
                   id="image_input"
                   type="file"
@@ -225,7 +198,7 @@ const Chat = ({
             Select a friend from the left panel to get started!
           </h3>
           <h3 className={styles.desktop_container__empty_state_text}>
-            or{" "}
+            or{' '}
             <span
               className={styles.desktop_container__empty_state_text_addfriend}
               onClick={() => {
