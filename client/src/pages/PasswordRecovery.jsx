@@ -1,4 +1,4 @@
-import  React, { useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { useState } from 'react';
@@ -13,6 +13,7 @@ import Footer from '../components/Footer';
 
 const PasswordRecovery = () => {
   const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
 
   const { user } = useContext(AuthContext);
 
@@ -22,17 +23,27 @@ const PasswordRecovery = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      await forgotPassword(email);
+      setError('');
+      // .then((response) => {
+      // console.log(response);
+      toast('Email sent, check your email', {
+        theme: 'dark',
+      });
 
-    forgotPassword(email)
-      .then((response) => {
-        console.log(response);
-        toast('Email sent, check your email', {
-          theme: 'dark',
-        });
-      })
-      .catch((e) => console.log(e.message));
+      // .catch((err) => console.log(err.message));
+    } catch (err) {
+      switch (err.message) {
+        case 'Firebase: Error (auth/user-not-found).':
+          setError('User not found');
+          break;
+        default:
+          setError('An error occured. Try again');
+      }
+    }
   };
 
   return user ? (
@@ -51,6 +62,7 @@ const PasswordRecovery = () => {
             type="text"
           ></input>
           <button className={styles.form__button}>SUBMIT</button>
+          <div className={styles.error__message}>{error}</div>
         </form>
         <ToastContainer />
         <Link className={styles.backlink} to="/login">
