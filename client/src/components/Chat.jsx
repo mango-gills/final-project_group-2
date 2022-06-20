@@ -6,46 +6,6 @@ import styles from '../styles/Chat.module.css';
 import ChatMessage from './ChatMessage';
 import EmptyStateImage from '../assets/other-images/empty-state.png';
 
-const sampleChatData = [
-  {
-    senderAvatar: defaultProfilePic,
-    senderId: '6AYHXtSfMR',
-    message: 'hello',
-    timestamp: Date(2022, 6, 9, 10, 33, 30, 0).toString(),
-  },
-  {
-    senderAvatar: defaultProfilePic,
-    senderId: '6AYHXtSfMR',
-    message: 'hello',
-    timestamp: Date(2022, 6, 9, 10, 45, 30, 0).toString(),
-  },
-  {
-    senderAvatar: defaultProfilePic,
-    senderId: 'fMTSAEEHmr',
-    message: 'hello',
-    timestamp: Date(2022, 6, 9, 10, 46, 30, 0).toString(),
-  },
-  {
-    senderAvatar: defaultProfilePic,
-    senderId: '6AYHXtSfMR',
-    message: 'hello',
-    timestamp: Date(2022, 6, 9, 10, 50, 30, 0).toString(),
-  },
-  {
-    senderAvatar: defaultProfilePic,
-    senderId: '6AYHXtSfMR',
-    message: 'hello',
-    timestamp: Date(2022, 6, 9, 10, 57, 30, 0).toString(),
-  },
-  {
-    senderAvatar: defaultProfilePic,
-    senderId: 'fMTSAEEHmr',
-    message:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-    timestamp: Date(2022, 6, 9, 10, 46, 30, 0).toString(),
-  },
-];
-
 const Chat = ({
   previewUrl,
   attachImg,
@@ -144,7 +104,10 @@ const Chat = ({
   // Desktop Version
 
   return (
-    <div id={isDarkMode ? theme.dark : theme.light} className={styles.desktop_container__chat}>
+    <div
+      id={isDarkMode ? theme.dark : theme.light}
+      className={styles.desktop_container__chat}
+    >
       {chat ? (
         <div className={styles.desktop_container_inner__chat}>
           <div className={styles.desktop_wrapper__header}>
@@ -159,10 +122,14 @@ const Chat = ({
               <h2 className={styles.desktop_friendInfo_name}>{chat.name}</h2>
               <div className={styles.desktop_wrapper__friendinfo_status}>
                 <span
-                  className={friendInfo.online ? styles.desktop_friendinfo__status_indicator_online : styles.desktop_friendinfo__status_indicator_offline}
+                  className={
+                    chat.isOnline
+                      ? styles.desktop_friendinfo__status_indicator_online
+                      : styles.desktop_friendinfo__status_indicator_offline
+                  }
                 ></span>
                 <span className={styles.desktop_friendinfo__status}>
-                  {friendInfo.online ? 'online' : 'offline'}
+                  {chat.isOnline ? 'online' : 'offline'}
                 </span>
               </div>
             </div>
@@ -180,28 +147,27 @@ const Chat = ({
                 ))
               : null}
           </div>
-          <div>
-            
-          </div>
           <form
             className={styles.desktop_wrapper__form}
             onSubmit={handleSubmit}
           >
-          {previewUrl !== '' ? (
-            <div className={styles.desktop_form__textarea}>
-              <img
-                className={styles.desktop_preview_image}
-                src={previewUrl}
-                alt="previewImage"
-              />
-            </div>
-          ) : <textarea
-          className={styles.desktop_form__textarea}
-          type="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="Start writing your message...."
-        ></textarea>}
+            {previewUrl !== '' ? (
+              <div className={styles.desktop_form__textarea}>
+                <img
+                  className={styles.desktop_preview_image}
+                  src={previewUrl}
+                  alt="previewImage"
+                />
+              </div>
+            ) : (
+              <textarea
+                className={styles.desktop_form__textarea}
+                type="text"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                placeholder="Start writing your message...."
+              ></textarea>
+            )}
             <div className={styles.desktop_wrapper_form_buttons}>
               <label className={styles.desktop_form__button_addphoto}>
                 <input
