@@ -46,9 +46,24 @@ const sampleChatData = [
   },
 ];
 
-const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
-  const { isMobile, isDarkMode, showAddFriendComponent, toggleAddFriendVisibility } =
-    useContext(SharedContext);
+const Chat = ({
+  previewUrl,
+  attachImg,
+  setAttachImg,
+  user,
+  user1,
+  msgs,
+  chat,
+  text,
+  setText,
+  handleSubmit,
+}) => {
+  const {
+    isMobile,
+    isDarkMode,
+    showAddFriendComponent,
+    toggleAddFriendVisibility,
+  } = useContext(SharedContext);
 
   const loggedInUserId = '6AYHXtSfMR';
   const friendInfo = {
@@ -56,6 +71,29 @@ const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
     online: true,
     avatar: defaultProfilePic,
   };
+
+  // trying to implement an indicator for attached photos
+
+  const [photoButtonClicked, togglePhotoButtonClicked] = useState(false);
+  const [showPhotoAddedIndicator, toggleShowPhotoAddedIndicator] =
+    useState(false);
+
+  useEffect(() => {
+    const imageInput = document.querySelector('#image_input');
+
+    if (imageInput === null) {
+      return;
+    }
+
+    if (imageInput[0]?.files.length > 0) {
+      console.log('files attached', imageInput?.files.length);
+      toggleShowPhotoAddedIndicator(true);
+      return;
+    }
+
+    toggleShowPhotoAddedIndicator(false);
+    console.log('files attached', imageInput?.files.length);
+  }, [photoButtonClicked]);
 
   // Mobile Version
   if (isMobile) {
@@ -110,6 +148,9 @@ const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
               type="file"
               accept="image/*"
               className={styles.mobile_button_addphoto_input}
+              onChange={() => {
+                togglePhotoButtonClicked(!photoButtonClicked);
+              }}
             />
           </label>
           <textarea
@@ -133,7 +174,7 @@ const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
             <div className={styles.desktop_wrapper__friendavatar}>
               <img
                 className={styles.desktop_friendavatar_image}
-                src={chat.avatar || defaultProfilePic}
+                src={chat?.avatar || defaultProfilePic}
                 alt=""
               />
             </div>
@@ -166,6 +207,17 @@ const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
             className={styles.desktop_wrapper__form}
             onSubmit={handleSubmit}
           >
+            <div>
+              {previewUrl ? (
+                <div className={styles.wrapper__preview_image}>
+                  <img
+                    className={styles.preview_image}
+                    src={previewUrl}
+                    alt="previewImage"
+                  />
+                </div>
+              ) : null}
+            </div>
             <textarea
               className={styles.desktop_form__textarea}
               type="text"
@@ -174,12 +226,23 @@ const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
               placeholder="Start writing your message...."
             ></textarea>
             <div className={styles.desktop_wrapper_form_buttons}>
+              {/*<button className={styles.desktop_form__button_addphoto} type="button">
+                <img className={styles.desktop_button_addphoto_image} src={addPhotoIcon} />
+            </button>*/}
               <label className={styles.desktop_form__button_addphoto}>
+                {showPhotoAddedIndicator ? (
+                  <span
+                    className={styles.desktop_form__photoadded_indicator}
+                  ></span>
+                ) : (
+                  ''
+                )}
                 <input
                   id="image_input"
                   type="file"
                   accept="image/*"
                   className={styles.desktop_button_addphoto_input}
+                  onChange={(e) => setAttachImg(e.target.files[0])}
                 />
               </label>
               <button
@@ -215,7 +278,6 @@ const Chat = ({ user, user1, msgs, chat, text, setText, handleSubmit }) => {
         </div>
       )}
     </div>
-
   );
 };
 
