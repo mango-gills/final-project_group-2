@@ -75,42 +75,37 @@ const ChatPreview = ({ chat, user1, selectUser, currUser, user }) => {
           className={styles.desktop_avatar__image}
           src={currUser.avatar || defaultProfilePic}
         />
-      </div>
-      <div className={styles.desktop_chatpreview__wrapper_text}>
-        <p className={styles.desktop_text__friendname}>{currUser.name}</p>
-        {data?.from !== user1 && data?.unread && (
-          <p>
-            <strong>New!</strong>
-          </p>
-        )}
         {currUser.isOnline ? (
           <span className={styles.user_status_online}></span>
         ) : (
           <span className={styles.user_status_offline}></span>
         )}
-
       </div>
-      <div className={styles.desktop_chat_text_preview}>
-        {data && (
-          <p className={styles.desktop_text__message}>
-            {data.from === user1 ? <strong>Me: </strong> : null}
-            {data.media !== '' && data.from === user1
-              ? 'Sent a Photo.'
-              : data.text}
-          </p>
+      <div className={styles.desktop_chatpreview__wrapper_text}>
+        <div className={styles.desktop_text__friendname}>
+          {currUser.name}
+          {data?.from !== user1 && data?.unread && (
+            <span className={styles.desktop_new_message_notif}> NEW</span>
+          )}
+        </div>
+        <div className={styles.desktop_chat_text_preview}>
+          {data && (
+            <p className={styles.desktop_text__message}>
+              {data.from === user1 ? <strong>Me: </strong> : null}
+              {data.media !== '' && data.from === user1
+                ? 'Sent a Photo.'
+                : data.text}
+            </p>
+          )}
+        </div>
+        {data ? (
+          <div className={styles.desktop_timestamp}>
+            {moment(data.createdAt.toDate()).fromNow()}
+          </div>
+        ) : (
+          ''
         )}
       </div>
-      {data ? (
-        <div className={styles.desktop_timestamp}>
-          {moment(data.createdAt.toDate()).fromNow()}
-        </div>
-      ) : (
-        ''
-      )}
-
-      {/* <div className={styles.desktop_timestamp}>
-        moment(messageObject.timestamp).fromNow()
-        </div> */}
     </div>
   );
 };
