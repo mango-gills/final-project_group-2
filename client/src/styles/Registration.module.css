@@ -27,9 +27,11 @@
 }
 
 .main__container {
-  height: 100vh;
+  min-height: 100vh;
   background-color: var(--offwhite);
   width: 100%;
+  position: relative;
+  padding-bottom: 60px;
 }
 
 .main__section {

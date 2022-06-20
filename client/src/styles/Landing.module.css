@@ -27,7 +27,7 @@
 
 .main__container {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-color: var(--offwhite);
 }
 
@@ -54,6 +54,7 @@
 .section__logo {
   width: 65%;
   position: relative;
+  padding-bottom: 60px;
 }
 
 .section__logo__container {
@@ -86,7 +87,6 @@
   padding: 5px 30px;
   text-align: center;
   font-size: 1.8rem;
-
   background-color: var(--goldenorange);
   border-radius: 20px;
 }
