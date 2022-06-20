@@ -32,23 +32,31 @@ const PasswordReset = () => {
   // console.log(query.get('continueUrl'));
 
   const [newPassword, setNewPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleChange = async (e) => {
     e.preventDefault();
+    try {
+      await resetPassword(query.get('oobCode'), newPassword);
 
-    await resetPassword(query.get('oobCode'), newPassword)
-      .then(
-        toast('Password Has been changed', {
-          theme: 'dark',
-          autoClose: 3000,
-        })
-      )
-      .catch((err) => console.log(err.message));
-    setTimeout(() => {
-      navigate('/login');
-    }, 3000);
+      toast('Password Has been changed', {
+        theme: 'dark',
+        autoClose: 3000,
+      });
+
+      setTimeout(() => {
+        navigate('/login');
+      }, 3000);
+    } catch (err) {
+      switch (err.message) {
+        case 'Firebase: Password should be at least 6 characters (auth/weak-password).':
+          setError('Password must be atleast 6 characters');
+          break;
+        default:
+          setError('An error occured');
+      }
+    }
   };
-
   return user ? (
     <Navigate to="/conversations" />
   ) : (
@@ -72,6 +80,7 @@ const PasswordReset = () => {
           ></input>
           <button className={styles.form__button}>SUBMIT</button>
           <ToastContainer />
+          <div className={styles.error__message}>{error}</div>
         </form>
 
         <Link className={styles.backlink} to="/login">
