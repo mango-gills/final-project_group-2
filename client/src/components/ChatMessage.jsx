@@ -44,7 +44,7 @@ const ChatMessage = ({ msg, user1, chat, user }) => {
             />
           </div>
           {msg.media ? <img src={msg.media} alt={msg.text} /> : null}
-          <div className={styles.desktop_message_friend}>{msg.text}</div>
+          {msg.text === '' ? '' : <div className={styles.desktop_message_friend}>{msg.text}</div> }
         </div>
       )}
     </div>
