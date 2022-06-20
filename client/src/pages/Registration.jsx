@@ -93,7 +93,26 @@ const Registration = () => {
       });
       navigate('/conversations');
     } catch (err) {
-      setData({ ...data, error: err.message, loading: false });
+      // setData({ ...data, error: 'Email is already in use', loading: false });
+      switch (err.message) {
+        case 'Firebase: Error (auth/email-already-in-use).':
+          setData({ ...data, error: 'Email already in use.', loading: false });
+          break;
+        case 'Firebase: Password should be at least 6 characters (auth/weak-password).':
+          setData({
+            ...data,
+            error: 'Password should be at least 6 characters.',
+            loading: false,
+          });
+          break;
+        default:
+          setData({
+            ...data,
+            error: 'An error occured. Try again.',
+            loading: false,
+          });
+          break;
+      }
     }
 
     // .then((re) => {
@@ -146,14 +165,12 @@ const Registration = () => {
             value={confirmpassword}
             onChange={handleChange}
           ></input>
-          <br></br>
 
           <button className={styles.form__button}>SIGNUP</button>
           <div className={styles.error__message}>{error}</div>
-          <p>Or</p>
+          <p className={styles.or__text}>OR</p>
           <GoogleButton style={{ width: 301 }} onClick={handleGoogleSignIn} />
         </form>
-        <br></br>
         <div className={styles.terms__text}>
           By continuing, you agree to accept our Privacy Policy and Terms of
           service.

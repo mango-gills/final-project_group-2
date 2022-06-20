@@ -121,13 +121,11 @@ const LogIn = () => {
             value={password}
             onChange={handleChange}
           />
-
-          <br></br>
           <button className={styles.form__button} type="submit">
             Login
           </button>
           <div className={styles.error__message}>{error}</div>
-          <p>Or</p>
+          <p className={styles.or__text}>OR</p>
           <GoogleButton style={{ width: 301 }} onClick={handleGoogleSignIn} />
         </form>
         <p className={styles.container__text}>

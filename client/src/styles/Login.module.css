@@ -111,6 +111,7 @@ p {
 }
 
 .form__button {
+  margin: 40px 0 10px;
   font-family: 'Open Sans';
   border: none;
   border-radius: 5rem;

@@ -13,12 +13,19 @@
   --darkpurple: #442e4b;
   --gray: #707070;
   --lightgray: rgba(112, 112, 112, 0.65);
-  --goldenorange: #e8aa15;
+  --goldenorange: #efac54;
   --offwhite: #f9effc;
 }
 
-.main__container {
+.main__container,
+.section__image,
+.image,
+.section__logo,
+.section__logo__container {
   display: flex;
+}
+
+.main__container {
   width: 100%;
   height: 100vh;
   background-color: var(--offwhite);
@@ -27,31 +34,29 @@
 /* IMAGE SECTION */
 
 .section__image {
-  display: flex;
   background-color: var(--purple);
   width: 35%;
 }
 .image {
-  display: flex;
   margin-left: 100px;
   width: 100%;
 }
 
 /* LOGO SECTION */
-.section__logo {
-  width: 65%;
-  display: flex;
+
+.section__logo,
+.section__logo__container {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.section__logo {
+  width: 65%;
   position: relative;
 }
 
 .section__logo__container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
 }
 
