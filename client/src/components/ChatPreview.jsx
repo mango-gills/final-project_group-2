@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
-import { SharedContext } from "../contexts/SharedContext";
-import moment from "moment";
-import theme from "../styles/globals.module.css";
-import styles from "../styles/ChatPreview.module.css";
-import defaultProfilePic from "../assets/images-avatars/placeholder_avatar.png";
-import { onSnapshot, doc } from "firebase/firestore";
-import { db } from "../firebase";
+import React, { useContext, useEffect, useState } from 'react';
+import { SharedContext } from '../contexts/SharedContext';
+import moment from 'moment';
+import theme from '../styles/globals.module.css';
+import styles from '../styles/ChatPreview.module.css';
+import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
+import { onSnapshot, doc } from 'firebase/firestore';
+import { db } from '../firebase';
 
 const ChatPreview = ({ chat, user1, selectUser, currUser, user }) => {
   const {
@@ -15,10 +15,10 @@ const ChatPreview = ({ chat, user1, selectUser, currUser, user }) => {
     toggleChatFeedVisibility,
   } = useContext(SharedContext);
   const user2 = currUser?.uid;
-  const [data, setData] = useState("");
+  const [data, setData] = useState('');
   useEffect(() => {
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
-    let unsub = onSnapshot(doc(db, "lastMsg", id), (doc) => {
+    let unsub = onSnapshot(doc(db, 'lastMsg', id), (doc) => {
       setData(doc.data());
     });
 
@@ -28,7 +28,7 @@ const ChatPreview = ({ chat, user1, selectUser, currUser, user }) => {
   // console.log(currUser);
 
   const selectedUser =
-    chat?.uid === currUser.uid ? styles.desktop_selected_user : "";
+    chat?.uid === currUser.uid ? styles.desktop_selected_user : '';
 
   // MOBILE STYLES
   if (isMobile) {
@@ -92,9 +92,7 @@ const ChatPreview = ({ chat, user1, selectUser, currUser, user }) => {
           {data && (
             <p className={styles.desktop_text__message}>
               {data.from === user1 ? <strong>Me: </strong> : null}
-              {data.media !== "" && data.from === user1
-                ? "Sent a Photo."
-                : data.text}
+              {data.media !== '' ? 'Sent a Photo.' : data.text}
             </p>
           )}
         </div>
@@ -103,7 +101,7 @@ const ChatPreview = ({ chat, user1, selectUser, currUser, user }) => {
             {moment(data.createdAt.toDate()).fromNow()}
           </div>
         ) : (
-          ""
+          ''
         )}
       </div>
     </div>
