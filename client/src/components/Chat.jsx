@@ -72,29 +72,6 @@ const Chat = ({
     avatar: defaultProfilePic,
   };
 
-  // trying to implement an indicator for attached photos
-
-  const [photoButtonClicked, togglePhotoButtonClicked] = useState(false);
-  const [showPhotoAddedIndicator, toggleShowPhotoAddedIndicator] =
-    useState(false);
-
-  useEffect(() => {
-    const imageInput = document.querySelector('#image_input');
-
-    if (imageInput === null) {
-      return;
-    }
-
-    if (imageInput[0]?.files.length > 0) {
-      console.log('files attached', imageInput?.files.length);
-      toggleShowPhotoAddedIndicator(true);
-      return;
-    }
-
-    toggleShowPhotoAddedIndicator(false);
-    console.log('files attached', imageInput?.files.length);
-  }, [photoButtonClicked]);
-
   // Mobile Version
   if (isMobile) {
     return (
@@ -203,40 +180,30 @@ const Chat = ({
                 ))
               : null}
           </div>
+          <div>
+            
+          </div>
           <form
             className={styles.desktop_wrapper__form}
             onSubmit={handleSubmit}
           >
-            <div>
-              {previewUrl ? (
-                <div className={styles.wrapper__preview_image}>
-                  <img
-                    className={styles.preview_image}
-                    src={previewUrl}
-                    alt="previewImage"
-                  />
-                </div>
-              ) : null}
+          {previewUrl !== '' ? (
+            <div className={styles.desktop_form__textarea}>
+              <img
+                className={styles.desktop_preview_image}
+                src={previewUrl}
+                alt="previewImage"
+              />
             </div>
-            <textarea
-              className={styles.desktop_form__textarea}
-              type="text"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              placeholder="Start writing your message...."
-            ></textarea>
+          ) : <textarea
+          className={styles.desktop_form__textarea}
+          type="text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder="Start writing your message...."
+        ></textarea>}
             <div className={styles.desktop_wrapper_form_buttons}>
-              {/*<button className={styles.desktop_form__button_addphoto} type="button">
-                <img className={styles.desktop_button_addphoto_image} src={addPhotoIcon} />
-            </button>*/}
               <label className={styles.desktop_form__button_addphoto}>
-                {showPhotoAddedIndicator ? (
-                  <span
-                    className={styles.desktop_form__photoadded_indicator}
-                  ></span>
-                ) : (
-                  ''
-                )}
                 <input
                   id="image_input"
                   type="file"

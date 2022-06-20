@@ -219,7 +219,7 @@ body {
 
 .desktop_wrapper__messages {
   /* border: 2px solid cyan; */
-  padding: 0 2rem;
+  padding: 0 1.5rem 0 2rem;
   flex-grow: 1;
   overflow-y: scroll;
   scrollbar-width: thin;
@@ -410,4 +410,13 @@ body {
   color: var(--color-shared-empty-state-link-color);
   cursor: pointer;
   border-bottom: 2px solid var(--color-shared-empty-state-link-color);
+}
+
+.desktop_wrapper__preview_image {
+  border: 1px solid red;
+  padding: 1rem 0;
+}
+
+.desktop_preview_image {
+
 }
