@@ -25,7 +25,7 @@ const ChatPreview = ({ chat, user1, selectUser, currUser, user }) => {
     return () => unsub;
   }, []);
 
-  // console.log(chat?.uid);
+  console.log(currUser);
 
   const selectedUser =
     chat?.uid === currUser.uid ? styles.desktop_selected_user : '';
@@ -88,7 +88,6 @@ const ChatPreview = ({ chat, user1, selectUser, currUser, user }) => {
         ) : (
           <span className={styles.user_status_offline}></span>
         )}
-
       </div>
       <div className={styles.desktop_chat_text_preview}>
         {data && (
