@@ -1,72 +1,25 @@
-import React, { useState, useContext } from 'react';
-import { SharedContext } from '../contexts/SharedContext';
-import ChatPreview from './ChatPreview';
-import theme from '../styles/globals.module.css';
-import styles from '../styles/ChatFeed.module.css';
-import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
+import React, { useEffect, useState, useContext } from "react";
+import { SharedContext } from "../contexts/SharedContext";
+import ChatPreview from "./ChatPreview";
+import theme from "../styles/globals.module.css";
+import styles from "../styles/ChatFeed.module.css";
+import defaultProfilePic from "../assets/images-avatars/placeholder_avatar.png";
 
-const sampleData2 = [
-  {
-    senderAvatar: defaultProfilePic,
-    senderName: 'Ana de Armas',
-    message: 'hello',
-    timestamp: new Date(2022, 5, 10, 10, 33, 30, 0),
-  },
-  {
-    senderAvatar: defaultProfilePic,
-    senderName: 'Ryan Gosling',
-    message: 'Word words words words words words words words words',
-    timestamp: new Date(2022, 5, 10, 10, 35, 30, 0),
-  },
-  {
-    senderAvatar: defaultProfilePic,
-    senderName: 'Ana de Armas',
-    message: 'hello',
-    timestamp: new Date(2022, 5, 10, 10, 33, 30, 0),
-  },
-  {
-    senderAvatar: defaultProfilePic,
-    senderName: 'Ana de Armas',
-    message: 'hello',
-    timestamp: new Date(2022, 5, 10, 10, 33, 30, 0),
-  },
-  {
-    senderAvatar: defaultProfilePic,
-    senderName: 'Ana de Armas',
-    message: 'hello',
-    timestamp: new Date(2022, 5, 10, 10, 33, 30, 0),
-  },
-  {
-    senderAvatar: defaultProfilePic,
-    senderName: 'Ana de Armas',
-    message: 'hello',
-    timestamp: new Date(2022, 5, 10, 10, 33, 30, 0),
-  },
-  {
-    senderAvatar: defaultProfilePic,
-    senderName: 'Ryan Gosling',
-    message: 'Word words words words words words words words words',
-    timestamp: new Date(2022, 5, 10, 10, 35, 30, 0),
-  },
-  {
-    senderAvatar: defaultProfilePic,
-    senderName: 'Ana de Armas',
-    message: 'hello',
-    timestamp: new Date(2022, 5, 10, 10, 33, 30, 0),
-  },
-  {
-    senderAvatar: defaultProfilePic,
-    senderName: 'Ana de Armas',
-    message: 'hello',
-    timestamp: new Date(2022, 5, 10, 10, 33, 30, 0),
-  },
-  {
-    senderAvatar: defaultProfilePic,
-    senderName: 'Ana de Armas',
-    message: 'hello',
-    timestamp: new Date(2022, 5, 10, 10, 33, 30, 0),
-  },
-];
+import { db, auth } from "../firebase";
+import { useCollection } from "react-firebase-hooks/firestore";
+import {
+  collection,
+  query,
+  where,
+  onSnapshot,
+  addDoc,
+  Timestamp,
+  orderBy,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 
 const ChatFeed = ({ user, chat, user1, selectUser, users }) => {
   const {
@@ -75,6 +28,67 @@ const ChatFeed = ({ user, chat, user1, selectUser, users }) => {
     showAddFriendComponent,
     toggleAddFriendVisibility,
   } = useContext(SharedContext);
+
+  const [usersData, setUsersData] = useState([]);
+  const [friendsData, setFriendsData] = useState([]);
+  const loggedUser = auth.currentUser.uid;
+
+  const getUsersData = () => {
+    const usersRef = collection(db, "users");
+    // const friendsRef = collection(db, "friends/friend", loggedUser);
+    const q = query(
+      usersRef,
+      where("uid", "not-in", [auth.currentUser.uid], [user1])
+    );
+    onSnapshot(q, (querySnapshot) => {
+      let users = [];
+      querySnapshot.forEach((doc) => {
+        users.push(doc.data());
+      });
+      setUsersData(users);
+    });
+  };
+  // friends data
+  const getFriendsData = () => {
+    const friendsRef = collection(db, "friends/friend", loggedUser);
+    const q = query(
+      friendsRef,
+      where("uid", "not-in", [auth.currentUser.uid], [user1])
+    );
+    const unsub = onSnapshot(q, (querySnapshot) => {
+      let users = [];
+      querySnapshot.forEach((doc) => {
+        users.push(doc.data());
+      });
+      setFriendsData(users);
+    });
+  };
+
+  // console.log("users: ", usersData);
+  // console.log("friends: ", friendsData);
+
+  friendsData?.map((friend) => {
+    const c = usersData?.find((chat) => friend.email === chat.email);
+    const {
+      uid,
+      isOnline,
+      avatarPath = "avatar/placeholder_avatar.png",
+      avatar = "https://firebasestorage.googleapis.com/v0/b/chat-app-official-9f0ee.appspot.com/o/avatar%2Fplaceholder_avatar.png?alt=media&token=97695394-a2cd-48d7-8391-261430cd4769",
+    } = c;
+
+    setTimeout(async () => {
+      await updateDoc(doc(db, `friends/friend/${loggedUser}/${uid}/`), {
+        isOnline,
+        avatarPath,
+        avatar,
+      });
+    }, 1500);
+  });
+
+  useEffect(() => {
+    getUsersData();
+    getFriendsData();
+  }, []);
 
   // MOBILE VERSION
   if (isMobile) {

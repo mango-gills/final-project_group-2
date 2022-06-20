@@ -1,50 +1,10 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { SharedContext } from '../contexts/SharedContext';
-import defaultProfilePic from '../assets/images-avatars/placeholder_avatar.png';
-import theme from '../styles/globals.module.css';
-import styles from '../styles/Chat.module.css';
-import ChatMessage from './ChatMessage';
-import EmptyStateImage from '../assets/other-images/empty-state.png';
-
-const sampleChatData = [
-  {
-    senderAvatar: defaultProfilePic,
-    senderId: '6AYHXtSfMR',
-    message: 'hello',
-    timestamp: Date(2022, 6, 9, 10, 33, 30, 0).toString(),
-  },
-  {
-    senderAvatar: defaultProfilePic,
-    senderId: '6AYHXtSfMR',
-    message: 'hello',
-    timestamp: Date(2022, 6, 9, 10, 45, 30, 0).toString(),
-  },
-  {
-    senderAvatar: defaultProfilePic,
-    senderId: 'fMTSAEEHmr',
-    message: 'hello',
-    timestamp: Date(2022, 6, 9, 10, 46, 30, 0).toString(),
-  },
-  {
-    senderAvatar: defaultProfilePic,
-    senderId: '6AYHXtSfMR',
-    message: 'hello',
-    timestamp: Date(2022, 6, 9, 10, 50, 30, 0).toString(),
-  },
-  {
-    senderAvatar: defaultProfilePic,
-    senderId: '6AYHXtSfMR',
-    message: 'hello',
-    timestamp: Date(2022, 6, 9, 10, 57, 30, 0).toString(),
-  },
-  {
-    senderAvatar: defaultProfilePic,
-    senderId: 'fMTSAEEHmr',
-    message:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-    timestamp: Date(2022, 6, 9, 10, 46, 30, 0).toString(),
-  },
-];
+import React, { useEffect, useState, useContext } from "react";
+import { SharedContext } from "../contexts/SharedContext";
+import defaultProfilePic from "../assets/images-avatars/placeholder_avatar.png";
+import theme from "../styles/globals.module.css";
+import styles from "../styles/Chat.module.css";
+import ChatMessage from "./ChatMessage";
+import EmptyStateImage from "../assets/other-images/empty-state.png";
 
 const Chat = ({
   previewUrl,
@@ -65,13 +25,6 @@ const Chat = ({
     toggleAddFriendVisibility,
   } = useContext(SharedContext);
 
-  const loggedInUserId = '6AYHXtSfMR';
-  const friendInfo = {
-    name: 'Mango Gills',
-    online: true,
-    avatar: defaultProfilePic,
-  };
-
   // trying to implement an indicator for attached photos
 
   const [photoButtonClicked, togglePhotoButtonClicked] = useState(false);
@@ -79,20 +32,20 @@ const Chat = ({
     useState(false);
 
   useEffect(() => {
-    const imageInput = document.querySelector('#image_input');
+    const imageInput = document.querySelector("#image_input");
 
     if (imageInput === null) {
       return;
     }
 
     if (imageInput[0]?.files.length > 0) {
-      console.log('files attached', imageInput?.files.length);
+      console.log("files attached", imageInput?.files.length);
       toggleShowPhotoAddedIndicator(true);
       return;
     }
 
     toggleShowPhotoAddedIndicator(false);
-    console.log('files attached', imageInput?.files.length);
+    console.log("files attached", imageInput?.files.length);
   }, [photoButtonClicked]);
   // console.log(chat);
   // Mobile Version
@@ -137,7 +90,7 @@ const Chat = ({
         <form
           className={styles.mobile_wrapper__form}
           onKeyUp={(e) => {
-            if (e.key === 'Enter') {
+            if (e.key === "Enter") {
               // insert code for accepting message data
             }
           }}
@@ -192,7 +145,7 @@ const Chat = ({
                   }
                 ></span>
                 <span className={styles.desktop_friendinfo__status}>
-                  {chat.isOnline ? 'online' : 'offline'}
+                  {chat.isOnline ? "online" : "offline"}
                 </span>
               </div>
             </div>
@@ -242,7 +195,7 @@ const Chat = ({
                     className={styles.desktop_form__photoadded_indicator}
                   ></span>
                 ) : (
-                  ''
+                  ""
                 )}
                 <input
                   id="image_input"
@@ -272,7 +225,7 @@ const Chat = ({
             Select a friend from the left panel to get started!
           </h3>
           <h3 className={styles.desktop_container__empty_state_text}>
-            or{' '}
+            or{" "}
             <span
               className={styles.desktop_container__empty_state_text_addfriend}
               onClick={() => {
