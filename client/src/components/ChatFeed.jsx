@@ -69,13 +69,13 @@ const ChatFeed = ({ user, chat, user1, selectUser, users }) => {
 
   friendsData?.map((friend) => {
     const c = usersData?.find((chat) => friend.email === chat.email);
-    
+
     if (c !== undefined) {
       const {
         uid,
         isOnline,
         avatarPath = "avatar/placeholder_avatar.png",
-        avatar = "https://firebasestorage.googleapis.com/v0/b/chat-app-official-9f0ee.appspot.com/o/avatar%2Fplaceholder_avatar.png?alt=media&token=97695394-a2cd-48d7-8391-261430cd4769",
+        avatar = "https://firebasestorage.googleapis.com/v0/b/chat-app-official-2.appspot.com/o/avatar%2Fplaceholder_avatar.png?alt=media&token=dfd00e04-3e8c-4492-bbda-d45b78e344b2",
       } = c;
       setTimeout(async () => {
         await updateDoc(doc(db, `friends/friend/${loggedUser}/${uid}/`), {
