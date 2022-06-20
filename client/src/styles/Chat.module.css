@@ -412,11 +412,6 @@ body {
   border-bottom: 2px solid var(--color-shared-empty-state-link-color);
 }
 
-.desktop_wrapper__preview_image {
-  border: 1px solid red;
-  padding: 1rem 0;
-}
-
-.desktop_preview_image {
-
+.desktop_message_media {
+  width: 30rem;
 }
