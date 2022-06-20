@@ -106,7 +106,7 @@ const LogIn = () => {
         </p>
         <form className={styles.container__form} onSubmit={handleSubmit}>
           <input
-            className={styles.form__input__email}
+            className={`${styles.form__input} ${styles.email}`}
             type="email"
             name="email"
             placeholder="Email"
@@ -114,7 +114,7 @@ const LogIn = () => {
             onChange={handleChange}
           />
           <input
-            className={styles.form__input__password}
+            className={`${styles.form__input} ${styles.password}`}
             type="password"
             name="password"
             placeholder="Password"
