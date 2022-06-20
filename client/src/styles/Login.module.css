@@ -32,13 +32,12 @@ body {
 .section__container {
   width: 70%;
   margin: 0 auto;
-  margin-top: 5rem;
 }
 
 .container__heading {
   font-size: 3rem;
   color: var(--color-pages-header-color);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .container__subheading {
