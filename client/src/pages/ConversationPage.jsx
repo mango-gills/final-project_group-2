@@ -178,7 +178,7 @@ const ConversationPage = () => {
       console.log(error.message);
     }
     await setDoc(doc(db, 'lastMsg', id), {
-      // text,
+      text,
       from: user1,
       to: user2,
       createdAt: Timestamp.fromDate(new Date()),
