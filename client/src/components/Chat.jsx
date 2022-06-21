@@ -28,11 +28,18 @@ const Chat = ({
   const [msgsCopy, setMsgsCopy] = useState([]);
 
   useEffect(() => {
+    if (msgsCopy[0]?.to === chosenUser || msgsCopy[0]?.from === chosenUser) {
+      return;
+    } else {
+      setMsgsCopy([]);
+    }
+  }, [chosenUser]);
+
+  useEffect(() => {
     if (msgs[0]?.to === chosenUser || msgs[0]?.from === chosenUser) {
       setMsgsCopy([...msgs]);
     }
-  }, [msgs])
-  
+  }, [msgs]);
 
   const loggedInUserId = '6AYHXtSfMR';
   const friendInfo = {
