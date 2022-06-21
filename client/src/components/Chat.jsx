@@ -149,7 +149,7 @@ const Chat = ({
           </div>
           <div className={styles.desktop_wrapper__messages}>
             {msgsCopy.length
-              ? msgsCopy.map((msg, i) => (
+              ? msgsCopy.map((msg) => (
                   <ChatMessage
                     key={generateKey()}
                     msg={msg}
