@@ -69,8 +69,30 @@ const Registration = () => {
       //   loading: false,
       // });
       navigate('/conversations');
+      // } catch (err) {
+      //   setData({ ...data, error: 'Email is already in use', loading: false });
+      // }
     } catch (err) {
-      setData({ ...data, error: 'Email is already in use', loading: false });
+      // setData({ ...data, error: 'Email is already in use', loading: false });
+      switch (err.message) {
+        case 'Firebase: Error (auth/email-already-in-use).':
+          setData({ ...data, error: 'Email already in use.', loading: false });
+          break;
+        case 'Firebase: Password should be at least 6 characters (auth/weak-password).':
+          setData({
+            ...data,
+            error: 'Password should be at least 6 characters.',
+            loading: false,
+          });
+          break;
+        default:
+          setData({
+            ...data,
+            error: 'An error occured. Try again.',
+            loading: false,
+          });
+          break;
+      }
     }
   };
 
@@ -97,17 +119,14 @@ const Registration = () => {
     } catch (err) {
       setData({ ...data, error: err.message, loading: false });
     }
-
-    // .then((re) => {
-    //   const name = re.user.displayName;
-    //   const email = re.user.email;
-    //   console.log(re.user.photoURL);
-    // })
   };
   return user ? (
     <Navigate to="/login" />
   ) : (
-    <main id={isDarkMode? theme.dark : theme.light} className={styles.main__container}>
+    <main
+      id={isDarkMode ? theme.dark : theme.light}
+      className={styles.main__container}
+    >
       <section className={styles.main__section}>
         <div className={styles.heading__container}>
           <div className={styles.heading}>Create an account</div>
@@ -149,14 +168,11 @@ const Registration = () => {
             value={confirmpassword}
             onChange={handleChange}
           ></input>
-          <br></br>
-
           <button className={styles.form__button}>SIGNUP</button>
           <div className={styles.error__message}>{error}</div>
-          <p>Or</p>
+          <p className={styles.container__text}>Or</p>
           <GoogleButton style={{ width: 301 }} onClick={handleGoogleSignIn} />
         </form>
-        <br></br>
         <div className={styles.terms__text}>
           By continuing, you agree to accept our Privacy Policy and Terms of
           service.

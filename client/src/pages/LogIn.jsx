@@ -66,19 +66,23 @@ const LogIn = () => {
       await updateDoc(doc(db, 'users', result.user.uid), {
         isOnline: true,
       });
-      // setData({
-      //   email: '',
-      //   password: '',
-      //   error: null,
-      //   loading: false,
-      // });
       navigate('/conversations');
     } catch (err) {
-      setData({
-        ...data,
-        error: 'Email/password is incorrect',
-        loading: false,
-      });
+      switch (err.message) {
+        case 'Firebase: Error (auth/wrong-password).':
+          setData({
+            ...data,
+            error: 'Email/password is incorrect',
+            loading: false,
+          });
+          break;
+        default:
+          setData({
+            ...data,
+            error: 'An error occured. Try again',
+            loading: false,
+          });
+      }
     }
   };
   return user ? (
