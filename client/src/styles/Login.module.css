@@ -21,12 +21,14 @@ body {
 
 .section {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: var(--color-pages-bg-color);
+  position: relative;
+  padding-bottom: 60px;
 }
 
 .section__container {
@@ -59,15 +61,18 @@ body {
   margin-bottom: 1rem;
 }
 
-input[type=text], input[type=email], input[type=password] {
+input[type='text'],
+input[type='email'],
+input[type='password'] {
   background-color: var(--color-pages-input-bg-color);
 }
 
-.form__input__email, .form__input__password {
+.form__input__email,
+.form__input__password {
   border-radius: 0.25rem;
   border: none;
   box-shadow: 1px 1px 1px 1px var(--color-pages-input-shadow-color),
-  -1px 1px 1px 1px var(--color-pages-input-shadow-color);
+    -1px 1px 1px 1px var(--color-pages-input-shadow-color);
   padding: 1rem 0 1rem 4rem;
   /* background-color: var(--color-pages-input-bg-color); */
 }

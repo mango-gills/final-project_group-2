@@ -9,11 +9,12 @@
 }
 
 .footer {
+  height: 20px;
   width: 100%;
   text-align: center;
   color: var(--color-pages-link-color);
   font-weight: 600;
   font-size: 1.4rem;
-  position: fixed;
+  position: absolute;
   bottom: 20px;
 }

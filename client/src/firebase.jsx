@@ -1,7 +1,7 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 
 // const firebaseConfig = {
 //   apiKey: 'AIzaSyCL_YZK7Tap-kz9MvlJuoAsEC6VpqNl7U0',
@@ -13,14 +13,23 @@ import { getStorage } from "firebase/storage";
 //   measurementId: 'G-QDG1CZ0LNM',
 // };
 
+// const firebaseConfig = {
+//   apiKey: "AIzaSyBrdKvHKuOLQvDG7SU1isAQZ3TmUiiSywg",
+//   authDomain: "chat-app-official-2.firebaseapp.com",
+//   projectId: "chat-app-official-2",
+//   storageBucket: "chat-app-official-2.appspot.com",
+//   messagingSenderId: "401135317678",
+//   appId: "1:401135317678:web:0da9d15e5117a6dafd333f",
+//   measurementId: "G-EH71WJRSP2",
+// };
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBrdKvHKuOLQvDG7SU1isAQZ3TmUiiSywg",
-  authDomain: "chat-app-official-2.firebaseapp.com",
-  projectId: "chat-app-official-2",
-  storageBucket: "chat-app-official-2.appspot.com",
-  messagingSenderId: "401135317678",
-  appId: "1:401135317678:web:0da9d15e5117a6dafd333f",
-  measurementId: "G-EH71WJRSP2",
+  apiKey: 'AIzaSyDiRzMofiuZPzzNoEnyBQ06yqYDGz7tzyU',
+  authDomain: 'react-app-8fe7e.firebaseapp.com',
+  projectId: 'react-app-8fe7e',
+  storageBucket: 'react-app-8fe7e.appspot.com',
+  messagingSenderId: '326013788352',
+  appId: '1:326013788352:web:9000b429adb010ba468d25',
 };
 
 const app = initializeApp(firebaseConfig);
