@@ -13,6 +13,7 @@ const ChatPreview = ({ chat, user1, selectUser, currUser, user }) => {
     isDarkMode,
     toggleChatVisibility,
     toggleChatFeedVisibility,
+    chosenUser, setChosenUser
   } = useContext(SharedContext);
   const user2 = currUser?.uid;
   const [data, setData] = useState('');
@@ -66,6 +67,7 @@ const ChatPreview = ({ chat, user1, selectUser, currUser, user }) => {
       className={`${styles.desktop_wrapper__chatpreview} ${selectedUser} `}
       id={isDarkMode ? theme.dark : theme.light}
       onClick={() => {
+        setChosenUser(currUser.uid);
         selectUser(currUser);
         // code to show message in Chat.jsx component
       }}
