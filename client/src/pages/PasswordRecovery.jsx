@@ -41,8 +41,13 @@ const PasswordRecovery = () => {
       setError(null);
       // .then((response) => {
       // console.log(response);
-      toast('Email sent, check your email', {
-        theme: 'dark',
+      toast.success('Email sent, check your email', {
+        autoClose: 2000,
+        pauseOnHover: false,
+        closeOnClick: true,
+        pauseOnFocusLoss: false,
+        hideProgressBar: true,
+        position: 'top-center',
       });
 
       // .catch((err) => console.log(err.message));

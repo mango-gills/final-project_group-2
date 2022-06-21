@@ -60,9 +60,13 @@ const PasswordReset = () => {
     try {
       await resetPassword(query.get('oobCode'), newPassword);
       setError(null);
-      toast('Password Has been changed', {
-        theme: 'dark',
-        autoClose: 3000,
+      toast.success('Password has been changed', {
+        autoClose: 2000,
+        pauseOnHover: false,
+        closeOnClick: true,
+        pauseOnFocusLoss: false,
+        hideProgressBar: true,
+        position: 'top-center',
       });
 
       setTimeout(() => {
