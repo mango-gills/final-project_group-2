@@ -23,7 +23,16 @@ const Chat = ({
     isDarkMode,
     showAddFriendComponent,
     toggleAddFriendVisibility,
+    chosenUser, setChosenUser
   } = useContext(SharedContext);
+  const [msgsCopy, setMsgsCopy] = useState([]);
+
+  useEffect(() => {
+    if (msgs[0]?.to === chosenUser || msgs[0]?.from === chosenUser) {
+      setMsgsCopy([...msgs]);
+    }
+  }, [msgs])
+  
 
   const loggedInUserId = '6AYHXtSfMR';
   const friendInfo = {
@@ -139,8 +148,8 @@ const Chat = ({
             </div>
           </div>
           <div className={styles.desktop_wrapper__messages}>
-            {msgs.length
-              ? msgs.map((msg, i) => (
+            {msgsCopy.length
+              ? msgsCopy.map((msg, i) => (
                   <ChatMessage
                     key={generateKey()}
                     msg={msg}

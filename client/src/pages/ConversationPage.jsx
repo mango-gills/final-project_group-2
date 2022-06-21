@@ -129,11 +129,11 @@ const ConversationPage = () => {
     const q = query(msgsRef, orderBy('createdAt', 'asc'));
 
     onSnapshot(q, (querySnapshot) => {
-      let msgs = [];
+      let messages = [];
       querySnapshot.forEach((doc) => {
-        msgs.push(doc.data());
+        messages.push(doc.data());
       });
-      setMsgs(msgs);
+      setMsgs(messages);
     });
     const docSnap = await getDoc(doc(db, 'lastMsg', id));
     // if last message exists and message is from selected user

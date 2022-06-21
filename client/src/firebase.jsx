@@ -23,13 +23,24 @@ import { getStorage } from 'firebase/storage';
 //   measurementId: "G-EH71WJRSP2",
 // };
 
+// const firebaseConfig = {
+//   apiKey: 'AIzaSyDiRzMofiuZPzzNoEnyBQ06yqYDGz7tzyU',
+//   authDomain: 'react-app-8fe7e.firebaseapp.com',
+//   projectId: 'react-app-8fe7e',
+//   storageBucket: 'react-app-8fe7e.appspot.com',
+//   messagingSenderId: '326013788352',
+//   appId: '1:326013788352:web:9000b429adb010ba468d25',
+// };
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyDiRzMofiuZPzzNoEnyBQ06yqYDGz7tzyU',
-  authDomain: 'react-app-8fe7e.firebaseapp.com',
-  projectId: 'react-app-8fe7e',
-  storageBucket: 'react-app-8fe7e.appspot.com',
-  messagingSenderId: '326013788352',
-  appId: '1:326013788352:web:9000b429adb010ba468d25',
+  apiKey: "AIzaSyCzIsP-ATaPAe5z-geLtk2B6uIXOvb4E_U",
+  authDomain: "chapp-7c981.firebaseapp.com",
+  databaseURL:
+    "https://chapp-7c981-default-rtdb.asia-southeast1.firebasedatabase.app/",
+  projectId: "chapp-7c981",
+  storageBucket: "chapp-7c981.appspot.com",
+  messagingSenderId: "566770331588",
+  appId: "1:566770331588:web:40e8b49ad5fb5ee2617e91",
 };
 
 const app = initializeApp(firebaseConfig);
