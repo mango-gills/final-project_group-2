@@ -32,6 +32,10 @@ const Chat = ({
     avatar: defaultProfilePic,
   };
 
+  const generateKey = () => {
+    return `${user1} + ${Date.now()} + ${Math.random()}`;
+  }
+
   // Mobile Version
   if (isMobile) {
     return (
@@ -138,7 +142,7 @@ const Chat = ({
             {msgs.length
               ? msgs.map((msg, i) => (
                   <ChatMessage
-                    key={i}
+                    key={generateKey()}
                     msg={msg}
                     user1={user1}
                     chat={chat}
