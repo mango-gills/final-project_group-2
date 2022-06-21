@@ -1,7 +1,7 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
-import { getStorage } from 'firebase/storage';
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 // const firebaseConfig = {
 //   apiKey: 'AIzaSyCL_YZK7Tap-kz9MvlJuoAsEC6VpqNl7U0',
@@ -32,15 +32,25 @@ import { getStorage } from 'firebase/storage';
 //   appId: '1:326013788352:web:9000b429adb010ba468d25',
 // };
 
+// const firebaseConfig = {
+//   apiKey: "AIzaSyCzIsP-ATaPAe5z-geLtk2B6uIXOvb4E_U",
+//   authDomain: "chapp-7c981.firebaseapp.com",
+//   databaseURL:
+//     "https://chapp-7c981-default-rtdb.asia-southeast1.firebasedatabase.app/",
+//   projectId: "chapp-7c981",
+//   storageBucket: "chapp-7c981.appspot.com",
+//   messagingSenderId: "566770331588",
+//   appId: "1:566770331588:web:40e8b49ad5fb5ee2617e91",
+// };
+
+// Document 5
 const firebaseConfig = {
-  apiKey: "AIzaSyCzIsP-ATaPAe5z-geLtk2B6uIXOvb4E_U",
-  authDomain: "chapp-7c981.firebaseapp.com",
-  databaseURL:
-    "https://chapp-7c981-default-rtdb.asia-southeast1.firebasedatabase.app/",
-  projectId: "chapp-7c981",
-  storageBucket: "chapp-7c981.appspot.com",
-  messagingSenderId: "566770331588",
-  appId: "1:566770331588:web:40e8b49ad5fb5ee2617e91",
+  apiKey: "AIzaSyDTLktW_Qy0Vm4cdLnefhSLWDLUlY8PSAs",
+  authDomain: "auth-try-1eab5.firebaseapp.com",
+  projectId: "auth-try-1eab5",
+  storageBucket: "auth-try-1eab5.appspot.com",
+  messagingSenderId: "949377894898",
+  appId: "1:949377894898:web:866d9a32603e016c10436b",
 };
 
 const app = initializeApp(firebaseConfig);

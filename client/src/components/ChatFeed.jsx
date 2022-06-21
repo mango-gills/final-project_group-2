@@ -75,7 +75,7 @@ const ChatFeed = ({ user, chat, user1, selectUser, users }) => {
         uid,
         isOnline,
         avatarPath = "avatar/placeholder_avatar.png",
-        avatar = "https://firebasestorage.googleapis.com/v0/b/chat-app-official-2.appspot.com/o/avatar%2Fplaceholder_avatar.png?alt=media&token=dfd00e04-3e8c-4492-bbda-d45b78e344b2",
+        avatar = "https://firebasestorage.googleapis.com/v0/b/auth-try-1eab5.appspot.com/o/avatar%2Fplaceholder_avatar.png?alt=media&token=a938cf30-5786-4e47-b17b-90dd4d580536",
       } = c;
       setTimeout(async () => {
         await updateDoc(doc(db, `friends/friend/${loggedUser}/${uid}/`), {
