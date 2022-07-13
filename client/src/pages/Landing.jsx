@@ -1,13 +1,13 @@
-import React from 'react';
-import { FaPhoneAlt } from 'react-icons/fa';
-import { IoMdVideocam } from 'react-icons/io';
-import { MdPresentToAll } from 'react-icons/md';
-import { Link, Navigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { AuthContext } from '../contexts/auth';
+import React from "react";
+import { FaPhoneAlt } from "react-icons/fa";
+import { IoMdVideocam } from "react-icons/io";
+import { MdPresentToAll } from "react-icons/md";
+import { Link, Navigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/auth";
 
-import styles from '../styles/Landing.module.css';
-import Footer from '../components/Footer';
+import styles from "../styles/Landing.module.css";
+import Footer from "../components/Footer";
 
 const Landing = () => {
   const { user } = useContext(AuthContext);
@@ -19,7 +19,7 @@ const Landing = () => {
       <section className={styles.section__image}>
         <img
           className={styles.image}
-          src="src/assets/other-images/landing-img.svg"
+          src="src/assets/landing-img.svg"
           alt=".landing-image"
         />
       </section>
