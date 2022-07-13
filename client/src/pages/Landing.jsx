@@ -8,6 +8,7 @@ import { AuthContext } from "../contexts/auth";
 
 import styles from "../styles/Landing.module.css";
 import Footer from "../components/Footer";
+import image from "../assets/other-images/landing-img.svg";
 
 const Landing = () => {
   const { user } = useContext(AuthContext);
@@ -17,11 +18,13 @@ const Landing = () => {
   ) : (
     <main className={styles.main__container}>
       <section className={styles.section__image}>
-        <img
+        {/* <img
           className={styles.image}
-          src="src/assets/landing-img.svg"
+          src="src/assets/other-images/landing-img.svg"
           alt=".landing-image"
-        />
+        /> */}
+
+        <img src={image} className={styles.image} />
       </section>
       <section className={styles.section__logo}>
         <div className={styles.section__logo__container}>
