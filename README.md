@@ -1,7 +1,7 @@
 # CHAPP
 
 Final project after learning Full stack web development.\
-<sup>Soon to be a mobile and web app.</sup>
+~~<sup>Soon to be a mobile and web app.</sup>~~
 
 ## Tech Stack
 
