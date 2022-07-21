@@ -1,8 +1,7 @@
 # CHAPP
 
-CHAPP is a full stack chatting website.\
-Final project after learning Full stack web development.
-<sup>Soon to be a mobile and web app.</sup>\
+Final project after learning Full stack web development.\
+<sup>Soon to be a mobile and web app.</sup>
 
 ## Tech Stack
 
